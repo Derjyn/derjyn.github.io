@@ -1,6 +1,0 @@
-pygments: true
-safe: true
-lsi: false
-
-gems:
-  - jemoji
