@@ -69,7 +69,7 @@ footer {
 }
 
 
-#content h2, #tab-links li a, footer span {
+#content h2, #content h3, #tab-links li a, footer span {
     font-family: "Joystix";
     font-weight: normal;	
 }
@@ -79,13 +79,31 @@ footer {
     color: rgb(200, 200, 200);
     margin: 0;
 }
-#content p {
+#content h3 {
+    font-size: 16px;
+    color: rgb(200, 200, 200);
+    margin: 0;
+    padding-top: 32px;
+}
+#content p, #content ul {
     font-family: "anonymous";
     font-weight: normal;
     font-size: 16px;
     line-height: 16px;
+    margin: 0;
+    padding: 8px;
     color: rgb(224, 224, 224);	
 }
+#content ul {
+	list-style: none;
+	margin: 0;
+	padding: 8px;
+}
+#content a {
+	color: rgb(224, 64, 64);
+	text-decoration: none;
+}
+
 
 #tab-links li a {
    	font-size: 10px;
