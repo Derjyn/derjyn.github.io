@@ -62,12 +62,6 @@ footer {
     font-style: normal;
     src: url("joystix.otf");
 }
-@font-face {
-    font-family: "anonymous";
-    font-style: normal;
-    src: url("anonymous.ttf");	
-}
-
 
 #content h2, #content h3, #tab-links li a, footer span {
     font-family: "Joystix";
@@ -86,7 +80,7 @@ footer {
     padding-top: 32px;
 }
 #content p, #content ul {
-    font-family: "anonymous";
+    font-family: monospace;
     font-weight: normal;
     font-size: 16px;
     line-height: 16px;
@@ -104,14 +98,6 @@ footer {
 	text-decoration: none;
 }
 
-
-#tab-links li a {
-   	font-size: 10px;
-	line-height: 32px;
-	text-decoration: none;
-    color: rgb(224, 224, 224);	
-}
-
 footer span {
     font-size: 10px;
 	line-height: 32px;
@@ -125,12 +111,16 @@ footer span {
 /*** STYLE ***************************************************************************************/
 
 body {
-	background-color: rgb(8,8,8);
+	background: rgb(8,8,8);
+	background: -moz-radial-gradient(center, ellipse cover, rgb(24,24,24) 0%, rgba(8,8,8) 100%);
+	background: -webkit-radial-gradient(center, ellipse cover, rgb(24,24,24) 0%, rgb(8,8,8) 100%);
+	background: -o-radial-gradient(center, ellipse cover, rgb(24,24,24) 0%, rgb(8,8,8) 100%);
+	background: radial-gradient(ellipse at center, rgb(24,24,24) 0%, rgb(8,8,8) 100%);
 	z-index: 0;
 }
 
 main, footer, nav {
-	background-color: rgba(16,16,16, 0.8);
+	background-color: rgba(24,24,24, 0.7);
 }
 
 
@@ -155,7 +145,6 @@ main, footer, nav {
 	letter-spacing: 0.1em;
 	font-family: "Joystix", fixed;
 }
-
 .header span:nth-child(1) {
 	color: red;
 	margin-left: -1px;
@@ -225,14 +214,15 @@ main, footer, nav {
 #tabs {
 	width: 100%;
 }
-.tab p {
-	padding: 16px;
-}
+
 .tab {
     display: none;
 }
 .tab.active {
 	display: block;
+}
+.tab p {
+	padding: 16px;
 }
 
 #tab-links {
@@ -248,9 +238,9 @@ main, footer, nav {
 #tab-links li {
 	display: block;
 	float: left;
-    width: 64px;
+    width: 104px;
 	height: 32px;
-	margin-right: 16px;
+	margin-right: 12px;
 	text-align: center;
     list-style:	none;
 }
@@ -260,14 +250,19 @@ main, footer, nav {
 #tab-links li a {
 	display: block;
 	height: 32px;
-	   
+	font-size: 10px;
+	line-height: 32px;
+	text-decoration: none;
+    color: rgb(160, 160, 160);	
 }
 #tab-links li.active a {
+	color: rgb(224, 224, 224);
     background: rgba(255,255,255,0.1);
 }
 
 .clicked {
 	-webkit-animation: flicker 500ms;
+	animation: flicker 500ms;
 }
 @-webkit-keyframes flicker {
 	0%		{ -webkit-filter: opacity(1.0); }
@@ -277,6 +272,24 @@ main, footer, nav {
 	40%		{ -webkit-filter: opacity(1.0); }
 	50%		{ -webkit-filter: opacity(0.0); }
 }
+
+.icon {
+	display: inline-block;
+	float: left;
+	clear: right;
+	position: relative;
+	width: 18px;
+	height: 18px;	
+	top: 6px;
+	left: 10px;
+	background-image: url("sprites.png");
+	background-repeat: no-repeat;	
+}
+#link-home { background-position: -2px -1px; }
+#link-work { background-position: -24px -1px; }
+#link-labs { background-position: -44px -1px; }
+#link-dump { background-position: -66px -1px; }
+#link-cred { background-position: -90px -1px; }
 
 
 /*************************************************************************************************/
