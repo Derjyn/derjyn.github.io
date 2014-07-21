@@ -1,188 +1,268 @@
 /*
 **
 ** FILE:		derjyn.css
-** UPDATED: 	07/09/2014
+** UPDATED: 	07/21/2014
 ** NOTES:		CSS is currently not compressed (duh?)
-** CREDITS: 	Grid is based on Pocketgrid (http://arnaudleray.github.io/pocketgrid/)
+** CREDITS: 	Sublime HQ for Sublime Text / Google for Chrome / You for viewing
 */
 
 
 /*************************************************************************************************/
-/*** GRID ****************************************************************************************/
+/*** RESET ***************************************************************************************/
 
-header,main,aside,footer,.row,.col,.row:after,.col:after,.row:before,.col:before {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+*, *:before, *:after {
+	box-sizing: border-box;
 }
 
-.row {
-  *zoom: 1;
-}
-.row:before,.row:after {
-  display: table;
-  content: "";
-  line-height: 0;
-}
-.row:after {
-  clear: both;
+body, html {
+	height: 100%;
 }
 
-.row {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
+body, html, header, main, footer {
+	margin: 0;
+	padding: 0;
 }
-
-.row > .row {
-  clear: none;
-  float: left;
-  margin: 0 !important;
-}
-
-.col {
-  float: left;
-  width: 100%;
-}
-
-.l-off-10,.l-off-20,.l-off-30,.l-off-40,.l-off-50,.l-off-60,.l-off-70,.l-off-80,.l-off-90,
-.r-off-10,.r-off-20,.r-off-30,.r-off-40,.r-off-50,.r-off-60,.r-off-70,.r-off-80,.r-off-90 {
-	position: relative;	
-}
-
-.l-off-10 { left: 10%; }
-.l-off-20 { left: 20%; }
-.l-off-30 { left: 30%; }
-.l-off-40 { left: 40%; }
-.l-off-50 { left: 50%; }
-.l-off-60 { left: 60%; }
-.l-off-70 { left: 70%; }
-.l-off-80 { left: 80%; }
-.l-off-90 { left: 90%; }
-
-.r-off-10 { right: 10%; }
-.r-off-20 { right: 20%; }
-.r-off-30 { right: 30%; }
-.r-off-40 { right: 40%; }
-.r-off-50 { right: 50%; }
-.r-off-60 { right: 60%; }
-.r-off-70 { right: 70%; }
-.r-off-80 { right: 80%; }
-.r-off-90 { right: 90%; }
-
-.w-10 {	width: 10%; }
-.w-20 { width: 20%; }
-.w-30 {	width: 30%; }
-.w-40 { width: 40%; }
-.w-50 {	width: 50%; }
-.w-60 { width: 60%; }
-.w-70 {	width: 70%; }
-.w-80 { width: 80%; }
-.w-90 { width: 90%; }
 
 
 /*************************************************************************************************/
 /*** LAYOUT **************************************************************************************/
 
-html, body {
-	width: 100%;
-	height: 100%;
+.header, main, footer {
+	display: flex;
+	display: -webkit-flex;
+	flex-direction: row nowrap;
+	-webkit-flex-flow: row nowrap;
+	min-width: 960px;
+	z-index: 1;
 }
 
-.row {
+main {
+	width: 960px;
+	height: 512px;
+	margin: 0 auto;
+	margin-top: 16px;
 }
-
-.col {
-	padding: 1%;
+main section {
+	padding: 16px;
 }
-
-header {}
-main {}
-aside {}
 
 footer {
-	position: absolute;
-	bottom: 0%;
+	width: 960px;
+	height: 32px;
+	margin: 0 auto;
+	margin-top: 16px;
 }
 
 
 /*************************************************************************************************/
 /*** TYPOGRAPHY **********************************************************************************/
 
-body {
-  	font-family: Helvetica, Arial, sans-serif;
-  	font-size: 16px;
-  	line-height: 24px;
-  	font-weight: 300;
-  	color: #777;  
+@font-face {
+    font-family: "Joystix";
+    font-style: normal;
+    src: url("joystix.otf");
+}
+@font-face {
+    font-family: "anonymous";
+    font-style: normal;
+    src: url("anonymous.ttf");	
 }
 
-h1,h2,h3,h4 {
-  	color: #222;
+
+#content h2, #tab-links li a, footer span {
+    font-family: "Joystix";
+    font-weight: normal;	
 }
 
-h1 {
-	font-size: 2.0000em;
-	line-height: 1.5000em;
-	margin-top: 0.7500em;
-	margin-bottom: 0.0000em;
+#content h2 {
+    font-size: 20px;
+    color: rgb(200, 200, 200);
+    margin: 0;
 }
-h2 {
-	font-size: 1.5000em;
-	line-height: 1.0000em;
-	margin-top: 1.0000em;
-	margin-bottom: 0.0000em;
-}
-h3 {
-	font-size: 1.2500em;
-	line-height: 1.2000em;
-	margin-top: 1.2000em;  
-	margin-bottom: 0.0000em;
-}
-h4 {
-	font-size: 1.0000em;
-	line-height: 1.5000em;
-	margin-top: 1.5000em;  
-	margin-bottom: 0.0000em;	
+#content p {
+    font-family: "anonymous";
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 16px;
+    color: rgb(224, 224, 224);	
 }
 
-p, pre {
-	font-size: 1em;
-	line-height: 1.5000em;
-	margin-top: 1.5000em;  
-	margin-bottom: 0.0000em;
+#tab-links li a {
+   	font-size: 10px;
+	line-height: 32px;
+	text-decoration: none;
+    color: rgb(224, 224, 224);	
 }
 
-small {
-	font-size: 0.6875em;
-	line-height: 2.1818em;
-	margin-top: 2.1818em;  
-	margin-bottom: 0.0000em;
-}
-
-a {
-	font-size: 1em;
-	line-height: 1.5000em;
-	margin: 0 0 1.5000em 0;	
-  	color: #39c;
-  	font-weight: 400;
-  	text-decoration: none;
-}
-
-main h3 {
-	margin-top: 0;
-}
-
-footer p {
+footer span {
+    font-size: 10px;
+	line-height: 32px;
 	text-align: center;
+	color: rgb(80,80,80);
+	margin: 0 auto;
 }
 
 
 /*************************************************************************************************/
 /*** STYLE ***************************************************************************************/
 
-.col {
+body {
+	background-color: rgb(8,8,8);
+	z-index: 0;
 }
+
+main, footer, nav {
+	background-color: rgba(16,16,16, 0.8);
+}
+
+
+/*************************************************************************************************/
+/*** HEADER **************************************************************************************/
+
+.header {
+	position: relative;
+	width: 960px;
+	height: 96px;
+	margin: 0 auto;
+	overflow: hidden;
+	text-align: center;
+}
+
+.header span {
+	position: absolute;
+	width: 960px;	
+	font-size: 3em;
+	font-weight: normal;
+	line-height: 96px;
+	letter-spacing: 0.1em;
+	font-family: "Joystix", fixed;
+}
+
+.header span:nth-child(1) {
+	color: red;
+	margin-left: -1px;
+}
+.header span:nth-child(2) {
+	color: green;
+	margin-left: 1px;
+}
+.header span:nth-child(3) {
+	color: blue;
+	position: 1px 0;
+}
+.header span:nth-child(4) {
+	color: rgb(50,50,50);
+}
+.header span:nth-child(5) {
+	color: rgba(255,255,255,0.9);
+}
+
+.header span {
+	-webkit-animation: blur 1000ms infinite;
+}
+@-webkit-keyframes blur {
+	0%		{ -webkit-filter: blur(1px); }
+	1%		{ -webkit-filter: blur(0px); }
+}
+
+.header span:nth-child(1){
+	-webkit-animation: jerkred 1000ms infinite;
+}
+@-webkit-keyframes jerkred {
+  0% 	{ left: 0; 		top: 0px; opacity: 0.7; }
+  30% 	{ left: 0; 		opacity:0.2; }
+  31% 	{ left: 4px; 	top: 4px; opacity: 0.7; }
+  32% 	{ left: 0;		top: 0px; opacity: 0.7; }
+  98% 	{ left: 0;		opacity: 0.2; }
+  100% 	{ left: 4px; }
+}
+.header span:nth-child(2){
+	-webkit-animation: jerkgreen 2000ms infinite;
+}
+@-webkit-keyframes jerkgreen {
+  0% 	{ left: 0;		opacity: 0.2; }
+  30% 	{ left: 0; 		opacity: 0.2; }
+  31% 	{ left: -8px;	opacity: 0.9; }
+  32% 	{ left: 0;		opacity: 0.2; }
+  98% 	{ left: 0;		opacity: 0.2; }
+  100% 	{ left: -8px;	opacity: 0.9; }
+}
+
+.header span:nth-child(3){
+	-webkit-animation: jerkblue 3000ms infinite;
+}
+@-webkit-keyframes jerkblue {
+  0% 	{ left: 0;		opacity: 0.2; }
+  30% 	{ left: 0;		opacity: 0.2; }
+  31% 	{ left: 4px;	opacity: 0.9; }
+  32% 	{ left: 0;		opacity: 0.2; }
+  98% 	{ left: 0;		opacity: 0.2; }
+  100% 	{ left: 4px;	opacity: 0.9; }
+}
+
+
+/*************************************************************************************************/
+/*** TABS ****************************************************************************************/
+
+#tabs {
+	width: 100%;
+}
+.tab p {
+	padding: 16px;
+}
+.tab {
+    display: none;
+}
+.tab.active {
+	display: block;
+}
+
+#tab-links {
+	width: 960px;
+	height: 32px;
+	margin: 0 auto;
+	margin-top: 16px;	
+}
+#tab-links ul {
+	margin: 0 auto;
+	padding: 0;
+}
+#tab-links li {
+	display: block;
+	float: left;
+    width: 64px;
+	height: 32px;
+	margin-right: 16px;
+	text-align: center;
+    list-style:	none;
+}
+#tab-links li:last-child {
+	margin-right: 0;
+}
+#tab-links li a {
+	display: block;
+	height: 32px;
+	   
+}
+#tab-links li.active a {
+    background: rgba(255,255,255,0.1);
+}
+
+.clicked {
+	-webkit-animation: flicker 500ms;
+}
+@-webkit-keyframes flicker {
+	0%		{ -webkit-filter: opacity(1.0); }
+	10%		{ -webkit-filter: opacity(0.0); }
+	20%		{ -webkit-filter: opacity(1.0); }
+	30%		{ -webkit-filter: opacity(0.0); }
+	40%		{ -webkit-filter: opacity(1.0); }
+	50%		{ -webkit-filter: opacity(0.0); }
+}
+
+
+/*************************************************************************************************/
+/*** UTILITY *************************************************************************************/
 
 
 /*************************************************************************************************/
