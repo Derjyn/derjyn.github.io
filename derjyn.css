@@ -30,7 +30,7 @@ body, html, header, main, footer {
 .header, main, footer {
 	display: flex;
 	display: -webkit-flex;
-	flex-direction: row nowrap;
+	flex-flow: row nowrap;
 	-webkit-flex-flow: row nowrap;
 	min-width: 960px;
 	z-index: 1;
@@ -113,7 +113,7 @@ footer span {
 
 body {
 	background: rgb(8,8,8);
-	background: -moz-radial-gradient(center, ellipse cover, rgb(24,24,24) 0%, rgba(8,8,8) 100%);
+	background: -moz-radial-gradient(center, ellipse cover, rgb(24,24,24) 0%, rgb(8,8,8) 100%);
 	background: -webkit-radial-gradient(center, ellipse cover, rgb(24,24,24) 0%, rgb(8,8,8) 100%);
 	background: -o-radial-gradient(center, ellipse cover, rgb(24,24,24) 0%, rgb(8,8,8) 100%);
 	background: radial-gradient(ellipse at center, rgb(24,24,24) 0%, rgb(8,8,8) 100%);
@@ -156,7 +156,6 @@ main, footer, nav {
 }
 .header span:nth-child(3) {
 	color: blue;
-	position: 1px 0;
 }
 .header span:nth-child(4) {
 	color: rgb(50,50,50);
@@ -168,7 +167,7 @@ main, footer, nav {
 .header span {
 	-webkit-animation: blur 1000ms infinite;
 }
-@-webkit-keyframes blur {
+@keyframes blur {
 	0%		{ -webkit-filter: blur(1px); }
 	1%		{ -webkit-filter: blur(0px); }
 }
@@ -176,7 +175,7 @@ main, footer, nav {
 .header span:nth-child(1) {
 	-webkit-animation: jerkred 1000ms infinite;
 }
-@-webkit-keyframes jerkred {
+@keyframes jerkred {
   0% 	{ left: 0; 		top: 0px; opacity: 0.7; }
   30% 	{ left: 0; 		opacity:0.2; }
   31% 	{ left: 4px; 	top: 4px; opacity: 0.7; }
@@ -187,7 +186,7 @@ main, footer, nav {
 .header span:nth-child(2) {
 	-webkit-animation: jerkgreen 2000ms infinite;
 }
-@-webkit-keyframes jerkgreen {
+@keyframes jerkgreen {
   0% 	{ left: 0;		opacity: 0.2; }
   30% 	{ left: 0; 		opacity: 0.2; }
   31% 	{ left: -8px;	opacity: 0.9; }
@@ -199,7 +198,7 @@ main, footer, nav {
 .header span:nth-child(3) {
 	-webkit-animation: jerkblue 3000ms infinite;
 }
-@-webkit-keyframes jerkblue {
+@keyframes jerkblue {
   0% 	{ left: 0;		opacity: 0.2; }
   30% 	{ left: 0;		opacity: 0.2; }
   31% 	{ left: 4px;	opacity: 0.9; }
@@ -262,10 +261,10 @@ main, footer, nav {
 }
 
 .clicked {
-	-webkit-animation: flicker 500ms;
+	animation: flicker 500ms;
 	animation: flicker 500ms;
 }
-@-webkit-keyframes flicker {
+@keyframes flicker {
 	0%		{ -webkit-filter: opacity(1.0); }
 	10%		{ -webkit-filter: opacity(0.0); }
 	20%		{ -webkit-filter: opacity(1.0); }
