@@ -42,7 +42,8 @@ main {
 	margin: 0 auto;
 	margin-top: 16px;
 }
-main section {
+
+#content {
 	padding: 16px;
 }
 
@@ -172,7 +173,7 @@ main, footer, nav {
 	1%		{ -webkit-filter: blur(0px); }
 }
 
-.header span:nth-child(1){
+.header span:nth-child(1) {
 	-webkit-animation: jerkred 1000ms infinite;
 }
 @-webkit-keyframes jerkred {
@@ -183,7 +184,7 @@ main, footer, nav {
   98% 	{ left: 0;		opacity: 0.2; }
   100% 	{ left: 4px; }
 }
-.header span:nth-child(2){
+.header span:nth-child(2) {
 	-webkit-animation: jerkgreen 2000ms infinite;
 }
 @-webkit-keyframes jerkgreen {
@@ -195,7 +196,7 @@ main, footer, nav {
   100% 	{ left: -8px;	opacity: 0.9; }
 }
 
-.header span:nth-child(3){
+.header span:nth-child(3) {
 	-webkit-animation: jerkblue 3000ms infinite;
 }
 @-webkit-keyframes jerkblue {
