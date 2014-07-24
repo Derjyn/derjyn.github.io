@@ -38,7 +38,7 @@ body, html, header, main, footer {
 
 main {
 	width: 960px;
-	height: 512px;
+	min-height: 512px;
 	margin: 0 auto;
 	margin-top: 16px;
 }
@@ -46,12 +46,30 @@ main {
 #content {
 	padding: 16px;
 }
+#content h3 {
+	clear: both;
+}
 
 footer {
 	width: 960px;
 	height: 32px;
 	margin: 0 auto;
 	margin-top: 16px;
+}
+
+#art, #ui-work {
+	display: block;
+	clear: both;
+}
+#art li {
+	display: block;
+	float: left;
+	padding: 8px;
+}
+#ui-work li {
+	display: block;
+	float: left;
+	padding: 8px;
 }
 
 
