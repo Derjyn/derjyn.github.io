@@ -30,14 +30,14 @@ body, html, header, main, footer {
 .header, main, footer {
 	display: flex;
 	display: -webkit-flex;
-	flex-flow: row nowrap;
-	-webkit-flex-flow: row nowrap;
-	min-width: 960px;
+	flex-flow: row wrap;
+	-webkit-flex-flow: row wrap;
+	max-width: 960px;
 	z-index: 1;
 }
 
 main {
-	width: 960px;
+	max-width: 960px;
 	min-height: 512px;
 	margin: 0 auto;
 	margin-top: 16px;
@@ -51,7 +51,7 @@ main {
 }
 
 footer {
-	width: 960px;
+	max-width: 960px;
 	height: 32px;
 	margin: 0 auto;
 	margin-top: 16px;
@@ -148,7 +148,7 @@ main, footer, nav {
 
 .header {
 	position: relative;
-	width: 960px;
+	max-width: 960px;
 	height: 96px;
 	margin: 0 auto;
 	overflow: hidden;
@@ -157,7 +157,7 @@ main, footer, nav {
 
 .header span {
 	position: absolute;
-	width: 960px;	
+	max-width: 960px;	
 	font-size: 3em;
 	font-weight: normal;
 	line-height: 96px;
