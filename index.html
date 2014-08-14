@@ -36,6 +36,7 @@
                 var script = window.document.createElement("script");
                 script.src = src;
                 ref.parentNode.insertBefore(script, ref);
+                
                 return script;
             }
 
@@ -71,8 +72,7 @@
             </ul>
         </nav>
 
-        <main>
-            
+        <main>            
             <div id="tabs">          
                 <div id="content">
                     <section id="home" class="tab active">
@@ -181,7 +181,6 @@
                             <li><a href="http://leaverou.github.io/prefixfree/" target="_blank">Lea Verou</a> - for PrefixFree</li>
                         </ul>
 
-
                         <h3>Respect</h3>
                         <ul>
                             <li><a href="http://google.com" target="_blank">Google</a> - for being Google</li>
@@ -200,9 +199,7 @@
 
         <div id="starfield"></div>
 
-        <!-- SCRIPTS -->
-        
-
+        <!-- GOOGLE ANALYTICS CODE -->
         <script>
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -212,9 +209,8 @@
 			ga('create', 'UA-53351224-1', 'auto');
 			ga('require', 'displayfeatures');
 			ga('send', 'pageview');
-
 		</script>
-        <!-- /SCRIPTS -->        
+        <!-- /GOOGLE ANALYTICS CODE -->        
     </body>
     <!-- /BODY -->
 </html>
