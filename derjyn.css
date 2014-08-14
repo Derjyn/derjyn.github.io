@@ -38,7 +38,7 @@ body, html, header, main, footer {
 
 main {
 	max-width: 960px;
-	min-height: 512px;
+	min-height: 320px;
 	margin: 0 auto;
 	margin-top: 16px;
 }
@@ -106,7 +106,7 @@ footer {
     font-family: monospace;
     font-weight: normal;
     font-size: 16px;
-    line-height: 16px;
+    line-height: 20px;
     margin: 0;
     padding: 8px;
     color: rgb(224, 224, 224);	
@@ -248,7 +248,7 @@ main, footer, nav {
 }
 
 #tab-links {
-	width: 960px;
+	max-width: 960px;
 	height: 32px;
 	margin: 0 auto;
 	margin-top: 16px;	
