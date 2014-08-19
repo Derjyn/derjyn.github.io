@@ -248,7 +248,7 @@ $(function(e) {
     }
 });
 
-$(document).ready(function() {
+$(window).bind("load", function() {
     $(function() {
         for (i = 0; i < 4; i++) {
             $(".header .text span").eq(0).clone().prependTo(".header .text");
