@@ -319,6 +319,9 @@ main, footer, nav {
 /*** MEDIA QUERIES *******************************************************************************/
 
 @media only screen and (max-width : 320px) {
+	#tab-links ul {
+		padding: 8px;
+	}
 	#tab-links li {
 		margin-bottom: 8px;
 	}
