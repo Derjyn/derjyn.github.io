@@ -1,254 +1,301 @@
-$(function(e) {
-    e.fn.starscroll = function(r, i, s, o, u, a, f, l, c) {
-        var h = e(this),
-            p = n.any(),
-            d = new t(h, p, r, i, s, o, u, a, f, l);
-        window.addEventListener("scroll", function() {
-            d.parallax()
-        }, false);
-        if (l && !p) {
-            setInterval(function() {
-                d.time += c;
-                d.parallax()
-            }, 1e3 / 60)
+(function($) {
+
+$.fn.starscroll = function(bit,fields,num,size,smooth,colour,mix,anim){ // 8bit mode 
+    
+    var el = $(this),
+        process = new Plugin(el,bit,fields,num,size,smooth,colour,mix,anim); 
+    
+    window.addEventListener('scroll', function() { process.parallax(); }, false);       
+    if(anim){
+        setInterval(function(){     
+            process.time += 5;
+            process.parallax();
+        },1000/40);
+    }
+    return this.el; 
+
+}
+
+var Plugin = function(me,bit,levels,density,dimension,smooth,colour,mix,anim){
+
+    this.el = me;
+    this.levels = (levels > 10)? 10 : levels;
+    this.layers = [];
+    this.dimension = (dimension > 20)? 20 : dimension;
+    this.density = density;
+    this.colour = (!colour)? [255,255,255] : colour;
+    this.hue = (!mix)? false : mix;
+    this.bit = (!bit)? false : bit;
+    this.time = 0;
+    this.anim = anim;
+    this.smooth = (smooth > 5 || true)? 5 : smooth;
+
+    var width, ww = $(window).width(),
+        height, wh = $(window).width();
+
+    width = (ww > 700)? 700 : ww;
+    height = (wh > 600)? 650 : wh;
+
+    this.w = width;
+    this.h = height;
+
+    this.init();
+}
+
+Plugin.prototype.init = function(){
+
+    for(var i=0;i<this.levels;i++){
+
+        this.layers[i] = this.buildlayers(i)
+    }
+    this.images = this.createStars();
+    this.applyImages(this.images);
+}
+
+Plugin.prototype.buildlayers = function(i){
+
+    var elements = {},
+        canvas = document.createElement( 'canvas' ),
+        context = canvas.getContext( '2d' );
+
+    canvas.width = this.w;
+    canvas.height = this.h;
+
+    var DOM = $('<div id="starchild'+i+'"/>');   
+    this.buildDOMels(DOM,i);
+
+    elements.canvas = canvas;
+    elements.context = context;
+    elements.DOM = DOM;
+
+    return elements;
+}
+
+Plugin.prototype.createStars = function(){
+
+    var images = [];
+
+    for(var i=0;i<this.levels;i++){
+
+        var c = this.layers[i].canvas,
+            ctx = this.layers[i].context,
+            hsl = this.hsl(this.colour);
+
+        for(var j=0;j<this.density;j++){
+            this.drawStar(ctx,i,hsl)
         }
-        return this.el
-    };
-    var t = function(t, n, r, i, s, o, u, a, f, l) {
-        this.el = t;
-        this.levels = i > 10 ? 10 : i;
-        this.layers = [];
-        this.dimension = o > 20 ? 20 : o;
-        this.density = s;
-        this.colour = !a ? [255, 255, 255] : a;
-        this.hue = !f ? false : f;
-        this.bit = !r ? false : r;
-        this.time = 0;
-        this.anim = l;
-        this.smooth = u > 5 || true ? 5 : u;
-        var c, h = e(window).width(),
-            p, d = e(window).width();
-        c = h > 700 ? 700 : h;
-        p = d > 600 ? 650 : d;
-        this.w = c;
-        this.h = p;
-        if (!n) this.init()
-    };
-    t.prototype.init = function() {
-        for (var e = 0; e < this.levels; e++) {
-            this.layers[e] = this.buildlayers(e)
+
+        images[i] = this.convertCanvasToImage(c);
+
+    }
+    return images;
+
+}
+Plugin.prototype.drawStar = function(ctx,i,hsl){
+    
+    var z = this.dimension / (i*.075 +1),
+        radius = Math.random()*z,
+        sx=0, sy=0,
+        flare = Math.random()*(radius*.9),
+        col = (this.hue)? this.colstep(hsl) : this.colour;
+
+    sx = this.boundary('x',radius);
+    sy = this.boundary('y',radius);
+
+    var grd = ctx.createRadialGradient(sx, sy, flare, sx, sy, radius),
+        alf = .7 + Math.random()*.3;
+
+    grd.addColorStop(0, 'rgba(255,255,255,.9)');
+    if(col) grd.addColorStop(0.5, 'rgba('+col+',.8)');
+    grd.addColorStop(1, 'rgba(255,255,255,0)');
+    
+    ctx.beginPath();
+    
+    if(this.bit == 8 || false){     
+        ctx.fillRect(sx,sy,radius,radius);  
+        ctx.fillStyle = 'rgba(255,255,255,'+alf+')';
+    }else{
+        ctx.arc(sx,sy,radius,0,Math.PI*2,true);
+        ctx.globalAlpha = .7 + Math.random()*.3;
+        ctx.fillStyle = grd;
+    } 
+    ctx.fill();
+}
+Plugin.prototype.colstep = function(hsl){
+
+    hsl[0] = hsl[0] - (~~(Math.random()*4)) + (~~(Math.random()*8));
+
+    return this.rgb(hsl);
+}
+
+Plugin.prototype.boundary = function(axis,rad){
+
+    var rlf = rad,
+        rtn = 0;
+
+    if(axis == 'x'){
+        var pos = Math.random()*this.w;
+        rtn = pos;
+        if (pos < rlf){
+            rtn = pos + rlf + Math.random()*rad;
+        }else if(pos > this.w - rlf){
+            rtn = pos - rlf - Math.random()*rad;
         }
-        this.images = this.createStars();
-        this.applyImages(this.images)
-    };
-    t.prototype.buildlayers = function(t) {
-        var n = {},
-            r = document.createElement("canvas"),
-            i = r.getContext("2d");
-        r.width = this.w;
-        r.height = this.h;
-        var s = e('<div id="starchild' + t + '"/>');
-        this.buildDOMels(s, t);
-        n.canvas = r;
-        n.context = i;
-        n.DOM = s;
-        return n
-    };
-    t.prototype.createStars = function() {
-        var e = [];
-        for (var t = 0; t < this.levels; t++) {
-            var n = this.layers[t].canvas,
-                r = this.layers[t].context,
-                i = this.hsl(this.colour);
-            for (var s = 0; s < this.density; s++) {
-                this.drawStar(r, t, i)
-            }
-            e[t] = this.convertCanvasToImage(n)
+        return rtn;
+
+    }else{
+        var pos = Math.random()*this.h;
+        rtn = pos;  
+        if (pos < rlf){     
+            rtn = pos + rlf + Math.random()*rad;
+        }else if(pos > this.h - rlf){
+            rtn = pos - rlf - Math.random()*rad;
         }
-        return e
-    };
-    t.prototype.drawStar = function(e, t, n) {
-        var r = this.dimension / (t * .075 + 1),
-            i = Math.random() * r,
-            s = 0,
-            o = 0,
-            u = Math.random() * i * .9,
-            a = this.hue ? this.colstep(n) : this.colour;
-        s = this.boundary("x", i);
-        o = this.boundary("y", i);
-        var f = e.createRadialGradient(s, o, u, s, o, i),
-            l = .7 + Math.random() * .3;
-        f.addColorStop(0, "rgba(255,255,255,.9)");
-        if (a) f.addColorStop(.5, "rgba(" + a + ",.8)");
-        f.addColorStop(1, "rgba(255,255,255,0)");
-        e.beginPath();
-        if (this.bit == 8 || false) {
-            e.fillRect(s, o, i, i);
-            e.fillStyle = "rgba(255,255,255," + l + ")"
-        } else {
-            e.arc(s, o, i, 0, Math.PI * 2, true);
-            e.globalAlpha = .7 + Math.random() * .3;
-            e.fillStyle = f
-        }
-        e.fill()
-    };
-    t.prototype.colstep = function(e) {
-        e[0] = e[0] - ~~(Math.random() * 4) + ~~(Math.random() * 8);
-        return this.rgb(e)
-    };
-    t.prototype.boundary = function(e, t) {
-        var n = t,
-            r = 0;
-        if (e == "x") {
-            var i = Math.random() * this.w;
-            r = i;
-            if (i < n) {
-                r = i + n + Math.random() * t
-            } else if (i > this.w - n) {
-                r = i - n - Math.random() * t
-            }
-            return r
-        } else {
-            var i = Math.random() * this.h;
-            r = i;
-            if (i < n) {
-                r = i + n + Math.random() * t
-            } else if (i > this.h - n) {
-                r = i - n - Math.random() * t
-            }
-            return r
-        }
-    };
-    t.prototype.applyImages = function(e) {
-        for (var t = 0; t < this.levels; t++) {
-            var n = this.layers[t].DOM,
-                r = e[t].src;
-            n.css({
-                "background-image": "url(" + r + ")"
-            })
-        }
-    };
-    t.prototype.parallax = function() {
-        var e = window.pageYOffset - this.time;
-        for (var t = 0; t < this.levels; t++) {
-            var n = this.layers[t].DOM,
-                r = -e * ((t + 1) / 2);
-            n.css({
-                "background-position": "0 " + r + "px"
-            })
-        }
-    };
-    t.prototype.buildDOMels = function(e, t) {
-        this.el.append(e);
-        var n = "5s";
-        if (this.anim) {
-            n = "0s"
-        }
-        this.el.css({
-            position: "fixed",
-            "z-index": -1,
-            top: 0,
-            width: "100%",
-            height: "100%"
+        return rtn;
+    }
+
+    
+}
+Plugin.prototype.applyImages = function(imgs){
+
+    for(var i=0;i<this.levels;i++){
+
+        var $el = this.layers[i].DOM,
+            img = imgs[i].src;
+        $el.css({
+            'background-image':'url('+img+')'
         });
-        e.css({
-            transition: "all " + n + " cubic-bezier(0.230, 1.000, 0.320, 1.000)",
-            position: "fixed",
-            width: "100%",
-            height: "100%",
-            "background-repeat": "repeat",
-            "background-color": "transparent"
+    }
+}
+Plugin.prototype.parallax = function(){
+
+    var pos = window.pageYOffset - this.time; 
+
+    for(var i=0;i<this.levels;i++){
+
+        var $el = this.layers[i].DOM,
+            speed = -pos*((i+1)/2);
+        
+        $el.css({
+            'background-position':'0 '+ speed +'px'
         })
-    };
-    t.prototype.convertCanvasToImage = function(e) {
-        var t = new Image;
-        t.src = e.toDataURL("image/png");
-        return t
-    };
-    t.prototype.hsl = function(e) {
-        var t = e[0] / 255;
-        var n = e[1] / 255;
-        var r = e[2] / 255;
-        var i = Math.max(t, n, r);
-        var s = Math.min(t, n, r);
-        var o = (i + s) / 2;
-        var u = 0;
-        var a = 0;
-        if (i != s) {
-            if (o < .5) {
-                u = (i - s) / (i + s)
-            } else {
-                u = (i - s) / (2 - i - s)
-            } if (t == i) {
-                a = (n - r) / (i - s)
-            } else if (n == i) {
-                a = 2 + (r - t) / (i - s)
-            } else {
-                a = 4 + (t - n) / (i - s)
-            }
+    }   
+}
+Plugin.prototype.buildDOMels = function(DOM,i){
+    
+    this.el.append(DOM);
+    var scroll = '5s';
+    if(this.anim){
+        scroll = '0s'
+    }
+
+    this.el.css({
+        'position': 'fixed',
+        'z-index': -1,
+        'top':0,
+        'width':'100%',
+        'height':'100%'
+    })
+    DOM.css({
+        'transition':'all '+scroll+' cubic-bezier(0.230, 1.000, 0.320, 1.000)', 
+        'position': 'fixed',
+        'width':'100%',
+        'height':'100%',
+        'background-repeat': 'repeat',
+        'background-color': 'transparent'
+    })
+}
+Plugin.prototype.convertCanvasToImage = function(canvas) {
+    
+    var image = new Image();
+    image.src = canvas.toDataURL("image/png");
+    return image;
+}
+
+Plugin.prototype.hsl = function(rgb){
+
+    var r1 = rgb[0] / 255;
+    var g1 = rgb[1] / 255;
+    var b1 = rgb[2] / 255;
+    var maxColor = Math.max(r1,g1,b1);
+    var minColor = Math.min(r1,g1,b1);
+    //Calculate L:
+    var L = (maxColor + minColor) / 2 ;
+    var S = 0;
+    var H = 0;
+    if(maxColor != minColor){
+        //Calculate S:
+        if(L < 0.5){
+            S = (maxColor - minColor) / (maxColor + minColor);
+        }else{
+            S = (maxColor - minColor) / (2.0 - maxColor - minColor);
         }
-        o = o * 100;
-        u = u * 100;
-        a = a * 60;
-        if (a < 0) {
-            a += 360
-        }
-        var f = [a, u, o];
-        return f
-    };
-    t.prototype.rgb = function(e) {
-        var t = e[0];
-        var n = e[1];
-        var r = e[2];
-        var i, s, o;
-        var u, a, f;
-        n /= 100;
-        r /= 100;
-        if (n == 0) u = a = f = r * 255;
-        else {
-            if (r <= .5) s = r * (n + 1);
-            else s = r + n - r * n;
-            i = r * 2 - s;
-            o = t / 360;
-            u = this.hue2rgb(i, s, o + 1 / 3);
-            a = this.hue2rgb(i, s, o);
-            f = this.hue2rgb(i, s, o - 1 / 3)
-        }
-        return [Math.round(u), Math.round(a), Math.round(f)]
-    };
-    t.prototype.hue2rgb = function(e, t, n) {
-        var r;
-        if (n < 0) n += 1;
-        else if (n > 1) n -= 1;
-        if (6 * n < 1) r = e + (t - e) * n * 6;
-        else if (2 * n < 1) r = t;
-        else if (3 * n < 2) r = e + (t - e) * (2 / 3 - n) * 6;
-        else r = e;
-        return 255 * r
-    };
-    var n = {
-        Android: function() {
-            return navigator.userAgent.match(/Android/i)
-        },
-        BlackBerry: function() {
-            return navigator.userAgent.match(/BlackBerry/i)
-        },
-        iOS: function() {
-            return navigator.userAgent.match(/iPhone|iPod/i)
-        },
-        Opera: function() {
-            return navigator.userAgent.match(/Opera Mini/i)
-        },
-        Windows: function() {
-            return navigator.userAgent.match(/IEMobile/i)
-        },
-        any: function() {
-            return n.Android() || n.BlackBerry() || n.iOS() || n.Opera() || n.Windows()
+        //Calculate H:
+        if(r1 == maxColor){
+            H = (g1-b1) / (maxColor - minColor);
+        }else if(g1 == maxColor){
+            H = 2.0 + (b1 - r1) / (maxColor - minColor);
+        }else{
+            H = 4.0 + (r1 - g1) / (maxColor - minColor);
         }
     }
-});
 
-$(window).bind("load", function() {
+    L = L * 100;
+    S = S * 100;
+    H = H * 60;
+    if(H<0){
+        H += 360;
+    }
+
+    var result = [H, S, L];
+    return result;
+    
+}
+Plugin.prototype.rgb = function(hsl){
+    var h = hsl[0];
+    var s = hsl[1];
+    var l = hsl[2];
+    
+    var m1, m2, hue;
+    var r, g, b;
+    s /=100;
+    l /= 100;
+    if (s == 0)
+        r = g = b = (l * 255);
+    else {
+        if (l <= 0.5)
+            m2 = l * (s + 1);
+        else
+            m2 = l + s - l * s;
+        m1 = l * 2 - m2;
+        hue = h / 360;
+        r = this.hue2rgb(m1, m2, hue + 1/3);
+        g = this.hue2rgb(m1, m2, hue);
+        b = this.hue2rgb(m1, m2, hue - 1/3);
+    }
+    return [Math.round(r), Math.round(g), Math.round(b)];
+}
+Plugin.prototype.hue2rgb = function(m1, m2, hue) {
+    var v;
+    if (hue < 0)
+        hue += 1;
+    else if (hue > 1)
+        hue -= 1;
+
+    if (6 * hue < 1)
+        v = m1 + (m2 - m1) * hue * 6;
+    else if (2 * hue < 1)
+        v = m2;
+    else if (3 * hue < 2)
+        v = m1 + (m2 - m1) * (2/3 - hue) * 6;
+    else
+        v = m1;
+
+    return 255 * v;
+};
+})(jQuery);
+
+$(window).load(function() {
     $(function() {
         for (i = 0; i < 4; i++) {
             $(".header .text span").eq(0).clone().prependTo(".header .text");
@@ -261,7 +308,7 @@ $(window).bind("load", function() {
         $(this).parent("li").addClass("clicked").siblings().removeClass("clicked");
         $(this).parent("li").addClass("active").siblings().removeClass("active");
         e.preventDefault();
-    });
+    });        
 
     $("#starfield").starscroll(8, 5, 10, 2, 1, [64, 64, 64], false, true, .5); 
 })
