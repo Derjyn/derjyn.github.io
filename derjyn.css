@@ -37,8 +37,6 @@ body, html, header, main, footer {
 }
 
 main {
-	max-width: 960px;
-	min-height: 320px;
 	margin: 0 auto;
 	margin-top: 16px;
 }
@@ -51,7 +49,6 @@ main {
 }
 
 footer {
-	max-width: 960px;
 	height: 32px;
 	margin: 0 auto;
 	margin-top: 16px;
@@ -318,12 +315,32 @@ main, footer, nav {
 /*************************************************************************************************/
 /*** MEDIA QUERIES *******************************************************************************/
 
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-	#tab-links ul {
+@media only screen and (max-width : 320px) {
+	.header, nav, main, footer {
+		width: 100%;
+		clear: both;
+		margin: 0 auto;
+	}
+
+	nav {
 		padding: 8px;
 	}
+
+	nav, main, footer {
+		margin-top: 8px;
+	}
+
+	footer {		
+		text-align: center;
+	}
+
+	#tab-links {
+		height: 272px;
+		max-width: 320px;
+	}
 	#tab-links li {
-		margin-bottom: 16px;
+		width: 304px;
+		margin-bottom: 24px;
 	}
 	#tab-links li:last-child {
 		margin-bottom: 0px;
