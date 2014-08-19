@@ -1,546 +1,230 @@
+
 <!doctype html>
 <html>
-    <!-- HEAD -->
-    <head>
-        <title>Derjyn Digital Design</title>
-
-        <meta charset="utf-8">
-
-        <meta name="description" content="Personal playground and laboratory of Derjyn Digital Design" />
-        <meta name="author" content="Nathan Harris" />
-        <meta name="keywords" content="derjyn, derjyn digital design, d3, design, digital design, web design, programming, coding, development" />
-        
-        <meta name=viewport content="width=device-width, initial-scale=1">
-
-        <style>
-            *,:before,:after {
-                box-sizing: border-box;
-            }
-            body,html {
-                height: 100%;
-            }
-            body,html,header,main,footer {
-                margin: 0;
-                padding: 0;
-            }
-
-            .header,main,footer {
-                display: flex;
-                display: -webkit-flex;
-                flex-flow: row wrap;
-                -webkit-flex-flow: row wrap;
-                max-width: 960px;
-                z-index: 1;
-            }
-
-            main {
-                max-width: 960px;
-                min-height: 320px;
-                margin: 0 auto;
-                margin-top: 16px;
-            }
-
-            #content {
-                padding: 16px;
-            }
-            #content h3 {
-                clear: both;
-            }
-
-            footer {
-                max-width: 960px;
-                height: 32px;
-                margin: 0 auto;
-                margin-top: 16px;
-            }
-
-            #art,#ui-work {
-                display: block;
-                clear: both;
-            }
-            #art li {
-                display: block;
-                float: left;
-                padding: 8px;
-            }
-            #ui-work li {
-                display: block;
-                float: left;
-                padding: 8px;
-            }
-
-            * {
-                font-size: 16px;
-            }
-
-            @font-face {
-                    font-family: "Joystix";
-                    font-style: normal;
-                    src: url(joystix.otf);
-                
-            }
-
-            #content h2,#content h3,#tab-links li a,footer span {
-                font-family: "Joystix";
-                font-weight: normal;
-            }
-            #content h2 {
-                font-size: 20px;
-                color: rgb(200,200,200);
-                margin: 0;
-            }
-            #content h3 {
-                font-size: 16px;
-                color: rgb(200,200,200);
-                margin: 0;
-                padding-top: 32px;
-            }
-            #content p,#content ul {
-                font-family: monospace;
-                font-weight: normal;
-                font-size: 16px;
-                line-height: 20px;
-                margin: 0;
-                padding: 8px;
-                color: rgb(224,224,224);
-            }
-            #content ul {
-                list-style: none;
-                margin: 0;
-                padding: 8px;
-            }
-            #content a {
-                color: rgb(224,64,64);
-                text-decoration: none;
-            }
-
-            footer span {
-                font-size: 10px;
-                line-height: 32px;
-                text-align: center;
-                color: rgb(80,80,80);
-                margin: 0 auto;
-            }
-
-            body {
-                background: rgb(8,8,8);
-                background: -moz-radial-gradient(center,ellipse cover,rgb(24,24,24) 0%,rgb(8,8,8) 100%);
-                background: -webkit-radial-gradient(center,ellipse cover,rgb(24,24,24) 0%,rgb(8,8,8) 100%);
-                background: -o-radial-gradient(center,ellipse cover,rgb(24,24,24) 0%,rgb(8,8,8) 100%);
-                background: radial-gradient(ellipse at center,rgb(24,24,24) 0%,rgb(8,8,8) 100%);
-                z-index: 0;
-            }
-
-            main,footer,nav {
-                background-color: rgba(24,24,24,0.7);
-            }
-
-            .header {
-                position: relative;
-                max-width: 960px;
-                height: 96px;
-                margin: 0 auto;
-                overflow: hidden;
-                text-align: center;
-            }
-            .header span {
-                position: absolute;
-                max-width: 960px;
-                font-size: 3em;
-                font-weight: normal;
-                line-height: 96px;
-                letter-spacing: .1em;
-                font-family: "Joystix",fixed;
-            }
-            .header span:nth-child(1) {
-                color: red;
-                margin-left: -1px;
-            }
-            .header span:nth-child(2) {
-                color: green;
-                margin-left: 1px;
-            }
-            .header span:nth-child(3) {
-                color: blue;
-            }
-            .header span:nth-child(4) {
-                color: rgb(50,50,50);
-            }
-            .header span:nth-child(5) {
-                color: rgba(255,255,255,0.9);
-            }
-            .header span {
-                -webkit-animation: blur 1000ms infinite;
-            }
-            @keyframes blur {
-                0% {
-                    -webkit-filter: blur(1px);
-                }                
-                1% {
-                    -webkit-filter: blur(0px);
-                }
-            }
-            .header span:nth-child(1) {
-                -webkit-animation: jerkred 1000ms infinite;
-            }
-            @keyframes jerkred {
-                0% {
-                    left: 0;
-                    top: 0;
-                    opacity: .7;
-                }                
-                30% {
-                    left: 0;
-                    opacity: .2;
-                }                
-                31% {
-                    left: 4px;
-                    top: 4px;
-                    opacity: .7;
-                }                
-                32% {
-                    left: 0;
-                    top: 0;
-                    opacity: .7;
-                }                
-                98% {
-                    left: 0;
-                    opacity: .2;
-                }                
-                100% {
-                    left: 4px;
-                }
-            }
-            .header span:nth-child(2) {
-                -webkit-animation: jerkgreen 2000ms infinite;
-            }
-            @keyframes jerkgreen {
-                0% {
-                    left: 0;
-                    opacity: .2;
-                }                
-                30% {
-                    left: 0;
-                    opacity: .2;
-                }                
-                31% {
-                    left: -8px;
-                    opacity: .9;
-                }                
-                32% {
-                    left: 0;
-                    opacity: .2;
-                }                
-                98% {
-                    left: 0;
-                    opacity: .2;
-                }                
-                100% {
-                    left: -8px;
-                    opacity: .9;
-                }
-            }
-            .header span:nth-child(3) {
-                -webkit-animation: jerkblue 3000ms infinite;
-            }
-            @keyframes jerkblue {
-                0% {
-                    left: 0;
-                    opacity: .2;
-                }                
-                30% {
-                    left: 0;
-                    opacity: .2;
-                }                
-                31% {
-                    left: 4px;
-                    opacity: .9;
-                }                
-                32% {
-                    left: 0;
-                    opacity: .2;
-                }                
-                98% {
-                    left: 0;
-                    opacity: .2;
-                }                
-                100% {
-                    left: 4px;
-                    opacity: .9;
-                }
-            }
-
-            #tabs {
-                width: 100%;
-            }
-            .tab {
-                display: none;
-            }
-            .tab.active {
-                display: block;
-            }
-            .tab p {
-                padding: 16px;
-            }
-            #tab-links {
-                max-width: 960px;
-                min-width: 320px;
-                height: 32px;
-                margin: 0 auto;
-                margin-top: 16px;
-            }
-            #tab-links ul {
-                margin: 0 auto;
-                padding: 0;
-            }
-            #tab-links li {
-                display: block;
-                float: left;
-                width: 82px;
-                height: 32px;
-                margin-right: 10px;
-                text-align: center;
-                list-style: none;
-            }
-            #tab-links li:last-child {
-                margin-right: 0;
-            }
-            #tab-links li a {
-                display: block;
-                height: 32px;
-                font-size: 10px;
-                line-height: 32px;
-                text-decoration: none;
-                color: rgb(160,160,160);
-            }
-            #tab-links li.active a {
-                color: rgb(224,224,224);
-                background: rgba(255,255,255,0.1);
-            }
-            #tab-links li.clicked {
-                animation: flicker 500ms;
-                animation: flicker 500ms;
-            }
-
-            @keyframes flicker {
-                0% {
-                    -webkit-filter: opacity(1.0);
-                }                
-                10% {
-                    -webkit-filter: opacity(0.0);
-                }                
-                20% {
-                    -webkit-filter: opacity(1.0);
-                }                
-                30% {
-                    -webkit-filter: opacity(0.0);
-                }                
-                40% {
-                    -webkit-filter: opacity(1.0);
-                }                
-                50% {
-                    -webkit-filter: opacity(0.0);
-                }
-            }
-
-            .icon {
-                display: inline-block;
-                float: left;
-                clear: right;
-                position: relative;
-                width: 18px;
-                height: 18px;
-                top: 6px;
-                left: 10px;
-                background-image: url(sprites.png);
-                background-repeat: no-repeat;
-            }
-            #link-home {
-                background-position: -2px -1px;
-            }
-            #link-work {
-                background-position: -24px -1px;
-            }
-            #link-labs {
-                background-position: -44px -1px;
-            }
-            #link-dump {
-                background-position: -66px -1px;
-            }
-            #link-cred {
-                background-position: -90px -1px;
-            }
-        </style>
-
-        <!--[if lt IE 9]>
+<head>
+<title>Derjyn Digital Design</title>
+<meta charset=utf-8>
+<meta name=description content="Personal playground and laboratory of Derjyn Digital Design"/>
+<meta name=author content="Nathan Harris"/>
+<meta name=keywords content="derjyn, derjyn digital design, d3, design, digital design, web design, programming, coding, development"/>
+<meta name=viewport content="width=device-width, initial-scale=1">
+<style>*,:before,:after{box-sizing:border-box;}
+body,html{height:100%;}
+body,html,header,main,footer{margin:0;padding:0;}
+.header,main,footer{display:flex;display:-webkit-flex;flex-flow:row wrap;-webkit-flex-flow:row wrap;max-width:960px;z-index:1;}
+main{max-width:960px;min-height:320px;margin:0 auto;margin-top:16px;}
+#content{padding:16px;}
+#content h3{clear:both;}
+footer{max-width:960px;height:32px;margin:0 auto;margin-top:16px;}
+#art,#ui-work{display:block;clear:both;}
+#art li{display:block;float:left;padding:8px;}
+#ui-work li{display:block;float:left;padding:8px;}
+*{font-size:16px;}
+@font-face{font-family:"Joystix";font-style:normal;src:url(joystix.otf);}
+#content h2,#content h3,#tab-links li a,footer span{font-family:"Joystix";font-weight:normal;}
+#content h2{font-size:20px;color:rgb(200,200,200);margin:0;}
+#content h3{font-size:16px;color:rgb(200,200,200);margin:0;padding-top:32px;}
+#content p,#content ul{font-family:monospace;font-weight:normal;font-size:16px;line-height:20px;margin:0;padding:8px;color:rgb(224,224,224);}
+#content ul{list-style:none;margin:0;padding:8px;}
+#content a{color:rgb(224,64,64);text-decoration:none;}
+footer span{font-size:10px;line-height:32px;text-align:center;color:rgb(80,80,80);margin:0 auto;}
+body{background:rgb(8,8,8);background:-moz-radial-gradient(center,ellipse cover,rgb(24,24,24) 0%,rgb(8,8,8) 100%);background:-webkit-radial-gradient(center,ellipse cover,rgb(24,24,24) 0%,rgb(8,8,8) 100%);background:-o-radial-gradient(center,ellipse cover,rgb(24,24,24) 0%,rgb(8,8,8) 100%);background:radial-gradient(ellipse at center,rgb(24,24,24) 0%,rgb(8,8,8) 100%);z-index:0;}
+main,footer,nav{background-color:rgba(24,24,24,0.7);}
+.header{position:relative;max-width:960px;height:96px;margin:0 auto;overflow:hidden;text-align:center;}
+.header span{position:absolute;max-width:960px;font-size:3em;font-weight:normal;line-height:96px;letter-spacing:.1em;font-family:"Joystix",fixed;}
+.header span:nth-child(1){color:red;margin-left:-1px;}
+.header span:nth-child(2){color:green;margin-left:1px;}
+.header span:nth-child(3){color:blue;}
+.header span:nth-child(4){color:rgb(50,50,50);}
+.header span:nth-child(5){color:rgba(255,255,255,0.9);}
+.header span{-webkit-animation:blur 1000ms infinite;}
+@keyframes blur{0%{-webkit-filter:blur(1px);}
+1%{-webkit-filter:blur(0px);}
+}
+.header span:nth-child(1){-webkit-animation:jerkred 1000ms infinite;}
+@keyframes jerkred{0%{left:0;top:0;opacity:.7;}
+30%{left:0;opacity:.2;}
+31%{left:4px;top:4px;opacity:.7;}
+32%{left:0;top:0;opacity:.7;}
+98%{left:0;opacity:.2;}
+100%{left:4px;}
+}
+.header span:nth-child(2){-webkit-animation:jerkgreen 2000ms infinite;}
+@keyframes jerkgreen{0%{left:0;opacity:.2;}
+30%{left:0;opacity:.2;}
+31%{left:-8px;opacity:.9;}
+32%{left:0;opacity:.2;}
+98%{left:0;opacity:.2;}
+100%{left:-8px;opacity:.9;}
+}
+.header span:nth-child(3){-webkit-animation:jerkblue 3000ms infinite;}
+@keyframes jerkblue{0%{left:0;opacity:.2;}
+30%{left:0;opacity:.2;}
+31%{left:4px;opacity:.9;}
+32%{left:0;opacity:.2;}
+98%{left:0;opacity:.2;}
+100%{left:4px;opacity:.9;}
+}
+#tabs{width:100%;}
+.tab{display:none;}
+.tab.active{display:block;}
+.tab p{padding:16px;}
+#tab-links{max-width:960px;min-width:320px;height:32px;margin:0 auto;margin-top:16px;}
+#tab-links ul{margin:0 auto;padding:0;}
+#tab-links li{display:block;float:left;width:82px;height:32px;margin-right:10px;text-align:center;list-style:none;}
+#tab-links li:last-child{margin-right:0;}
+#tab-links li a{display:block;height:32px;font-size:10px;line-height:32px;text-decoration:none;color:rgb(160,160,160);}
+#tab-links li.active a{color:rgb(224,224,224);background:rgba(255,255,255,0.1);}
+#tab-links li.clicked{animation:flicker 500ms;animation:flicker 500ms;}
+@keyframes flicker{0%{-webkit-filter:opacity(1.0);}
+10%{-webkit-filter:opacity(0.0);}
+20%{-webkit-filter:opacity(1.0);}
+30%{-webkit-filter:opacity(0.0);}
+40%{-webkit-filter:opacity(1.0);}
+50%{-webkit-filter:opacity(0.0);}
+}
+.icon{display:inline-block;float:left;clear:right;position:relative;width:18px;height:18px;top:6px;left:10px;background-image:url(sprites.png);background-repeat:no-repeat;}
+#link-home{background-position:-2px -1px;}
+#link-work{background-position:-24px -1px;}
+#link-labs{background-position:-44px -1px;}
+#link-dump{background-position:-66px -1px;}
+#link-cred{background-position:-90px -1px;}</style>
+<!--[if lt IE 9]>
             <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
-    </head>
-    <!-- /HEAD -->
-
-    <!-- BODY -->
-    <body>
-        <div class="header">
-            <div class="text">
-                <span>DERJYN DIGITAL DESIGN</span>
-            </div>
-        </div>
-
-        <nav id="tab-links">
-            <ul>
-                <li class="active"><span id="link-home" class="icon"></span><a href="#home">Home</a></li>
-                <li><span id="link-work" class="icon"></span><a href="#work">Work</a></li>
-                <li><span id="link-labs" class="icon"></span><a href="#labs">Labs</a></li>
-                <li><span id="link-dump" class="icon"></span><a href="#dump">Dump</a></li>
-                <li><span id="link-cred" class="icon"></span><a href="#cred">Cred</a></li>
-            </ul>
-        </nav>
-
-        <main>            
-            <div id="tabs">          
-                <div id="content">
-                    <section id="home" class="tab active">
-                        <h2>Welcome</h2>
-                        <p>
-                            Welcome to the personal page and playground of "Derjyn".  Here you can view my previous
-                            projects, take a peek at my laboratory, and find some links to cool places around the 
-                            net related to design, coding, or bits I find pure awesome.
-                        </p>
-
-                        <h3>About the design</h3>
-                        <p>
-                            I am a sucker for pixel based design, retro 8 and 16bit schemes... The nostalgia of the 
-                            old days has never gone away for me. When I approached this personal project, I went in 
-                            several different directions at first, until deciding that the site was just that: personal.  
-                            Therefore, I needed to actually look inside for a vision that truly had me satisfied.
-                        </p>
-                        <p>
-                            One of the major goals was to keep things small and tidy. This meant being on the ball
-                            from the start with code in keeping the CSS, Javascript, and HTML minimal and to the point.
-                            Outside of the fonts utilized in the site, everything weighs in at around 18KB. Not too shabby. 
-                            It's when things start to get "fancy" that any actual size comes into play, such as pictures 
-                            or the previously mentioned external fonts.
-                        </p>
-                        <p>
-                            There are no actual "pages" that make up the site, rather just one static HTML index file.
-                            A bit of Javascript and CSS magic is used to make up the different sections, by way of tabs.
-                            This further boosts the speed and minimal goal, by not needed to make new requests for each 
-                            page (or section) of the site.
-                        </p>
-                        <p>
-                            There is still work needed before I am truly happy with everything though. Much more needs 
-                            to be done to make the site standards compliant and responsive. More tweaks need to be made 
-                            on the performance end. There are also plans for adding some "easter eggs", because I really 
-                            enjoy user discovery in code and design. In the end, this is my playground and I will 
-                            certainly be playing. Enjoy.
-                        </p>
-                    </section>
-             
-                    <section id="work" class="tab">
-                        <h2>My Work</h2>
-                        <p>
-                            Under construction. <a href="http://goo.gl/9bpDM3" target="_blank">Eek!</a>
-                        </p>
-
-                        <h3>Art</h3>
-                        <ul id="art">
-                            <li><a href="work/art/wp_001.jpg" target="_blank"><img src="work/art/thumb_wp_001.png" width="96px" height="96px"/></a></li>
-                            <li><a href="work/art/wp_002.jpg" target="_blank"><img src="work/art/thumb_wp_002.png" width="96px" height="96px"/></a></li>
-                            <li><a href="work/art/wp_003.jpg" target="_blank"><img src="work/art/thumb_wp_003.png" width="96px" height="96px"/></a></li>
-                            <li><a href="work/art/wp_004.jpg" target="_blank"><img src="work/art/thumb_wp_004.png" width="96px" height="96px"/></a></li>
-                            <li><a href="work/art/wp_005.jpg" target="_blank"><img src="work/art/thumb_wp_005.png" width="96px" height="96px"/></a></li>
-                            <li><a href="work/art/wp_006.jpg" target="_blank"><img src="work/art/thumb_wp_006.png" width="96px" height="96px"/></a></li>
-                            <li><a href="work/art/wp_007.jpg" target="_blank"><img src="work/art/thumb_wp_007.png" width="96px" height="96px"/></a></li>
-                            <li><a href="work/art/wp_008.jpg" target="_blank"><img src="work/art/thumb_wp_008.png" width="96px" height="96px"/></a></li>
-                            <li><a href="work/art/wp_009.jpg" target="_blank"><img src="work/art/thumb_wp_009.png" width="96px" height="96px"/></a></li>
-                            <li><a href="work/art/wp_010.jpg" target="_blank"><img src="work/art/thumb_wp_010.png" width="96px" height="96px"/></a></li>
-                            <li><a href="work/art/wp_011.jpg" target="_blank"><img src="work/art/thumb_wp_011.png" width="96px" height="96px"/></a></li>
-                            <li><a href="work/art/wp_012.jpg" target="_blank"><img src="work/art/thumb_wp_012.png" width="96px" height="96px"/></a></li>
-                        </ul>
-
-                        <h3>UI Design</h3>
-                        <ul id="ui-work">
-                            <li>Coming soon...</li>
-                        </ul>
-                    </section>
-             
-                    <section id="labs" class="tab">
-                        <h2>The Laboratory</h2>
-                        <p>
-                            We had a <a href="http://goo.gl/9O04W3" target="_blank">virus outbreak</a>... Check back soon.
-                        </p>
-
-                        <h3>Code</h3>
-                        <ul id="code">
-                        	<li>
-                        		<a href="https://github.com/Derjyn/Kerberos" target="_blank">Kerberos</a>
-                        		<p>
-                        			Kerberos is currently a test lab for various functionality and features 
-                        			of rendering, physics, AI, etc. Eventually it will become a usable game engine.
-                        		</p>
-                        	</li>
-                        </ul>
-                    </section>
-
-                    <section id="dump" class="tab">
-                        <h2>Link Dump</h2>
-                        <p>
-                            Links are <a href="http://goo.gl/hkfZ3C" target="_blank">evolving</a>.
-                        </p>
-                    </section>
-
-                    <section id="cred" class="tab">
-                        <h2>Credits and Respect</h2>
-                        <p>
-                            Not every wheel needs to be invented, and sometimes other gifted people can do things
-                            much better. As such, other resources and tools were wrangled together to make D3 shine
-                            as brightly as I envisioned. Here are links to those kind entities.
-                        </p>
-
-                        <h3>Credits</h3>
-                        <ul>
-                            <li><a href="http://bite-software.co.uk/starscroll/" target="_blank">Starcroll</a> - for the awesome parallax background effect
-                            </li>
-                            <li><a href="http://codepen.io/cRckls/" target="_blank">Chris Rickels</a> - for the distorted effect on the header</li>
-                            <li><a href="http://leaverou.github.io/prefixfree/" target="_blank">Lea Verou</a> - for PrefixFree</li>
-                        </ul>
-
-                        <h3>Respect</h3>
-                        <ul>
-                            <li><a href="http://google.com" target="_blank">Google</a> - for being Google</li>
-                            <li><a href="http://jquery.org/team/" target="_blank">jQuery</a> - Javascript gold</li>
-                            <li><a href="http://github.com/" target="_blank">Github</a> - rockin' the repository</li>
-                            <li><a href="http://www.sublimetext.com/" target="_blank">Sublime Text</a> - text editor of choice</li>
-                        </ul>                       
-                    </section>
-                </div>
-            </div>                                 
-        </main>
-
-        <footer>
-            <span>Content Copyright &copy; 2014</span>
-        </footer>
-
-        <div id="starfield"></div>
-
-        <!-- SCRIPTS -->        
-        <script async type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
-        <script async type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-        <script async type="text/javascript" src="derjyn.js"></script>
-        <!-- /SCRIPTS -->
-
-        <!-- GOOGLE ANALYTICS CODE -->
-        <script>
-			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-			})(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
-
-			ga('create', 'UA-53351224-1', 'auto');
-			ga('require', 'displayfeatures');
-			ga('send', 'pageview');
-		</script>
-        <!-- /GOOGLE ANALYTICS CODE -->        
-    </body>
-    <!-- /BODY -->
+</head>
+<body>
+<div class=header>
+<div class=text>
+<span>DERJYN DIGITAL DESIGN</span>
+</div>
+</div>
+<nav id=tab-links>
+<ul>
+<li class=active><span id=link-home class=icon></span><a href="#home">Home</a></li>
+<li><span id=link-work class=icon></span><a href="#work">Work</a></li>
+<li><span id=link-labs class=icon></span><a href="#labs">Labs</a></li>
+<li><span id=link-dump class=icon></span><a href="#dump">Dump</a></li>
+<li><span id=link-cred class=icon></span><a href="#cred">Cred</a></li>
+</ul>
+</nav>
+<main>
+<div id=tabs>
+<div id=content>
+<section id=home class="tab active">
+<h2>Welcome</h2>
+<p>
+Welcome to the personal page and playground of "Derjyn". Here you can view my previous
+projects, take a peek at my laboratory, and find some links to cool places around the
+net related to design, coding, or bits I find pure awesome.
+</p>
+<h3>About the design</h3>
+<p>
+I am a sucker for pixel based design, retro 8 and 16bit schemes... The nostalgia of the
+old days has never gone away for me. When I approached this personal project, I went in
+several different directions at first, until deciding that the site was just that: personal.
+Therefore, I needed to actually look inside for a vision that truly had me satisfied.
+</p>
+<p>
+One of the major goals was to keep things small and tidy. This meant being on the ball
+from the start with code in keeping the CSS, Javascript, and HTML minimal and to the point.
+Outside of the fonts utilized in the site, everything weighs in at around 18KB. Not too shabby.
+It's when things start to get "fancy" that any actual size comes into play, such as pictures
+or the previously mentioned external fonts.
+</p>
+<p>
+There are no actual "pages" that make up the site, rather just one static HTML index file.
+A bit of Javascript and CSS magic is used to make up the different sections, by way of tabs.
+This further boosts the speed and minimal goal, by not needed to make new requests for each
+page (or section) of the site.
+</p>
+<p>
+There is still work needed before I am truly happy with everything though. Much more needs
+to be done to make the site standards compliant and responsive. More tweaks need to be made
+on the performance end. There are also plans for adding some "easter eggs", because I really
+enjoy user discovery in code and design. In the end, this is my playground and I will
+certainly be playing. Enjoy.
+</p>
+</section>
+<section id=work class=tab>
+<h2>My Work</h2>
+<p>
+Under construction. <a href="http://goo.gl/9bpDM3" target=_blank>Eek!</a>
+</p>
+<h3>Art</h3>
+<ul id=art>
+<li><a href="work/art/wp_001.jpg" target=_blank><img src="work/art/thumb_wp_001.png" width=96px height=96px /></a></li>
+<li><a href="work/art/wp_002.jpg" target=_blank><img src="work/art/thumb_wp_002.png" width=96px height=96px /></a></li>
+<li><a href="work/art/wp_003.jpg" target=_blank><img src="work/art/thumb_wp_003.png" width=96px height=96px /></a></li>
+<li><a href="work/art/wp_004.jpg" target=_blank><img src="work/art/thumb_wp_004.png" width=96px height=96px /></a></li>
+<li><a href="work/art/wp_005.jpg" target=_blank><img src="work/art/thumb_wp_005.png" width=96px height=96px /></a></li>
+<li><a href="work/art/wp_006.jpg" target=_blank><img src="work/art/thumb_wp_006.png" width=96px height=96px /></a></li>
+<li><a href="work/art/wp_007.jpg" target=_blank><img src="work/art/thumb_wp_007.png" width=96px height=96px /></a></li>
+<li><a href="work/art/wp_008.jpg" target=_blank><img src="work/art/thumb_wp_008.png" width=96px height=96px /></a></li>
+<li><a href="work/art/wp_009.jpg" target=_blank><img src="work/art/thumb_wp_009.png" width=96px height=96px /></a></li>
+<li><a href="work/art/wp_010.jpg" target=_blank><img src="work/art/thumb_wp_010.png" width=96px height=96px /></a></li>
+<li><a href="work/art/wp_011.jpg" target=_blank><img src="work/art/thumb_wp_011.png" width=96px height=96px /></a></li>
+<li><a href="work/art/wp_012.jpg" target=_blank><img src="work/art/thumb_wp_012.png" width=96px height=96px /></a></li>
+</ul>
+<h3>UI Design</h3>
+<ul id=ui-work>
+<li>Coming soon...</li>
+</ul>
+</section>
+<section id=labs class=tab>
+<h2>The Laboratory</h2>
+<p>
+We had a <a href="http://goo.gl/9O04W3" target=_blank>virus outbreak</a>... Check back soon.
+</p>
+<h3>Code</h3>
+<ul id=code>
+<li>
+<a href="https://github.com/Derjyn/Kerberos" target=_blank>Kerberos</a>
+<p>
+Kerberos is currently a test lab for various functionality and features
+of rendering, physics, AI, etc. Eventually it will become a usable game engine.
+</p>
+</li>
+</ul>
+</section>
+<section id=dump class=tab>
+<h2>Link Dump</h2>
+<p>
+Links are <a href="http://goo.gl/hkfZ3C" target=_blank>evolving</a>.
+</p>
+</section>
+<section id=cred class=tab>
+<h2>Credits and Respect</h2>
+<p>
+Not every wheel needs to be invented, and sometimes other gifted people can do things
+much better. As such, other resources and tools were wrangled together to make D3 shine
+as brightly as I envisioned. Here are links to those kind entities.
+</p>
+<h3>Credits</h3>
+<ul>
+<li><a href="http://bite-software.co.uk/starscroll/" target=_blank>Starcroll</a> - for the awesome parallax background effect
+</li>
+<li><a href="http://codepen.io/cRckls/" target=_blank>Chris Rickels</a> - for the distorted effect on the header</li>
+<li><a href="http://leaverou.github.io/prefixfree/" target=_blank>Lea Verou</a> - for PrefixFree</li>
+</ul>
+<h3>Respect</h3>
+<ul>
+<li><a href="http://google.com" target=_blank>Google</a> - for being Google</li>
+<li><a href="http://jquery.org/team/" target=_blank>jQuery</a> - Javascript gold</li>
+<li><a href="http://github.com/" target=_blank>Github</a> - rockin' the repository</li>
+<li><a href="http://www.sublimetext.com/" target=_blank>Sublime Text</a> - text editor of choice</li>
+</ul>
+</section>
+</div>
+</div>
+</main>
+<footer>
+<span>Content Copyright &copy; 2014</span>
+</footer>
+<div id=starfield></div>
+<script async src="http://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+<script async src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script async src=derjyn.js></script>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','http://www.google-analytics.com/analytics.js','ga');ga('create','UA-53351224-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+</body>
 </html>
