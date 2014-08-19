@@ -80,7 +80,7 @@ footer {
 @font-face {
     font-family: "Joystix";
     font-style: normal;
-    src: url("joystix.otf");
+    src: url("https://cdn.rawgit.com/Derjyn/derjyn.github.io/master/joystix.otf");
 }
 
 #content h2, #content h3, #tab-links li a, footer span {
@@ -308,7 +308,7 @@ main, footer, nav {
 	height: 18px;	
 	top: 6px;
 	left: 10px;
-	background-image: url("sprites.png");
+	background-image: url("https://cdn.rawgit.com/Derjyn/derjyn.github.io/master/sprites.png");
 	background-repeat: no-repeat;	
 }
 #link-home { background-position: -2px -1px; }
