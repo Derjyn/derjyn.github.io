@@ -315,66 +315,89 @@ main, footer, nav {
 /*************************************************************************************************/
 /*** MEDIA QUERIES *******************************************************************************/
 
-/* Smartphones (portrait and landscape) ----------- */
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-}
-
-/* Smartphones (landscape) ----------- */
-@media only screen and (min-width : 321px) {
-}
-
-/* Smartphones (portrait) ----------- */
-@media only screen and (max-width : 320px) {
-	.header, nav, main, footer {
+/* Smartphones ----------- */
+@media only screen and (max-device-width: 320px) {
+	.header, #tab-links, main, footer {
 		width: 100%;
 		clear: both;
 		margin: 0 auto;
 	}
-	nav {
-		padding: 8px;
-	}
-	nav, main, footer {
-		margin-top: 8px;
-	}
-	footer {		
-		text-align: center;
+
+	#tab-links, main, footer {
+		margin-top: 16px;
 	}
 
 	#tab-links {
+		padding: 8px;		
 		height: 272px;
-		max-width: 100%;
 	}
 	#tab-links li {
-		width: calc(100% - 16px);
+		width: 100%;
 		margin-bottom: 24px;
 	}
 	#tab-links li:last-child {
 		margin-bottom: 0px;
 	}
+
+	footer {		
+		text-align: center;
+	}
 }
 
-/* iPads (portrait and landscape) ----------- */
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+@media only screen and (max-device-width: 360px) {
+	.header, #tab-links, main, footer {
+		width: 100%;
+		clear: both;
+		margin: 0 auto;
+	}
+
+	#tab-links, main, footer {
+		margin-top: 16px;
+	}
+
+	#tab-links {
+		padding: 8px;		
+		height: 272px;
+	}
+	#tab-links li {
+		width: 100%;
+		margin-bottom: 24px;
+	}
+	#tab-links li:last-child {
+		margin-bottom: 0px;
+	}
+
+	footer {		
+		text-align: center;
+	}	
 }
 
-/* iPads (landscape) ----------- */
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
-}
+@media only screen and (max-device-width: 384px) {
+	.header, #tab-links, main, footer {
+		width: 100%;
+		clear: both;
+		margin: 0 auto;
+	}
 
-/* iPads (portrait) ----------- */
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
-}
+	#tab-links, main, footer {
+		margin-top: 16px;
+	}
 
-/* Desktops and laptops ----------- */
-@media only screen and (min-width : 1224px) {
-}
+	#tab-links {
+		padding: 8px;		
+		height: 272px;
+	}
+	#tab-links li {
+		width: 100%;
+		margin-bottom: 24px;
+	}
+	#tab-links li:last-child {
+		margin-bottom: 0px;
+	}
 
-/* Large screens ----------- */
-@media only screen and (min-width : 1824px) {
-}
-
-/* iPhone 4 ----------- */
-@media only screen and (-webkit-min-device-pixel-ratio : 1.5), only screen and (min-device-pixel-ratio : 1.5) {
+	footer {		
+		text-align: center;
+	}
 }
 
 
