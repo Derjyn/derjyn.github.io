@@ -249,6 +249,8 @@ $(function(e) {
 });
 
 $(document).ready(function() {
+    $('head').append('<link rel="stylesheet" href="derjyn.css" type="text/css" />');
+
     $(function() {
         for (i = 0; i < 4; i++) {
             $(".header .text span").eq(0).clone().prependTo(".header .text");
