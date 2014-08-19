@@ -283,7 +283,7 @@ main, footer, nav {
     background: rgba(255,255,255,0.1);
 }
 
-.clicked {
+#tab-links li.clicked {
 	animation: flicker 500ms;
 	animation: flicker 500ms;
 }
