@@ -49,11 +49,10 @@
 
                 <h4>Ribs</h4>
                 <p>
-                    Ribs make up the items within a flexbox container.  In the Bones system,
-                    each rib is sized in eigths.  So a 1/8 sized rib would use the class <code>rib one-eigth</code>,
-                    a 2/8th sized rib <code>rib two-eigths</code>, and so on up to a 8/8 size rib, which is
-                    <code>rib full</code>.  There are also useful utility classes that can help tweak layouts, outlined
-                    below.
+                    Ribs make up the items within a flexbox container. In the Bones system, each rib is sized 
+                    in eigths. So a 1/8 sized rib would use the class <code>rib one</code>, a 2/8th sized rib 
+                    <code>rib two</code>, and so on up to a 8/8 size rib, which is <code>rib full</code>. There 
+                    are also useful utility classes that can help tweak layouts, outlined below.
                 </p>
 
                 <h4>Utilities</h4>
@@ -62,60 +61,61 @@
                     to layouts:
 
                     <ul>
-                        <li>l-margin and r-margin</li>
-                        <li>spacer</li>
-                        <li>grower</li>
+                        <li>l-margin, r-margin, t-margin and b-margin</li>
                         <li>breaker</li>
+                        <li>filler</li>
+                        <li>grower</li>                        
                     </ul>
                 </p>
                 <p>
-                    <code>l-margin</code> and <code>r-margin</code> will add a 16 pixel margin to the left or right of
-                    a rib.  Useful for adding in a gutter manually.  <code>spacer</code>, when added to a rib, will add
-                    a 16 pixel margin below the rib, handy when you want to add some space between a row of ribs.
-                    <code>grower</code> will force a rib to grow in width, to the remaining space within a spine.  This
-                    helps when you don't specify the size of a rib, but want it to stretch out. <code>breaker</code> slams
-                    in a sort of seperator that is full width, and 64 pixels in height.  For the purposes of this
-                    demo, a breaker follows the rib sizes example below, and is styled (normally it would be invisible,
-                    if one so desired).  On smaller screens (such as that of an iPhone 4), sizes of margins and other
-                    spacing drops from 16 pixel increments, to 8 pixel increments.
+                    <code>l-margin</code>, <code>r-margin</code>, <code>t-margin</code> and <code>b-margin</code>
+                    will add a 16 pixel margin to the left, right, top or bottom of a rib. Useful for adding in 
+                    gutter-like functionality manually. <code>breaker</code> slams in a sort of seperator that is 
+                    full width, and has varying heights (<code>breaker sixteen</code> for a 16 pixel height for example). 
+                    For the purposes of this demo, a breaker follows the rib sizes example below, and is styled 
+                    (normally it would be invisible, if one so desired). <code>filler</code> helps to fill up the space
+                    left over in a row with ribs, so a new row of ribs doesn't smash up against the others. <code>grower</code> 
+                    will force a rib to grow in width, to the remaining space within a spine. This helps when you don't 
+                    specify the size of a rib, but want it to stretch out. On smaller screens (such as that of an 
+                    iPhone 4), sizes of margins and other spacing drops from 16 pixel increments, to 8 pixel increments.
                 </p>
             </div>
 
             <div class="debug-sub rib full b-margin"><h4>8/8</h4></div>
 
-            <div class="debug-sub rib one-eighth r-margin"><h4>1/8</h4></div>
-            <div class="debug-sub rib seven-eighths b-margin"><h4>7/8</h4></div>
+            <div class="debug-sub rib one r-margin"><h4>1/8</h4></div>
+            <div class="debug-sub rib seven b-margin"><h4>7/8</h4></div>
 
-            <div class="debug-sub rib two-eighths r-margin"><h4>2/8</h4></div>
-            <div class="debug-sub rib six-eighths b-margin"><h4>6/8</h4></div>
+            <div class="debug-sub rib two r-margin"><h4>2/8</h4></div>
+            <div class="debug-sub rib six b-margin"><h4>6/8</h4></div>
 
-            <div class="debug-sub rib three-eighths r-margin"><h4>3/8</h4></div>
-            <div class="debug-sub rib five-eighths b-margin"><h4>5/8</h4></div>
+            <div class="debug-sub rib three r-margin"><h4>3/8</h4></div>
+            <div class="debug-sub rib five b-margin"><h4>5/8</h4></div>
 
-            <div class="debug-sub rib four-eighths r-margin"><h4>4/8</h4></div>
-            <div class="debug-sub rib four-eighths b-margin"><h4>4/8</h4></div>
+            <div class="debug-sub rib four r-margin"><h4>4/8</h4></div>
+            <div class="debug-sub rib four b-margin"><h4>4/8</h4></div>
 
-            <div class="debug-sub rib five-eighths r-margin"><h4>5/8</h4></div>
-            <div class="debug-sub rib three-eighths b-margin"><h4>3/8</h4></div>
+            <div class="debug-sub rib five r-margin"><h4>5/8</h4></div>
+            <div class="debug-sub rib three b-margin"><h4>3/8</h4></div>
 
-            <div class="debug-sub rib six-eighths r-margin"><h4>6/8</h4></div>
-            <div class="debug-sub rib two-eighths b-margin"><h4>2/8</h4></div>
+            <div class="debug-sub rib six r-margin"><h4>6/8</h4></div>
+            <div class="debug-sub rib two b-margin"><h4>2/8</h4></div>
 
-            <div class="debug-sub rib seven-eighths r-margin"><h4>7/8</h4></div>
-            <div class="debug-sub rib one-eighth b-margin"><h4>1/8</h4></div>
+            <div class="debug-sub rib seven r-margin"><h4>7/8</h4></div>
+            <div class="debug-sub rib one b-margin"><h4>1/8</h4></div>
 
-            <div class="debug-sub rib two-eighths r-margin"><h4>2/8</h4></div>
-            <div class="debug-sub rib two-eighths r-margin"><h4>2/8</h4></div>
-            <div class="debug-sub rib two-eighths r-margin"><h4>2/8</h4></div>
-            <div class="debug-sub rib two-eighths b-margin"><h4>2/8</h4></div>
+            <div class="debug-sub rib two r-margin"><h4>2/8</h4></div>
+            <div class="debug-sub rib two r-margin"><h4>2/8</h4></div>
+            <div class="debug-sub rib two r-margin"><h4>2/8</h4></div>
+            <div class="debug-sub rib two b-margin"><h4>2/8</h4></div>
 
-            <div class="debug-sub rib one-eighth r-margin b-margin"><h4>1/8</h4></div>
+            <div class="debug-sub rib one r-margin b-margin"><h4>1/8</h4></div>
             <div class="rib grower"></div>
-            <div class="debug-sub rib two-eighths b-margin"><h4>2/8</h4></div>
+            <div class="debug-sub rib two b-margin"><h4>2/8</h4></div>
 
             <div class="rib filler"></div>
 
-            <div class="debug-sub rib three-eighths r-margin"><h4>3/8</h4></div>
+            <div class="debug-sub rib three r-margin"><h4>3/8</h4></div>
         </div>
         <!-- /DEMO -->
 
@@ -135,7 +135,7 @@
         <main class="debug spine b-margin">
             <h2 class="rib full">Spine - Main</h2>
 
-            <section class="debug-sub rib six-eighths r-margin">
+            <section class="debug-sub rib six r-margin">
                 <h3>Rib - Section</h3>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mollis risus ligula,
@@ -177,7 +177,7 @@
                 </p>
             </section>
 
-            <aside class="debug-sub rib two-eighths">
+            <aside class="debug-sub rib two">
                 <h3>Rib - Sidebar</h3>
                 <p>
                     Morbi in purus sapien. Donec iaculis in neque ac molestie. Cum sociis natoque penatibus
@@ -194,13 +194,13 @@
         <footer class="debug spine b-margin">
             <h3 class="rib full">Spine - Footer</h3>
 
-            <section class="debug-sub rib two-eighths r-margin">
+            <section class="debug-sub rib two r-margin">
                 <h4>Rib - Block</h4>
             </section>
-            <section class="debug-sub rib two-eighths r-margin">
+            <section class="debug-sub rib two r-margin">
                 <h4>Rib - Block</h4>
             </section>
-            <section class="debug-sub rib four-eighths">
+            <section class="debug-sub rib four">
                 <h4>Rib - Block</h4>
             </section>
 

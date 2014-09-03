@@ -46,30 +46,28 @@ body.nine-sixty, body.twelve-eighty { margin: 16px auto; }
 .spine.stretch		{ align-items: stretch; }
 
 /*** THE RIBS ***/
-.rib {
-    padding			: 16px;
-}
-.rib.one-eighth     { width: 12.5%; }
-.rib.two-eighths    { width: 25%;   }
-.rib.three-eighths  { width: 37.5%; }
-.rib.four-eighths   { width: 50%;   }
-.rib.five-eighths   { width: 62.5%; }
-.rib.six-eighths    { width: 75%;   }
-.rib.seven-eighths  { width: 87.5%; }
-.rib.full           { width: 100%;  }
+.rib 		{ padding: 16px; }
+.rib.one	{ width: 12.5%; }
+.rib.two    { width: 25%;   }
+.rib.three  { width: 37.5%; }
+.rib.four   { width: 50%;   }
+.rib.five   { width: 62.5%; }
+.rib.six    { width: 75%;   }
+.rib.seven  { width: 87.5%; }
+.rib.full	{ width: 100%;  }
 
 /*** MARGIN MODS ***/
 .l-margin   { margin-left: 16px;  	}
 .r-margin   { margin-right: 16px; 	}
 .t-margin	{ margin-top: 16px;		}
 .b-margin	{ margin-bottom: 16px;	}
-.rib.one-eighth.r-margin, .rib.one-eighth.l-margin          { width: calc(12.5% - 16px); }
-.rib.two-eighths.r-margin, .rib.two-eighths.l-margin        { width: calc(25% - 16px);   }
-.rib.three-eighths.r-margin, .rib.three-eighths.l-margin    { width: calc(37.5% - 16px); }
-.rib.four-eighths.r-margin, .rib.four-eighths.l-margin      { width: calc(50% - 16px);   }
-.rib.five-eighths.r-margin, .rib.five-eighths.l-margin      { width: calc(62.5% - 16px); }
-.rib.six-eighths.r-margin, .rib.six-eighths.l-margin        { width: calc(75% - 16px);   }
-.rib.seven-eighths.r-margin, .rib.seven-eighths.l-margin    { width: calc(87.5% - 16px); }
+.rib.one.r-margin, .rib.one.l-margin		{ width: calc(12.5% - 16px); }
+.rib.two.r-margin, .rib.two.l-margin        { width: calc(25% - 16px);   }
+.rib.three.r-margin, .rib.three.l-margin	{ width: calc(37.5% - 16px); }
+.rib.four.r-margin, .rib.four.l-margin      { width: calc(50% - 16px);   }
+.rib.five.r-margin, .rib.five.l-margin      { width: calc(62.5% - 16px); }
+.rib.six.r-margin, .rib.six.l-margin        { width: calc(75% - 16px);   }
+.rib.seven.r-margin, .rib.seven.l-margin    { width: calc(87.5% - 16px); }
 
 /*** PUSH MODS ***/
 .push-one 	{ margin-left: 12.5%; 	}
@@ -169,22 +167,20 @@ a, a:visited, a:hover { text-decoration: none; }
     .r-margin { margin-right: 8px; }
     .t-margin { margin-top: 8px; }
     .b-margin { margin-bottom: 8px; }
-    .rib.one-eighth.r-margin, .rib.one-eighth.l-margin          { width: calc(12.5% - 8px); }
-    .rib.two-eighths.r-margin, .rib.two-eighths.l-margin        { width: calc(25% - 8px);   }
-    .rib.three-eighths.r-margin, .rib.three-eighths.l-margin    { width: calc(37.5% - 8px); }
-    .rib.four-eighths.r-margin, .rib.four-eighths.l-margin      { width: calc(50% - 8px);   }
-    .rib.five-eighths.r-margin, .rib.five-eighths.l-margin      { width: calc(62.5% - 8px); }
-    .rib.six-eighths.r-margin, .rib.six-eighths.l-margin        { width: calc(75% - 8px);   }
-    .rib.seven-eighths.r-margin, .rib.seven-eighths.l-margin    { width: calc(87.5% - 8px); }
+    .rib.one.r-margin, .rib.one.l-margin		{ width: calc(12.5% - 8px); }
+    .rib.two.r-margin, .rib.two.l-margin        { width: calc(25% - 8px);   }
+    .rib.three.r-margin, .rib.three.l-margin    { width: calc(37.5% - 8px); }
+    .rib.four.r-margin, .rib.four.l-margin      { width: calc(50% - 8px);   }
+    .rib.five.r-margin, .rib.five.l-margin      { width: calc(62.5% - 8px); }
+    .rib.six.r-margin, .rib.six.l-margin        { width: calc(75% - 8px);   }
+    .rib.seven.r-margin, .rib.seven.l-margin    { width: calc(87.5% - 8px); }
 }
 
 
 /*************************************************************************************************/
 /*** PRINT ***************************************************************************************/
 
-@page {
-    margin: 0.5cm;
-}
+@page { margin: 0.5cm; }
 
 @media print {
     * {
