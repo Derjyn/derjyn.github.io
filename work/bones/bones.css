@@ -1,7 +1,7 @@
 /*
 **
 ** FILE:        bones.css
-** UPDATED:     09/03/2014
+** UPDATED:     09/05/2014
 ** DESCRIPTION: Bones - A skinny HTML5/CSS3 framework
 ** CREDITS:     Nathan Harris aka Derjyn,
 */
@@ -26,7 +26,7 @@ body, html {
 /*** BONE GRID ***********************************************************************************/
 
 /*** THE BODY ***/
-body 				{ margin: 16px; }
+body.spaced         { margin: 16px; }
 body.nine-sixty 	{ max-width: 960px; }
 body.twelve-eighty 	{ max-width: 1280px; }
 body.nine-sixty, body.twelve-eighty { margin: 16px auto; }
@@ -46,7 +46,11 @@ body.nine-sixty, body.twelve-eighty { margin: 16px auto; }
 .spine.stretch		{ align-items: stretch; }
 
 /*** THE RIBS ***/
-.rib 		{ padding: 16px; }
+.rib 		{ 
+    padding: 16px; 
+    float: left; 
+    clear: right; 
+}
 .rib.one	{ width: 12.5%; }
 .rib.two    { width: 25%;   }
 .rib.three  { width: 37.5%; }
@@ -156,10 +160,16 @@ a, a:visited, a:hover { text-decoration: none; }
 @media only screen and (max-width: 640px) {
     div#demo h4 		{ font-size: 60% !important; }
     div#explanation h4 	{ font-size: 100% !important; }
+
+    .rib img { 
+        max-width: 256px;
+        height: auto;
+        padding: 16px; 
+    }
 }
 
 @media only screen and (max-width: 320px), (max-width: 360px), (max-width: 384px), (max-width: 533px), (max-width: 600px) {
-    body { margin: 8px; }
+    body.spaced { margin: 8px; }
 
     .spine, .rib { padding: 8px; }
 
@@ -174,6 +184,12 @@ a, a:visited, a:hover { text-decoration: none; }
     .rib.five.r-margin, .rib.five.l-margin      { width: calc(62.5% - 8px); }
     .rib.six.r-margin, .rib.six.l-margin        { width: calc(75% - 8px);   }
     .rib.seven.r-margin, .rib.seven.l-margin    { width: calc(87.5% - 8px); }
+
+    .rib img { 
+        max-width: 224px !important;
+        height: auto;
+        padding: 8px; 
+    }    
 }
 
 
@@ -196,13 +212,16 @@ a, a:visited, a:hover { text-decoration: none; }
     }
 
     h2, h3 			{ page-break-after: avoid; }
-    header 			{ margin-top: 4in; }
+    header h1		{ margin-top: 0.5in; }
     header h2       { display: none !important; }
     nav             { display: none !important; }
     main section    { width: 100% !important; }
     main aside      { display: none; }
     footer h3       { display: none !important; }
     footer section  { display: none; }
+
+    .rib p          { padding: 0.05in; }
+    .rib img        { display: none; }
 }
 
 
@@ -216,6 +235,14 @@ a, a:visited, a:hover { text-decoration: none; }
 }
 .rib .l-image { float: left; }
 .rib .r-image { float: right; }
+
+@media only screen and (max-width: 320px), (max-width: 360px), (max-width: 384px), (max-width: 533px), (max-width: 600px) {
+    .rib img {
+        max-width: 224px !important;
+        height: auto;
+        padding: 8px;
+    } 
+}
 
 
 /*************************************************************************************************/
