@@ -1,7 +1,7 @@
 /*
 **
 ** FILE:        bones.css
-** UPDATED:     09/05/2014
+** UPDATED:     09/08/2014
 ** DESCRIPTION: Bones - A skinny HTML5/CSS3 framework
 ** CREDITS:     Nathan Harris aka Derjyn,
 */
@@ -82,8 +82,6 @@ body.nine-sixty, body.twelve-eighty { margin: 16px auto; }
 .push-six 	{ margin-left: 75%; 	}
 .push-seven { margin-left: 87.5%; 	}
 
-/*** PULL MODS ***/
-
 /*** UTILITIES ***/
 .breaker                { width: 100%; }
 .breaker.sixteen        { height: 16px; }
@@ -98,51 +96,6 @@ body.nine-sixty, body.twelve-eighty { margin: 16px auto; }
 }
 
 .grower { flex: 1 0 0; }
-
-
-/*************************************************************************************************/
-/*** TYPOGRAPHY **********************************************************************************/
-
-html {
-    font-family		: sans-serif;
-    color			: rgb(220,210,210);
-}
-
-h1 { font-size: 2em;	} /* 2*16       = 32    */
-h2 { font-size: 1.5em;	} /* 1.5*16     = 24    */
-h3 { font-size: 1.17em;	} /* 1.17*16    = 18.72 */
-h4 { font-size: 1em;	} /* 1*16       = 16    */
-h5 { font-size: 0.83em;	} /* 0.83*16    = 13.28 */
-h6 { font-size: 0.75em;	} /* 0.75*16    = 12    */
-
-p {
-    font-size		: 105%;
-    line-height		: 1.25em;
-    margin-bottom	: 1em;
-    padding			: 0 1em;
-}
-p:last-child 		{ margin-bottom: 0; }
-
-ul {
-    margin			: 0;
-    margin-top		: -2.5em;
-    padding			: 32px;
-    list-style-type	: square;
-}
-
-p code, code {
-    font-family		: monospace;
-    font-size		: 120%;
-    line-height		: 1.5em;
-    white-space		: pre;
-    overflow-x		: auto;
-    margin			: 0;
-    padding			: 4px;
-    padding-top 	: 2px;
-    background-color: rgb(27,31,30);
-}
-
-a, a:visited, a:hover { text-decoration: none; }
 
 
 /*************************************************************************************************/
@@ -191,6 +144,55 @@ a, a:visited, a:hover { text-decoration: none; }
         padding: 8px; 
     }    
 }
+
+
+/*************************************************************************************************/
+/*** TYPOGRAPHY **********************************************************************************/
+
+html {
+    font-family		: sans-serif;
+    color			: rgb(220,210,210);
+}
+
+h1 { font-size: 2em;	} /* 2*16       = 32    */
+h2 { font-size: 1.5em;	} /* 1.5*16     = 24    */
+h3 { font-size: 1.17em;	} /* 1.17*16    = 18.72 */
+h4 { font-size: 1em;	} /* 1*16       = 16    */
+h5 { font-size: 0.83em;	} /* 0.83*16    = 13.28 */
+h6 { font-size: 0.75em;	} /* 0.75*16    = 12    */
+
+p {
+    font-size		: 105%;
+    line-height		: 1.25em;
+    margin-bottom	: 1em;
+    padding			: 0 1em;
+}
+p:last-child 		{ margin-bottom: 0; }
+
+ul {
+    margin			: 0;
+    margin-top		: -2.5em;
+    padding			: 32px;
+    list-style-type	: square;
+}
+ul li {
+	line-height 	: 1em;
+	margin-bottom 	: 0.25em;
+}
+
+p code, code {
+    font-family		: monospace;
+    font-size		: 120%;
+    line-height		: 1.5em;
+    white-space		: pre;
+    overflow-x		: auto;
+    margin			: 0;
+    padding			: 4px;
+    padding-top 	: 2px;
+    background-color: rgb(27,31,30);
+}
+
+a, a:visited, a:hover { text-decoration: none; }
 
 
 /*************************************************************************************************/
