@@ -1,0 +1,94 @@
+/*
+**
+** FILE:		style.css
+** UPDATED: 	09/08/2014
+**
+*/
+
+
+/*************************************************************************************************/
+/*** LAYOUT **************************************************************************************/
+
+.spine, .rib {
+	padding: 8px;
+}
+main.spine {
+	padding: 16px;
+}
+
+header {
+	height: 96px;
+}
+
+#starfield { left: 0; } /* STARSCROLL POSITION FIX */
+
+
+/*************************************************************************************************/
+/*** STYLE ***************************************************************************************/
+
+body { 
+	background: rgb(8,8,8);
+	background: radial-gradient(ellipse at center, rgb(24,24,24) 0%, rgb(8,8,8) 100%);
+}
+
+.spine.debug 	{ background-color: rgba(32,32,32,0.5); }
+.rib.debug 		{ background-color: rgba(64,64,64,0.5); }
+
+
+/*************************************************************************************************/
+/*** NAVIGATION **********************************************************************************/
+
+nav ul {
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+}
+nav ul li {
+    width: 144px;
+    height: 32px
+    padding: 8px !important;
+    font-weight: bold; 
+}
+nav ul li a {
+    color: rgb(128,128,128);   
+}
+nav ul li a.active 		{ color: rgb(255,153,51) !important; }
+
+
+/*************************************************************************************************/
+/*** TYPOGRAPHY **********************************************************************************/
+
+@font-face {
+    font-family 		: "Joystix";
+    font-style 			: normal;
+    src 				: url("https://cdn.rawgit.com/Derjyn/derjyn.github.io/master/joystix.otf");
+}
+
+h1,h2,h3, nav li {
+	font-family 		: "Joystix";
+    font-weight 		: normal;
+}
+
+.rib p {
+	font-family 		: monospace;
+    font-weight			: normal;
+    font-size			: 16px;
+    line-height			: 20px;
+}
+
+header h1 {
+	font-size			: 3em;
+	text-align			: center;
+	line-height 		: 64px;
+}
+
+footer small {
+	font-family			: "Joystix";
+	font-size			: 10px;
+    text-align          : center;
+    color 				: rgb(80,80,80);
+}
+
+
+/*************************************************************************************************/
+/*** EOF *****************************************************************************************/
