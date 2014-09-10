@@ -9,49 +9,37 @@
 /*************************************************************************************************/
 /*** LAYOUT **************************************************************************************/
 
-.spine, .rib {
-	padding: 8px;
-}
-main.spine {
-	padding: 16px;
-}
+.spine, .rib            { padding: 8px; }
+main.spine              { padding: 16px; }
 
-header {
-	height: 96px;
-}
+header                  { height: 96px; }
 
-#starfield { left: 0; } /* STARSCROLL POSITION FIX */
+#starfield              { left: 0; } /* STARSCROLL POSITION FIX */
 
 
 /*************************************************************************************************/
 /*** STYLE ***************************************************************************************/
 
-body { 
-	background: rgb(8,8,8);
-	background: radial-gradient(ellipse at center, rgb(24,24,24) 0%, rgb(8,8,8) 100%);
-}
-
-.spine.debug 	{ background-color: rgba(32,32,32,0.5); }
-.rib.debug 		{ background-color: rgba(64,64,64,0.5); }
+body                    { background: rgb(8,8,8); }
+.spine.debug            { background-color: rgba(32,32,32,0.5); }
+.rib.debug              { background-color: rgba(64,64,64,0.5); }
 
 
 /*************************************************************************************************/
 /*** NAVIGATION **********************************************************************************/
 
 nav ul {
-    list-style: none;
-    margin: 0 auto;
-    padding: 0;
+    list-style          : none;
+    margin              : 0 auto;
+    padding             : 0;
 }
 nav ul li {
-    width: 144px;
-    height: 32px
-    padding: 8px !important;
-    font-weight: bold; 
+    width               : 144px;
+    height              : 32px;
+    padding             : 8px !important;
+    font-weight         : bold; 
 }
-nav ul li a {
-    color: rgb(128,128,128);   
-}
+nav ul li a             { color: rgb(128,128,128); }
 nav ul li a.active 		{ color: rgb(255,153,51) !important; }
 
 
@@ -82,11 +70,101 @@ header h1 {
 	line-height 		: 64px;
 }
 
+.rib ul {
+    font-family         : monospace;
+    font-weight         : normal;
+    font-size           : 16px;
+    line-height         : 20px;
+    margin              : 0;
+    padding             : 24px;
+    padding-top         : 8px;
+    color               : rgb(224,224,224);  
+}
+
+.rib p a, .rib li a     { color: rgb(255,153,51); }
+
 footer small {
 	font-family			: "Joystix";
 	font-size			: 10px;
     text-align          : center;
     color 				: rgb(80,80,80);
+}
+
+
+/*************************************************************************************************/
+/*** EFFECTS *************************************************************************************/
+
+.buzz_wrapper {
+    width               : 100%;
+    height              : 96px;
+    margin              : 0 auto;
+    overflow            : hidden;
+}
+
+.buzz_wrapper h1 {
+    width               : 100%;
+    position            : absolute;
+    line-height         : 80px;
+    text-align          : center;
+    font-size           : 3em;
+}
+
+.buzz_wrapper h1:nth-child(1) {
+    color               : red;
+    margin-left         : -2px;
+}
+.buzz_wrapper h1:nth-child(2) {
+    color               : green;
+    margin-left         : 2px;
+}
+.buzz_wrapper span:nth-child(3) {
+    color               : blue;
+    position            : 10px 0;
+}
+
+.buzz_wrapper h1 {
+    -webkit-animation: jerk 50ms infinite;
+}
+@-webkit-keyframes jerk {
+    50% { left: 1px; }
+    51% { left: 0; }
+}
+
+.buzz_wrapper h1:nth-child(3) {
+    -webkit-animation: jerkblue 1s infinite;
+}
+@-webkit-keyframes jerkblue {
+    0% { left:0; }
+    30% { left:0; }
+    31% { left:10px; }
+    32% { left:0; }
+    98% { left:0; }
+    100% { left:10px; }
+}
+
+.buzz_wrapper h1:nth-child(2) {
+    -webkit-animation: jerkgreen 1s infinite;
+}
+@-webkit-keyframes jerkgreen {
+    0% { left:0; }
+    30% { left:0; }
+    31% { left:-10px; }
+    32% { left:0; }
+    98% { left:0; }
+    100% { left:-10px; }
+}
+
+.buzz_wrapper .text {
+    -webkit-animation: jerkwhole 5s infinite;
+    position: relative;
+}
+@-webkit-keyframes jerkwhole {
+    30% {}
+    40% { opacity:1; top:0; left:0; }
+    41% { opacity:0.8; top:0px; left:-5px; }
+    42% { opacity:0.8; top:0px; left:5px; }
+    43% { opacity:1; top:0; left:0; }
+    65% {}
 }
 
 
