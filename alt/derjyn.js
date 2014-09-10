@@ -15,11 +15,7 @@ $(function(){
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 $(document).ready(function () {
-<<<<<<< HEAD
-    $("#starfield").starscroll(8, 5, 10, 2, 2, [64, 64, 64], false, true);
-=======
     $("#starfield").starscroll(16, 5, 10, 3, 0.4, 2, [196,27,27], true, true);
->>>>>>> origin/master
 
     toggleActive("nav ul li a", "active", "inactive");
 });
