@@ -79,7 +79,7 @@ a.inactive i.icon { -webkit-filter: grayscale(1); }
 h1,h2,h3,nav,footer     { font-family: "Joystix"; }
 
 header h1 {
-    font-size           : 64px !important;
+    font-size           : 48px !important;
     text-align          : center;
     line-height         : 64px;
 }
