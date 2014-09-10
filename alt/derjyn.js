@@ -6,8 +6,9 @@ var toggleActive = function(id, classOn, classOff) {
     });
 };
 
-$(function(){
-    for(i=0;i<4;i++){
+// CHROMATIC ABERRATION EFFECT
+$(function() {
+    for(i=0;i<1;i++) {
         $('.buzz_wrapper .text h1').eq(0).clone().prependTo('.buzz_wrapper .text');
     }
 });
