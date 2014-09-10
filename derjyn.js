@@ -19,6 +19,8 @@ $(document).ready(function () {
     $("#starfield").starscroll(16, 5, 10, 3, 0.4, 2, [196,27,27], true, true);
 
     toggleActive("nav ul li a", "active", "inactive");
+
+    $("nav").idTabs("#home");
 });
 
 // EOF ////////////////////////////////////////////////////////////////////////////////////////////
