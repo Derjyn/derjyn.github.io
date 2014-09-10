@@ -56,13 +56,13 @@ i.icon {
     margin-right        : 8px;
 }
 a.active i.icon.home, a.inactive i.icon.home 
-{ background-image: url("home.png"); }
+{ background-image: url("https://cdn.rawgit.com/Derjyn/derjyn.github.io/master/home.png"); }
 a.active i.icon.work, a.inactive i.icon.work 
-{ background-image: url("work.png"); }
+{ background-image: url("https://cdn.rawgit.com/Derjyn/derjyn.github.io/master/work.png"); }
 a.active i.icon.labs, a.inactive i.icon.labs 
-{ background-image: url("labs.png"); }
+{ background-image: url("https://cdn.rawgit.com/Derjyn/derjyn.github.io/master/labs.png"); }
 a.active i.icon.creds, a.inactive i.icon.creds  
-{ background-image: url("creds.png"); }
+{ background-image: url("https://cdn.rawgit.com/Derjyn/derjyn.github.io/master/creds.png"); }
 a.inactive i.icon { -webkit-filter: grayscale(1); }
 
 
