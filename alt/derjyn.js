@@ -22,7 +22,6 @@ var toggleActive = function(id, classOn, classOff) {
 $(document).ready(function () {
     $("#starfield").starscroll(8, 5, 10, 2, 2, [64, 64, 64], false, true);
 
-
     toggleActive("nav ul li a", "active", "inactive");
 });
 
