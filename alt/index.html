@@ -6,11 +6,11 @@
 
         <meta charset="utf-8">
 
-        <meta name="description" content="The personal playground and laboratory of Derjyn">
-        <meta name="author" content="Nathan Harris">
-        <meta name="keywords" content="derjyn, derjyn digital design, d3, design, digital design, web design, programming, coding, development">
-
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description"    content="The personal playground and laboratory of Derjyn">
+        <meta name="author"         content="Nathan Harris">
+        <meta name="keywords"       content="derjyn,derjyn digital design,d3,design,
+                                    digital design,web design,programming,coding, development">
+        <meta name="viewport"       content="width=device-width, initial-scale=1">
 
         <link rel="stylesheet" href="https://cdn.rawgit.com/Derjyn/Bones/master/bones.css">
         <link rel="stylesheet" href="style.css">
@@ -23,9 +23,11 @@
 
     <!-- BODY -->
     <body class="nine-sixty">
-        <header class="spine b-margin">
-            <h1 class="rib full">Derjyn Digital Design</h1>
-        </header>
+            <div class="buzz_wrapper">
+                <div class="text">
+                    <h1>Derjyn Digital Design</h1>
+                </div>
+            </div>
 
         <nav class="idTabs spine debug">
             <ul>
@@ -46,6 +48,8 @@
                     net related to design, coding, or bits I find pure awesome.
                 </p>
 
+                <div class="breaker sixteen"></div>
+
                 <h3>About the design</h3>
                 <p>
                     I am a sucker for pixel based design, retro 8 and 16bit schemes... The nostalgia of the 
@@ -65,19 +69,75 @@
 
             <div id="work">
             <section class="rib full">
-                <h2>Work</h2>
+                <h2>My Work</h2>
+                <p>
+                    Under construction. <a href="http://goo.gl/9bpDM3" target="_blank">Eek!</a>
+                </p>
+
+                <div class="breaker sixteen"></div>
+
+                <h3>Art</h3>
+
+                <h3>UI Design</h3>
             </section>
             </div>
 
             <div id="labs">
             <section class="rib full">
-                <h2>Labs</h2>
+                <h2>The Laboratory</h2>
+                <p>
+                    We had a <a href="http://goo.gl/9O04W3" target="_blank">virus outbreak</a>... Check back soon.
+                </p>
+
+                <div class="breaker sixteen"></div>
+
+                <h3>Code</h3>
+                <ul id="code">
+                    <li>
+                        <a href="https://github.com/Derjyn/Kerberos" target="_blank">Kerberos</a>
+                        <p>
+                            Kerberos is currently a test lab for various functionality and features 
+                            of rendering, physics, AI, etc. Eventually it will become a usable game engine.
+                        </p>
+                    </li>
+
+                    <li>
+                        <a href="https://github.com/Derjyn/Bones" target="_blank">Bones</a>
+                        <p>
+                            Currently in development, Bones is a "skinny" grid framework. You can view a 
+                            demo of it in action <a href="http://derjyn.github.io/work/bones" target="_blank">here</a>.
+                        </p>
+                    </li>
+                </ul>
             </section>
             </div>
 
             <div id="creds">
             <section class="rib full">
-                <h2>Creds</h2>
+                <h2>Credits and Respect</h2>
+                <p>
+                    Not every wheel needs to be invented, and sometimes other gifted people can do things
+                    much better. As such, other resources and tools were wrangled together to make D3 shine
+                    as brightly as I envisioned. Here are links to those kind entities.
+                </p>
+
+                <div class="breaker sixteen"></div>
+
+                <h3>Credits</h3>
+                <ul>
+                    <li><a href="http://bite-software.co.uk/starscroll/" target="_blank">Starcroll</a> - for the awesome parallax background effect
+                    </li>
+                    <li><a href="http://codepen.io/cRckls/" target="_blank">Chris Rickels</a> - for the distorted effect on the header</li>
+                    <li><a href="http://leaverou.github.io/prefixfree/" target="_blank">Lea Verou</a> - for PrefixFree</li>
+                </ul>
+
+                <h3>Respect</h3>
+                <ul>
+                    <li><a href="http://google.com" target="_blank">Google</a> - for being Google</li>
+                    <li><a href="http://jquery.org/team/" target="_blank">jQuery</a> - Javascript gold</li>
+                    <li><a href="http://github.com/" target="_blank">Github</a> - rockin' the repository</li>
+                    <li><a href="http://www.sublimetext.com/" target="_blank">Sublime Text</a> - text editor of choice</li>
+                </ul>  
             </section>
             </div>
         </main>
@@ -92,7 +152,7 @@
 
     <!-- SCRIPTS -->
         <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-        <script type="text/javascript" src="https://cdn.rawgit.com/vonKristoff/starscroll/master/starscroll.min.js"></script>
+        <script type="text/javascript" src="starscroll.js"></script>
         <script type="text/javascript" src="jquery.idTabs.js"></script>
         <script type="text/javascript" src="derjyn.js"></script>
     <!-- /SCRIPTS -->
