@@ -1,17 +1,24 @@
-$(window).load(function() {
-    $("#starfield").starscroll(8, 5, 10, 2, 1, [64, 64, 64], false, true, .5); 
-
-    $(function() {
-        for (i = 0; i < 4; i++) {
-            $(".header .text span").eq(0).clone().prependTo(".header .text");
-        }
+// FUNCTION FOR MAKING ELEMENTS "ACTIVE" & "INACTIVE"
+var toggleActive = function(id, classOn, classOff) {
+    $(id).click(function() {
+        $(id).removeClass(classOn).addClass(classOff);
+        $(this).removeClass(classOff).addClass(classOn);
     });
+};
 
-    $("#tab-links a").on("click", function(e) {
-        var t = $(this).attr("href");
-        $("#tabs " + t).show().siblings().hide();
-        $(this).parent("li").addClass("clicked").siblings().removeClass("clicked");
-        $(this).parent("li").addClass("active").siblings().removeClass("active");
-        e.preventDefault();
-    });
-})
+// CHROMATIC ABERRATION EFFECT
+$(function() {
+    for(i=0;i<1;i++) {
+        $('.buzz_wrapper .text h1').eq(0).clone().prependTo('.buzz_wrapper .text');
+    }
+});
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+$(document).ready(function () {
+    $("#starfield").starscroll(16, 5, 10, 3, 0.4, 2, [196,27,27], true, true);
+
+    toggleActive("nav ul li a", "active", "inactive");
+});
+
+// EOF ////////////////////////////////////////////////////////////////////////////////////////////
