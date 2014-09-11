@@ -1,0 +1,117 @@
+/*
+**
+** FILE:        flesh.css
+** UPDATED:     09/10/2014
+** DESCRIPTION: Flesh - A lean visual framework
+** CREDITS:     Nathan Harris aka Derjyn
+*/
+
+
+/*************************************************************************************************/
+/*** BASE ****************************************************************************************/
+
+body	{ background-color: rgb(44,34,24); }
+
+
+/*************************************************************************************************/
+/*** TENDON **************************************************************************************/
+
+.tendon	{ background-color: rgb(211,211,185) !important; }
+
+
+/*************************************************************************************************/
+/*** MUSCLE **************************************************************************************/
+
+.muscle	{ background-color: rgb(207,85,72) !important; }
+
+
+/*************************************************************************************************/
+/*** SKIN ****************************************************************************************/
+
+.skin	{ background-color: rgb(237,239,226) !important; }
+
+.f-left		{ float: left; }
+.f-right	{ float: right; }
+
+
+/*************************************************************************************************/
+/*** TYPOGRAPHY **********************************************************************************/
+
+html {
+    font-family	: sans-serif;
+    color		: rgb(47,45,30);
+}
+
+h1 { font-size: 2em;	} /* 2*16       = 32    */
+h2 { font-size: 1.5em;	} /* 1.5*16     = 24    */
+h3 { font-size: 1.17em;	} /* 1.17*16    = 18.72 */
+h4 { font-size: 1em;	} /* 1*16       = 16    */
+h5 { font-size: 0.83em;	} /* 0.83*16    = 13.28 */
+h6 { font-size: 0.75em;	} /* 0.75*16    = 12    */
+
+p {
+    font-size		: 105%;
+    line-height		: 1.25em;
+    margin-bottom	: 1em;
+    padding			: 0 1em;
+}
+p:last-child	{ margin-bottom: 0; }
+
+ul {
+    margin			: 0;
+    margin-top		: -2.5em;
+    padding			: 32px;
+    list-style-type	: square;
+}
+ul li {
+	line-height 	: 1em;
+	margin-bottom	: 0.25em;
+}
+
+p code, code {
+    font-family		: monospace;
+    font-size		: 120%;
+    white-space		: pre;
+    overflow-x		: auto;
+    margin			: 0 2px 0 0;
+    padding			: 0 4px 1px 4px;
+    background-color: rgb(237,239,226);
+}
+
+a, a:visited, a:hover { text-decoration: none; }
+
+
+/*************************************************************************************************/
+/*** PRINT ***************************************************************************************/
+
+@page { margin: 0.5cm; }
+
+@media print {
+    * {
+        background	: transparent !important;
+        color		: #000 !important;
+        box-shadow	: none !important;
+        text-shadow	: none !important;
+    }
+
+    p, h2, h3 {
+        orphans	: 4;
+        widows	: 4;
+    }
+
+    h2, h3 			{ page-break-after: avoid; }
+    header h1		{ margin-top: 0.5in; }
+    header h2       { display: none !important; }
+    nav             { display: none !important; }
+    main section    { width: 100% !important; }
+    main aside      { display: none; }
+    footer h3       { display: none !important; }
+    footer section  { display: none; }
+
+    p	{ padding: 0.05in; }
+    img	{ display: none; }
+}
+
+
+/*************************************************************************************************/
+/*** EOF *****************************************************************************************/
