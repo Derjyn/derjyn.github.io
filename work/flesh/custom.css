@@ -22,6 +22,7 @@ header h1, header h2 {
     line-height	: 64px;
     font-weight	: bold;
 }
+header h2 { min-width: 96px; }
 
 .breaker { 
 	padding		: 16px;
@@ -33,25 +34,12 @@ header h1, header h2 {
 /*************************************************************************************************/
 /*** THEME ***************************************************************************************/
 
-body {
-	background-color: rgb(131,4,4);
-}
 
-.theme.base {
-	background-color: rgb(255,180,180);
-}
 
-.theme.tendon {
-	background-color: rgb(255,168,168);
-}
 
-.theme.muscle {
-	background-color: rgb(255,135,135);
-}
 
-.theme.skin {
-	background-color: rgb(245,118,118);
-}
+
+
 
 
 /*************************************************************************************************/

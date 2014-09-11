@@ -31,8 +31,8 @@ header h1   { order: 6; }
 header h1, header h2 {
     text-align  : center;
     line-height : 64px;
-    font-weight : bold;
 }
+header h2 { min-width: 96px; }
 
 main aside { align-self: stretch; }
 
@@ -44,30 +44,39 @@ div#explanation h4 {
 div#explanation ul { margin-bottom: -32px; }
 
 .breaker {
-    background-color    : rgb(212,211,183);
     background-image    : linear-gradient(90deg, transparent 50%, rgb(199,198,166) 50%);
     background-size     : 32px 32px;
     text-align          : center;
     line-height         : 64px;
 }
 
-a { font-weight: bold; }
-a:hover { color: rgb(230,229,210); }
-
-code {
-    background-color: rgb(230,229,210);
-}
-
 
 /*************************************************************************************************/
-/*** FLESH OVERRIDE ******************************************************************************/
+/*** FLESH THEME OVERRIDE ************************************************************************/
 
-html, a { color: rgb(60,59,56); }
-body    { background-color: rgb(87,85,72); }
-.tendon { background-color: rgb(199,198,166); }
-.muscle { background-color: rgb(212,211,183); }
-.skin   { background-color: rgb(230,229,210); }
+/***************/
+/* BONES THEME */
+/***************/
 
+html.themed { color: rgb(60,59,56); }
+
+.themed body       { background-color: rgb(87,85,72); }
+.themed .tendon    { background-color: rgb(199,198,166); }
+.themed .muscle    { background-color: rgb(212,211,183); }
+.themed .skin      { background-color: rgb(230,229,210); }
+
+.themed h1,h2,h3,h4,h5,h6 { font-family: "Source Sans Pro", sans-serif; }
+
+.themed p code, .themed code { background-color: rgb(230,229,210); }
+
+.themed a { 
+    color: rgb(87,85,72);
+    cursor: pointer; 
+}
+.themed a:hover { 
+    position: relative; 
+    top     : -0.125em;
+}
 
 /*************************************************************************************************/
 /*** MEDIA QUERIES *******************************************************************************/

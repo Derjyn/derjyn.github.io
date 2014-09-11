@@ -8,37 +8,14 @@
 
 
 /*************************************************************************************************/
-/*** BASE ****************************************************************************************/
-
-body 	{ background-color: rgb(131,4,4); }
-
-
-/*************************************************************************************************/
-/*** TENDON **************************************************************************************/
-
-.tendon { background-color: rgb(255,168,168); }
-
-
-/*************************************************************************************************/
-/*** MUSCLE **************************************************************************************/
-
-.muscle { background-color: rgb(255,135,135); }
-
-
-/*************************************************************************************************/
-/*** SKIN ****************************************************************************************/
-
-.skin 	{ background-color: rgb(245,118,118); }
-
-
-/*************************************************************************************************/
 /*** TYPOGRAPHY **********************************************************************************/
 
 html {
-    font-family	: sans-serif;
-    color		: rgb(131,4,4);
+    font-family : serif;
+    font-size 	: 16px;
 }
 
+h1,h2,h3,h4,h5,h6 { font-family: sans-serif; }
 h1 { font-size: 2em;	} /* 2*16       = 32    */
 h2 { font-size: 1.5em;	} /* 1.5*16     = 24    */
 h3 { font-size: 1.17em;	} /* 1.17*16    = 18.72 */
@@ -46,40 +23,74 @@ h4 { font-size: 1em;	} /* 1*16       = 16    */
 h5 { font-size: 0.83em;	} /* 0.83*16    = 13.28 */
 h6 { font-size: 0.75em;	} /* 0.75*16    = 12    */
 
-p {
-    font-size		: 105%;
-    line-height		: 1.25em;
+p, ul {
+    font-size		: 1em;
+    line-height		: 1.5em;
     margin-bottom	: 1em;
-    padding			: 0 1em;
 }
 p:last-child { margin-bottom: 0; }
 
 ul {
     margin			: 0;
-    margin-top		: -2.5em;
-    padding			: 32px;
+    margin-bottom 	: 1em;
     list-style-type	: square;
 }
+ul lh { font-weight: bold; }
 ul li {
-	line-height 	: 1em;
-	margin-bottom	: 0.25em;
+	line-height 	: 1.5em;
+	margin-left 	: 1.5em;
 }
 
 p code, code {
     font-family		: monospace;
-    font-size		: 120%;
     white-space		: pre;
     overflow-x		: auto;
-    margin			: 0 2px 0 0;
-    padding			: 0 4px 1px 4px;
-    background-color: rgb(237,239,226);
+    margin-right	: 0.125em;
+    padding			: 0.0625em 0.25em;
 }
 
-a, a:visited, a:hover { text-decoration: none; }
+a { text-decoration: none; }
+
+pre, p pre {
+	font-family	: monospace;
+	overflow 	: auto;
+	white-space	: pre-wrap;
+	word-wrap 	: break-word;
+}
 
 
 /*************************************************************************************************/
-/*** UTILITY *************************************************************************************/
+/*** THEME ***************************************************************************************/
+/*** This is what you will likely want to modify - feel free to copy/past and develop your *******/
+/*** own theme, then change the class on the html declaration in your HTML file to "themed" ******/
+
+/***************/
+/* FLESH THEME */
+/***************/
+html.themed {
+	font-family : "Laila", serif;
+    color		: rgb(131,4,4);
+}
+
+.themed body	{ background-color: rgb(131,4,4); }
+.themed .tendon	{ background-color: rgb(255,168,168); }
+.themed .muscle	{ background-color: rgb(255,135,135); }
+.themed .skin 	{ background-color: rgb(245,118,118); }
+
+.themed h1,h2,h3,h4,h5,h6 { font-family: "Source Sans Pro", sans-serif; }
+
+.themed pre,.themed p pre, .themed p code,.themed code { font-family: "Inconsolata", monospace; }
+.themed p code, .themed code { background-color: rgb(255,168,168); }
+
+.themed a {
+	font-weight	: bold;
+	color 		: rgb(131,4,4);
+	cursor		: pointer; 
+}
+.themed a:hover { 
+	position: relative; 
+	top		: -0.125em;
+}
 
 
 /*************************************************************************************************/
