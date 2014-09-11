@@ -1,7 +1,7 @@
 /*
 **
 ** FILE:        bones.css
-** UPDATED:     09/10/2014
+** UPDATED:     09/11/2014
 ** DESCRIPTION: Bones - A skinny layout framework
 ** CREDITS:     Nathan Harris aka Derjyn
 */
@@ -11,14 +11,14 @@
 /*** RESET ***************************************************************************************/
 
 *, *:before, *:after {
-    box-sizing          : border-box;
-    margin              : 0;
-    padding             : 0;
+    box-sizing  : border-box;
+    margin      : 0;
+    padding     : 0;
 }
 
 body {
-    height              : 100%;
-    min-height          : 100%;
+    height      : 100%;
+    min-height  : 100%;
 }
 
 
@@ -42,14 +42,14 @@ body.nine-sixty, body.twelve-eighty { margin: 16px auto; }
     align-content	: flex-start;
     padding			: 16px;
 }
-.spine.center		{ justify-content: center; }
-.spine.stretch		{ align-items: stretch; }
+.spine.center   { justify-content: center; }
+.spine.stretch  { align-items: stretch; }
 
 /*** THE RIBS ***/
-.rib 		{ 
-    padding: 16px; 
-    float: left; 
-    clear: right; 
+.rib { 
+    padding : 16px; 
+    float   : left; 
+    clear   : right; 
 }
 .rib.one	{ width: 12.5%; }
 .rib.two    { width: 25%;   }
@@ -61,10 +61,12 @@ body.nine-sixty, body.twelve-eighty { margin: 16px auto; }
 .rib.full	{ width: 100%;  }
 
 /*** MARGIN MODS ***/
-.l-margin   { margin-left: 16px;  	}
-.r-margin   { margin-right: 16px; 	}
-.t-margin	{ margin-top: 16px;		}
-.b-margin	{ margin-bottom: 16px;	}
+.l-margin   { margin-left: 16px;    }
+.r-margin   { margin-right: 16px;   }
+.t-margin	{ margin-top: 16px;     }
+.b-margin	{ margin-bottom: 16px;  }
+
+/*** RIB MARGIN MOD OFFSETS ***/
 .rib.one.r-margin, .rib.one.l-margin		{ width: calc(12.5% - 16px); }
 .rib.two.r-margin, .rib.two.l-margin        { width: calc(25% - 16px);   }
 .rib.three.r-margin, .rib.three.l-margin	{ width: calc(37.5% - 16px); }
@@ -82,7 +84,10 @@ body.nine-sixty, body.twelve-eighty { margin: 16px auto; }
 .push-six 	{ margin-left: 75%; 	}
 .push-seven { margin-left: 87.5%; 	}
 
-/*** UTILITIES ***/
+
+/*************************************************************************************************/
+/*** UTILITIES ***********************************************************************************/
+
 .breaker                { width: 100%; }
 .breaker.sixteen        { height: 16px; }
 .breaker.thirty-two     { height: 32px; }
@@ -97,13 +102,14 @@ body.nine-sixty, body.twelve-eighty { margin: 16px auto; }
 
 .grower { flex: 1 0 0; }
 
+.f-left     { float: left; }
+.f-right    { float: right; }
+
 .rib img {
     padding: 16px;
     padding-top: 0;
     padding-bottom: 8px;
 }
-.rib .l-image { float: left; }
-.rib .r-image { float: right; }
 
 
 /*************************************************************************************************/
@@ -147,83 +153,6 @@ body.nine-sixty, body.twelve-eighty { margin: 16px auto; }
         height: auto;
         padding: 8px; 
     }    
-}
-
-
-/*************************************************************************************************/
-/*** TYPOGRAPHY **********************************************************************************/
-
-
-h1 { font-size: 2em;	} /* 2*16       = 32    */
-h2 { font-size: 1.5em;	} /* 1.5*16     = 24    */
-h3 { font-size: 1.17em;	} /* 1.17*16    = 18.72 */
-h4 { font-size: 1em;	} /* 1*16       = 16    */
-h5 { font-size: 0.83em;	} /* 0.83*16    = 13.28 */
-h6 { font-size: 0.75em;	} /* 0.75*16    = 12    */
-
-p {
-    font-size		: 105%;
-    line-height		: 1.25em;
-    margin-bottom	: 1em;
-    padding			: 0 1em;
-}
-p:last-child 		{ margin-bottom: 0; }
-
-ul {
-    margin			: 0;
-    margin-top		: -2.5em;
-    padding			: 32px;
-    list-style-type	: square;
-}
-ul li {
-	line-height 	: 1em;
-	margin-bottom 	: 0.25em;
-}
-
-p code, code {
-    font-family		: monospace;
-    font-size		: 120%;
-    line-height		: 1.5em;
-    white-space		: pre;
-    overflow-x		: auto;
-    margin			: 0;
-    padding			: 4px;
-    padding-top 	: 2px;
-    background-color: rgb(27,31,30);
-}
-
-a, a:visited, a:hover { text-decoration: none; }
-
-
-/*************************************************************************************************/
-/*** PRINT ***************************************************************************************/
-
-@page { margin: 0.5cm; }
-
-@media print {
-    * {
-        background	: transparent !important;
-        color		: #000 !important;
-        box-shadow	: none !important;
-        text-shadow	: none !important;
-    }
-
-    p, h2, h3 {
-        orphans		: 4;
-        widows		: 4;
-    }
-
-    h2, h3 			{ page-break-after: avoid; }
-    header h1		{ margin-top: 0.5in; }
-    header h2       { display: none !important; }
-    nav             { display: none !important; }
-    main section    { width: 100% !important; }
-    main aside      { display: none; }
-    footer h3       { display: none !important; }
-    footer section  { display: none; }
-
-    .rib p          { padding: 0.05in; }
-    .rib img        { display: none; }
 }
 
 

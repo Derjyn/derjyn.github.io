@@ -6,11 +6,19 @@ Website for D3
 * Single page layout, with tabulated sections
 * Parallax background fanciness
 
-### ToDo
-* Fix navigation icons and blinky crap
-* Fix bug where site sometimes does not load properly (may be Javascrip async issue?)
+
+### Roadmap
+* ?
+
+
+### Changelog
+**09/11/2014**
+* Using latest Flesh and Bones
+* Updated Flesh and Bones demos to latest
+* Cleaned up code
 
 ---
 
 #### Credits
-Google \- For search awesomeness  
+Google \- For search awesomeness
+

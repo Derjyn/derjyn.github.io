@@ -1,7 +1,7 @@
 /*
 **
 ** FILE:        custom.css
-** UPDATED:     09/10/2014
+** UPDATED:     09/11/2014
 ** DESCRIPTION: Custom styling and overrides
 ** CREDITS:     Nathan Harris aka Derjyn
 */
@@ -24,9 +24,33 @@ header h1, header h2 {
 }
 
 .breaker { 
-	padding				: 16px;
-	text-align			: center;
-    line-height			: 32px;
+	padding		: 16px;
+	text-align	: center;
+    line-height	: 32px;
+}
+
+
+/*************************************************************************************************/
+/*** THEME ***************************************************************************************/
+
+body {
+	background-color: rgb(131,4,4);
+}
+
+.theme.base {
+	background-color: rgb(255,180,180);
+}
+
+.theme.tendon {
+	background-color: rgb(255,168,168);
+}
+
+.theme.muscle {
+	background-color: rgb(255,135,135);
+}
+
+.theme.skin {
+	background-color: rgb(245,118,118);
 }
 
 
