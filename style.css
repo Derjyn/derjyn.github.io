@@ -69,6 +69,11 @@ a.inactive i.icon { -webkit-filter: grayscale(1); }
 /*************************************************************************************************/
 /*** TYPOGRAPHY **********************************************************************************/
 
+html {
+    font-family     : sans-serif;
+    color           : rgb(220,210,210);
+}
+
 @font-face {
     font-family 		: "Joystix";
     font-style 			: normal;
