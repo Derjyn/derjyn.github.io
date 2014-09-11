@@ -1,7 +1,7 @@
 /*
 **
 ** FILE:        demo.css
-** UPDATED:     08/26/2014
+** UPDATED:     09/10/2014
 ** DESCRIPTION: Custom demo CSS for Bones
 ** CREDITS:     Nathan Harris aka Derjyn
 */
@@ -10,19 +10,21 @@
 /*************************************************************************************************/
 /*** SPECIFIC LAYOUT CRAP ************************************************************************/
 
-footer section {
-    height              : 96px;
-}
-
+footer section { height: 96px; }
 footer small {
-    text-align          : center;
-    font-weight         : bold;
-    margin-top          : 16px;
+    text-align  : center;
+    font-weight : bold;
+    margin-top  : 16px;
 }
 
 
 /*************************************************************************************************/
 /*** CUSTOM DEMO STYLE & FIXES *******************************************************************/
+
+html {
+    font-family     : sans-serif;
+    color           : rgb(220,210,210);
+}
 
 body        { background-color: rgb(128,119,105); }
 .debug      { background-color: rgb(80,77,72); }
@@ -36,25 +38,19 @@ header h2   { order: 5; }
 header h1   { order: 6; }
 
 header h1, header h2 {
-    text-align          : center;
-    line-height         : 64px;
-    font-weight         : bold;
+    text-align  : center;
+    line-height : 64px;
+    font-weight : bold;
 }
 
-main aside {
-    align-self          : stretch;
-}
+main aside { align-self: stretch; }
 
-div#demo h4 {
-    text-align          : center;
-}
+div#demo h4 { text-align: center; }
 div#explanation h4 {
-    text-align          : left;
-    margin-top          : 32px;
+    text-align  : left;
+    margin-top  : 32px;
 }
-div#explanation ul {
-    margin-bottom       : -32px;
-}
+div#explanation ul { margin-bottom: -32px; }
 
 .breaker {
     background-color    : rgb(80,77,72);
@@ -65,10 +61,19 @@ div#explanation ul {
 }
 
 a {
-    color               : rgb(128,8,8);
-    font-weight         : bold;
+    color       : rgb(128,8,8);
+    font-weight : bold;
 }
 a:hover { color: rgb(160,24,24); }
+
+
+/*************************************************************************************************/
+/*** MEDIA QUERIES *******************************************************************************/
+
+@media only screen and (max-width: 640px) {
+    div#demo h4         { font-size: 60% !important; }
+    div#explanation h4  { font-size: 100% !important; }
+}
 
 
 /*************************************************************************************************/

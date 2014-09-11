@@ -1,9 +1,9 @@
 /*
 **
 ** FILE:        bones.css
-** UPDATED:     09/08/2014
-** DESCRIPTION: Bones - A skinny HTML5/CSS3 framework
-** CREDITS:     Nathan Harris aka Derjyn,
+** UPDATED:     09/10/2014
+** DESCRIPTION: Bones - A skinny layout framework
+** CREDITS:     Nathan Harris aka Derjyn
 */
 
 
@@ -97,10 +97,17 @@ body.nine-sixty, body.twelve-eighty { margin: 16px auto; }
 
 .grower { flex: 1 0 0; }
 
+.rib img {
+    padding: 16px;
+    padding-top: 0;
+    padding-bottom: 8px;
+}
+.rib .l-image { float: left; }
+.rib .r-image { float: right; }
+
 
 /*************************************************************************************************/
 /*** MEDIA QUERIES *******************************************************************************/
-/*** A lot more work needs to be done on these lil fellers... ************************************/
 
 @media only screen and (max-width: 720px), (max-width: 1024px) {
     main section {
@@ -111,9 +118,6 @@ body.nine-sixty, body.twelve-eighty { margin: 16px auto; }
 }
 
 @media only screen and (max-width: 640px) {
-    div#demo h4 		{ font-size: 60% !important; }
-    div#explanation h4 	{ font-size: 100% !important; }
-
     .rib img { 
         max-width: 256px;
         height: auto;
@@ -149,10 +153,6 @@ body.nine-sixty, body.twelve-eighty { margin: 16px auto; }
 /*************************************************************************************************/
 /*** TYPOGRAPHY **********************************************************************************/
 
-html {
-    font-family		: sans-serif;
-    color			: rgb(220,210,210);
-}
 
 h1 { font-size: 2em;	} /* 2*16       = 32    */
 h2 { font-size: 1.5em;	} /* 1.5*16     = 24    */
@@ -224,26 +224,6 @@ a, a:visited, a:hover { text-decoration: none; }
 
     .rib p          { padding: 0.05in; }
     .rib img        { display: none; }
-}
-
-
-/*************************************************************************************************/
-/*** THINGS AND STUFFS TO MOVE TO FLESH **********************************************************/
-
-.rib img {
-    padding: 16px;
-    padding-top: 0;
-    padding-bottom: 8px;
-}
-.rib .l-image { float: left; }
-.rib .r-image { float: right; }
-
-@media only screen and (max-width: 320px), (max-width: 360px), (max-width: 384px), (max-width: 533px), (max-width: 600px) {
-    .rib img {
-        max-width: 224px !important;
-        height: auto;
-        padding: 8px;
-    } 
 }
 
 
