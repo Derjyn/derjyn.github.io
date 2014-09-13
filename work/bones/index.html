@@ -1,151 +1,149 @@
 <!doctype html>
-<html class="themed">
-    <!-- HEAD -->
-    <head>
-        <title>Bones Overview</title>
+<html>
+	<!-- HEAD -->
+	<head>
+		<title>Bones Overview</title>
 
-        <meta charset="utf-8">
+		<meta charset="utf-8">
 
-        <meta name="description" content="Bones - A Skinny Layout Framework">
-        <meta name="author" content="Nathan Harris">
+		<meta name="description" content="Bones - A Skinny Layout Framework">
+		<meta name="author" content="Nathan Harris">
 
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro|Laila|Inconsolata">    
-        <link rel="stylesheet" href="https://rawgit.com/Derjyn/Flesh/master/flesh.css">
-        <link rel="stylesheet" href="https://rawgit.com/Derjyn/Bones/master/bones.css">
-        <link rel="stylesheet" href="custom.css">
+		<link rel="stylesheet" href="bones.css">
+		<link rel="stylesheet" href="custom.css">
 
-        <!--[if lt IE 9]>
-            <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
-    </head>
-    <!-- /HEAD -->
+		<!--[if lt IE 9]>
+			<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	</head>
+	<!-- /HEAD -->
 
-    <!-- BODY -->
-    <body class="spaced twelve-eighty">
-        <header class="spine b-margin tendon">
-            <h1 class="rib grower muscle">Bones</h1>
-            <h2 class="rib r-margin muscle">Logo</h2>
-        </header>
+	<!-- BODY -->
+	<body class="spaced twelve-eighty">
+		<header class="spine b-margin tendon">
+			<h1 class="rib grower muscle">Bones</h1>
+			<h2 class="rib r-margin muscle">Logo</h2>
+		</header>
 
-        <main class="spine b-margin tendon">
-            <section class="rib full b-margin muscle">
-                <h2>Bones Overview and Usage</h2>
-                <p>
-                    Bones is a simple grid layout framework for developing responsive sites utilizing flexbox.
-                    Apart from the core layout classes, there are several other utility classes that aid
-                    in designing clean and snappy websites. It can be frustrating to re-invent the wheel
-                    constantly, and having a base to start with helps increase the speed of developing a
-                    site's layout and design. Many other frameworks exist but most are very bloated and
-                    difficult to customize or rip apart for one's own devious needs.
-                </p>
-                <p>
-                    This is where Bones comes in. Currently in the alpha stages, Bones already shines at
-                    providing a solid base to get common layouts functioning. You can view an example
-                    of a common layout built using Bones <a href="layout.html" target="_blank">here</a>.
-                    In the future, Bones will be married with <i>Flesh</i>, to become a complete site-kit.
-                    If Bones were the layout side of the coin, Flesh would be the visual side. Components
-                    within the core Bones CSS will be pulled out and moved over to Flesh, such as the print
-                    styles and typography.
-                </p>
-                <p>
-                    The "skinny" bit of Bones, is in it's simplicity and size. With comments and before
-                    any sort of compression, the layout components (the core of Bones) takes us up under
-                    150 lines of code. As previously mentioned, other components of the CSS in Bones will
-                    be pulled out and implemented into Flesh. Finally, you can check out a visual demo
-                    of the grid system <a href="demo.html" target="_blank">here</a>. Onto the usage details!
-                </p>
-            </section>
+		<main class="spine b-margin tendon">
+			<section class="rib full b-margin muscle">
+				<h2>Bones Overview and Usage</h2>
+				<p>
+					Bones is a simple grid layout framework for developing responsive sites utilizing flexbox.
+					Apart from the core layout classes, there are several other utility classes that aid
+					in designing clean and snappy websites. It can be frustrating to re-invent the wheel
+					constantly, and having a base to start with helps increase the speed of developing a
+					site's layout and design. Many other frameworks exist but most are very bloated and
+					difficult to customize or rip apart for one's own devious needs.
+				</p>
+				<p>
+					This is where Bones comes in. Currently in the alpha stages, Bones already shines at
+					providing a solid base to get common layouts functioning. You can view an example
+					of a common layout built using Bones <a href="layout.html" target="_blank">here</a>.
+					In the future, Bones will be married with <i>Flesh</i>, to become a complete site-kit.
+					If Bones were the layout side of the coin, Flesh would be the visual side. Components
+					within the core Bones CSS will be pulled out and moved over to Flesh, such as the print
+					styles and typography.
+				</p>
+				<p>
+					The "skinny" bit of Bones, is in it's simplicity and size. With comments and before
+					any sort of compression, the layout components (the core of Bones) takes us up under
+					150 lines of code. As previously mentioned, other components of the CSS in Bones will
+					be pulled out and implemented into Flesh. Finally, you can check out a visual demo
+					of the grid system <a href="demo.html" target="_blank">here</a>. Onto the usage details!
+				</p>
+			</section>
 
-            <section class="rib full b-margin muscle">
-                <h3>Spines and Ribs</h3>
-                <p>
-                    When we reference a grid system, we generally think of elements being laid out in rows
-                    and columns. In Bones, a <code>spine</code> would be the row, and a <code>rib</code>
-                    would be a column within that row. A spine will fill it's parent container in width.
-                    Bones is based on eighths; that is, a full width rib is 100%, on down to the smallest
-                    rib being one-eighth the size of it's parent spine. Below is a reference of the rib sizes 
-                    with class names.
-                </p>
-                <ul>
-                    <li><code>rib one</code> : 12.5%</li>
-                    <li><code>rib two</code> : 25%</li>
-                    <li><code>rib three</code> : 37.5%</li>
-                    <li><code>rib four</code> : 50%</li>
-                    <li><code>rib five</code> : 62.5%</li>
-                    <li><code>rib six</code> : 75%</li>
-                    <li><code>rib seven</code> : 87.5%</li>
-                    <li><code>rib full</code> : 100%</li>
-                </ul>
-                <p>
-                    So for example, you could create a single row, three column layout area like this:
-                    <pre>
-                        &ltdiv class="spine"&gt
-                            &ltdiv class="rib two"&gtCONTENT&lt/div&gt
-                            &ltdiv class="rib four"&gtCONTENT&lt/div&gt
-                            &ltdiv class="rib two"&gtCONTENT&lt/div&gt
-                        &lt/div&gt
-                    </pre>
+			<section class="rib full b-margin muscle">
+				<h3>Spines and Ribs</h3>
+				<p>
+					When we reference a grid system, we generally think of elements being laid out in rows
+					and columns. In Bones, a <code>spine</code> would be the row, and a <code>rib</code>
+					would be a column within that row. A spine will fill it's parent container in width.
+					Bones is based on eighths; that is, a full width rib is 100%, on down to the smallest
+					rib being one-eighth the size of it's parent spine. Below is a reference of the rib sizes 
+					with class names.
+				</p>
+				<ul>
+					<li><code>rib one</code> : 12.5%</li>
+					<li><code>rib two</code> : 25%</li>
+					<li><code>rib three</code> : 37.5%</li>
+					<li><code>rib four</code> : 50%</li>
+					<li><code>rib five</code> : 62.5%</li>
+					<li><code>rib six</code> : 75%</li>
+					<li><code>rib seven</code> : 87.5%</li>
+					<li><code>rib full</code> : 100%</li>
+				</ul>
+				<p>
+					So for example, you could create a single row, three column layout area like this:
+					<pre>
+						&ltdiv class="spine"&gt
+							&ltdiv class="rib two"&gtCONTENT&lt/div&gt
+							&ltdiv class="rib four"&gtCONTENT&lt/div&gt
+							&ltdiv class="rib two"&gtCONTENT&lt/div&gt
+						&lt/div&gt
+					</pre>
 
-                    Your rib sizes don't necessarily have to add up to eight either. Many grid systems
-                    require your columns to add up to their max sizing scheme, such as a twelve column
-                    based system need to be something like 4+6+2=12. These systems sometimes break, or
-                    at the least corral you into using their sizing standard. Bones is simple to change.
-                    If you wanted, you could easily modify it to be based on 10, 12, or 16 column based
-                    sizing. To assist in making ribs easy to work with, there mod classes, which are
-                    covered below.
-                </p>
-            </section>
+					Your rib sizes don't necessarily have to add up to eight either. Many grid systems
+					require your columns to add up to their max sizing scheme, such as a twelve column
+					based system need to be something like 4+6+2=12. These systems sometimes break, or
+					at the least corral you into using their sizing standard. Bones is simple to change.
+					If you wanted, you could easily modify it to be based on 10, 12, or 16 column based
+					sizing. To assist in making ribs easy to work with, there mod classes, which are
+					covered below.
+				</p>
+			</section>
 
-            <section class="rib full b-margin muscle">
-                <h3>Mods</h3>
-                <p>
-                    Several "mod" classes exist in Bones, to help more finely tweak layouts. Mods
-                    differ from utilities, in that mods specifically affect ribs. Below is an
-                    overview of these mod classes.
-                </p>
-                <ul>
-                    <li><code>l-margin</code> : Adds a 16px margin to the left of a rib</li>
-                    <li><code>r-margin</code> : Adds a 16px margin to the right of a rib</li>
-                    <li><code>t-margin</code> : Adds a 16px margin above a rib</li>
-                    <li><code>b-margin</code> : Adds a 16px margin below a rib</li>
-                    <li><code>push-one</code> : Pushes a rib to the right with a 12.5% margin</li>
-                    <li><code>push-two</code> : Pushes a rib to the right with a 25% margin</li>
-                    <li><code>push-three</code> : Pushes a rib to the right with a 37.5% margin</li>
-                    <li><code>push-four</code> : Pushes a rib to the right with a 50% margin</li>
-                    <li><code>push-five</code> : Pushes a rib to the right with a 62.5% margin</li>
-                    <li><code>push-six</code> : Pushes a rib to the right with a 75% margin</li>
-                    <li><code>push-seven</code> : Pushes a rib to the right with a 87.5% margin</li>
-                </ul>
-            </section>
+			<section class="rib full b-margin muscle">
+				<h3>Mods</h3>
+				<p>
+					Several "mod" classes exist in Bones, to help more finely tweak layouts. Mods
+					differ from utilities, in that mods specifically affect ribs. Below is an
+					overview of these mod classes.
+				</p>
+				<ul>
+					<li><code>l-margin</code> : Adds a 16px margin to the left of a rib</li>
+					<li><code>r-margin</code> : Adds a 16px margin to the right of a rib</li>
+					<li><code>t-margin</code> : Adds a 16px margin above a rib</li>
+					<li><code>b-margin</code> : Adds a 16px margin below a rib</li>
+					<li><code>push-one</code> : Pushes a rib to the right with a 12.5% margin</li>
+					<li><code>push-two</code> : Pushes a rib to the right with a 25% margin</li>
+					<li><code>push-three</code> : Pushes a rib to the right with a 37.5% margin</li>
+					<li><code>push-four</code> : Pushes a rib to the right with a 50% margin</li>
+					<li><code>push-five</code> : Pushes a rib to the right with a 62.5% margin</li>
+					<li><code>push-six</code> : Pushes a rib to the right with a 75% margin</li>
+					<li><code>push-seven</code> : Pushes a rib to the right with a 87.5% margin</li>
+				</ul>
+			</section>
 
-            <section class="rib full muscle">
-                <h3>Utilities</h3>
-                <p>
-                    On top of mods, there are various utility classes that assist even more in fine
-                    tuning a layout. Over time, new utility classes may be added to Bones, but for
-                    now you can take find an overview of the current ones below.
-                </p>
-                <ul>
-                    <li><code>body spaced</code> - Adds a 16px margin to the page</li>
-                    <li><code>body ine-sixty</code> - Sets max width of the body to 960px</li>
-                    <li><code>body twelve-eighty</code> - Sets the body to a maximum width of 1280px</li>
-                    <li><code>breaker</code> - A hard break, 100% width</li>
-                    <li><code>breaker sixteen</code> - Sets a breaker to have a height of 16px</li>
-                    <li><code>breaker thirty-two</code> - Sets a breaker's height to 32px</li>
-                    <li><code>breaker sixty-four</code> - Sets a breaker's height to 64px</li>
-                    <li><code>spine center</code> - Sets spine <code>justify-content</code> to center</li>
-                    <li><code>spine stretch</code> - Sets spine <code>align-items</code> to stretch</li>                    
-                    <li><code>filler</code> - 100% width with no margin or padding (helps fix some issues, but subject to removal)</li>
-                    <li><code>grower</code> - Sets a rib to grow to its spine's remaining width</li>
-                </ul>
-            </section>
-        </main>
+			<section class="rib full muscle">
+				<h3>Utilities</h3>
+				<p>
+					On top of mods, there are various utility classes that assist even more in fine
+					tuning a layout. Over time, new utility classes may be added to Bones, but for
+					now you can take find an overview of the current ones below.
+				</p>
+				<ul>
+					<li><code>body spaced</code> - Adds a 16px margin to the page</li>
+					<li><code>body ine-sixty</code> - Sets max width of the body to 960px</li>
+					<li><code>body twelve-eighty</code> - Sets the body to a maximum width of 1280px</li>
+					<li><code>breaker</code> - A hard break, 100% width</li>
+					<li><code>breaker sixteen</code> - Sets a breaker to have a height of 16px</li>
+					<li><code>breaker thirty-two</code> - Sets a breaker's height to 32px</li>
+					<li><code>breaker sixty-four</code> - Sets a breaker's height to 64px</li>
+					<li><code>spine center</code> - Sets spine <code>justify-content</code> to center</li>
+					<li><code>spine stretch</code> - Sets spine <code>align-items</code> to stretch</li>                    
+					<li><code>filler</code> - 100% width with no margin or padding (helps fix some issues, but subject to removal)</li>
+					<li><code>grower</code> - Sets a rib to grow to its spine's remaining width</li>
+				</ul>
+			</section>
+		</main>
 
-        <!-- BREAKER -->
-        <div class="breaker sixty-four skin"><h3>Breaker (sixty-four)</h3></div>
-        <!-- /BREAKER -->
-    </body>
-    <!-- /BODY -->
+		<!-- BREAKER -->
+		<div class="breaker sixty-four skin"><h3>Breaker (sixty-four)</h3></div>
+		<!-- /BREAKER -->
+	</body>
+	<!-- /BODY -->
 </html>

@@ -1,7 +1,7 @@
 /*
 **
-** FILE:        demo.css
-** UPDATED:     09/11/2014
+** FILE:        custom.css
+** UPDATED:     09/12/2014
 ** DESCRIPTION: Custom demo CSS for Bones
 ** CREDITS:     Nathan Harris aka Derjyn
 */
@@ -12,25 +12,25 @@
 
 footer section { height: 96px; }
 footer small {
-    text-align  : center;
-    font-weight : bold;
-    margin-top  : 16px;
+  font-weight: bold;
+  margin-top: 16px;
+  text-align: center;
 }
 
 
 /*************************************************************************************************/
 /*** CUSTOM DEMO STYLE & FIXES *******************************************************************/
 
-header      { order: 1; }
-nav         { order: 2; }
-main        { order: 3; }
-footer      { order: 4; }
-header h2   { order: 5; }
-header h1   { order: 6; }
+header    { order: 1; }
+nav       { order: 2; }
+main      { order: 3; }
+footer    { order: 4; }
+header h2 { order: 5; }
+header h1 { order: 6; }
 
 header h1, header h2 {
-    text-align  : center;
-    line-height : 64px;
+  line-height: 64px;	
+  text-align : center;
 }
 header h2 { min-width: 96px; }
 
@@ -38,52 +38,102 @@ main aside { align-self: stretch; }
 
 div#demo h4 { text-align: center; }
 div#explanation h4 {
-    text-align  : left;
-    margin-top  : 32px;
+  margin-top: 32px;	
+  text-align: left;
 }
 div#explanation ul { margin-bottom: -32px; }
 
 .breaker {
-    background-image    : linear-gradient(90deg, transparent 50%, rgb(199,198,166) 50%);
-    background-size     : 32px 32px;
-    text-align          : center;
-    line-height         : 64px;
+  background-image: linear-gradient(90deg, transparent 50%, rgb(199,198,166) 50%);
+  background-size: 32px 32px;
+  line-height: 64px;
+  text-align: center;
 }
 
 
 /*************************************************************************************************/
-/*** FLESH THEME OVERRIDE ************************************************************************/
+/*** TYPOGRAPHY **********************************************************************************/
 
-/***************/
-/* BONES THEME */
-/***************/
-
-html.themed { color: rgb(60,59,56); }
-
-.themed body       { background-color: rgb(87,85,72); }
-.themed .tendon    { background-color: rgb(199,198,166); }
-.themed .muscle    { background-color: rgb(212,211,183); }
-.themed .skin      { background-color: rgb(230,229,210); }
-
-.themed h1,h2,h3,h4,h5,h6 { font-family: "Source Sans Pro", sans-serif; }
-
-.themed p code, .themed code { background-color: rgb(230,229,210); }
-
-.themed a { 
-    color: rgb(87,85,72);
-    cursor: pointer; 
+html {
+	font-family: sans-serif;
+	font-size: 16px;
+	color: rgb(60,59,56);
 }
-.themed a:hover { 
-    position: relative; 
-    top     : -0.125em;
+
+h1 { font-size: 2em;	} /* 2*16       = 32    */
+h2 { font-size: 1.5em;	} /* 1.5*16     = 24    */
+h3 { font-size: 1.17em;	} /* 1.17*16    = 18.72 */
+h4 { font-size: 1em;	} /* 1*16       = 16    */
+h5 { font-size: 0.83em;	} /* 0.83*16    = 13.28 */
+h6 { font-size: 0.75em;	} /* 0.75*16    = 12    */
+
+p, ul {
+	font-size: 1em;
+	line-height: 1.5em;
+	margin-bottom: 1em;
 }
+p:last-child { margin-bottom: 0; }
+
+ul {
+	margin: 0;
+	margin-bottom: 1em;
+	list-style-type: square;
+}
+ul lh { font-weight: bold; }
+ul li {
+	line-height: 1.5em;
+	margin-left: 1.5em;
+}
+
+p code, code {
+	font-family: monospace;
+	white-space: pre;
+	overflow-x: auto;
+	margin-right: 0.125em;
+	padding: 0.0625em 0.25em;
+	background-color: rgb(230,229,210);
+}
+
+pre, p pre {
+	font-family: monospace;
+	overflow : auto;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+
+a {
+	text-decoration: none;
+  color: rgb(87,85,72);
+  cursor: pointer; 
+}
+a:hover { 
+  position: relative; 
+  top: -0.125em;
+}
+
+
+/*************************************************************************************************/
+/*** THEME ***************************************************************************************/
+
+body    { background-color: rgb(87,85,72); }
+.tendon { background-color: rgb(199,198,166); }
+.muscle { background-color: rgb(212,211,183); }
+.skin   { background-color: rgb(230,229,210); }
+
 
 /*************************************************************************************************/
 /*** MEDIA QUERIES *******************************************************************************/
 
-@media only screen and (max-width: 640px) {
-    div#demo h4         { font-size: 60% !important; }
-    div#explanation h4  { font-size: 100% !important; }
+@media all and (max-width: 800px) {
+  div#demo h4         { font-size: 60% !important; }
+  div#explanation h4  { font-size: 100% !important; }
+
+   #content, #sidebar { width: 100% !important; }
+   #content {	margin-right: 0; }
+}
+
+@media all and (min-width: 800px) {
+	#content { margin-bottom: 0; }
 }
 
 
