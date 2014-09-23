@@ -1,7 +1,7 @@
 /*
 **
 ** FILE:        custom.css
-** UPDATED:     09/12/2014
+** UPDATED:     09/23/2014
 ** DESCRIPTION: Custom demo CSS for Bones
 ** CREDITS:     Nathan Harris aka Derjyn
 */
@@ -29,10 +29,18 @@ header h2 { order: 5; }
 header h1 { order: 6; }
 
 header h1, header h2 {
-  line-height: 64px;	
-  text-align : center;
+  line-height: 64px;  
 }
-header h2 { min-width: 96px; }
+header h2 {
+	min-height: 96px;
+	min-width: 96px;
+	text-align : center;
+}
+#logo {
+	background: url("logo.png") no-repeat;
+	min-height: 192px;
+	min-width: 192px;	
+}
 
 main aside { align-self: stretch; }
 
@@ -125,6 +133,8 @@ body    { background-color: rgb(87,85,72); }
 /*** MEDIA QUERIES *******************************************************************************/
 
 @media all and (max-width: 800px) {
+	h1 { font-size: 150% !important; }
+
   div#demo h4         { font-size: 60% !important; }
   div#explanation h4  { font-size: 100% !important; }
 

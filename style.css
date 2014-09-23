@@ -13,7 +13,6 @@
 main { min-height: 512px; }
 main.spine { padding: 16px; }
 
-
 header { height: 96px; }
 footer { clear: both; }
 
@@ -170,6 +169,7 @@ html:before {
 @media all and (max-width: 600px) {
 	html:before {
 		box-shadow: 0 0 0 0 !important;
+
 	}	
 }
 

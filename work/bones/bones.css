@@ -1,7 +1,7 @@
 /*
 **
 ** FILE:        bones.css
-** UPDATED:     09/12/2014
+** UPDATED:     09/23/2014
 ** DESCRIPTION: Bones - A skinny layout framework
 ** CREDITS:     Nathan Harris aka Derjyn
 */
@@ -19,6 +19,7 @@
 body {
   height: 100%;
   min-height: 100%;
+  z-index: 0;
 }
 
 
@@ -96,10 +97,10 @@ body.twelve-eighty  { max-width: 1280px; }
 .breaker.fourty-eight { height: 48px; }
 .breaker.sixty-four   { height: 64px; }
 
-.filler { 
-  width: 100%;
+.filler {
   margin: 0;
   padding: 0 !important;
+  width: 100%;  
 }
 
 .grower { flex: 1 0 0; }
@@ -108,9 +109,7 @@ body.twelve-eighty  { max-width: 1280px; }
 .f-right{ float: right; }
 
 .rib img {
-  padding: 16px;
-  padding-top: 0;
-  padding-bottom: 8px;
+  padding: 0 16px 8px 16px;
 }
 
 
@@ -118,10 +117,10 @@ body.twelve-eighty  { max-width: 1280px; }
 /*** MEDIA QUERIES *******************************************************************************/
 
 @media all and (max-width: 640px) {
-  .rib img { 
-    max-width: 256px;
+  .rib img {
     height: auto;
-    padding: 16px; 
+    padding: 0 16px 8px 16px;
+    max-width: 256px;    
   }
 }
 
@@ -143,10 +142,10 @@ body.twelve-eighty  { max-width: 1280px; }
   .rib.six.r-margin, .rib.six.l-margin      { width: calc(75% - 8px);   }
   .rib.seven.r-margin, .rib.seven.l-margin  { width: calc(87.5% - 8px); }
 
-  .rib img { 
-    max-width: 224px !important;
+  .rib img {    
     height: auto;
-    padding: 8px; 
+    max-width: 224px !important;    
+    padding: 8px;
   }    
 }
 

@@ -1,0 +1,124 @@
+/*
+**
+** FILE:        soma.css
+** UPDATED:     09/23/2014
+** DESCRIPTION: Soma - Flesh and Bones Based Boilerplate
+** CREDITS:     Nathan Harris aka Derjyn
+*/
+
+
+/*************************************************************************************************/
+/*** FLEX LAYOUT ORDER ***************************************************************************/
+
+header				{ order: 1; }
+nav						{ order: 2; }
+main					{ order: 3; }
+footer				{ order: 4; }
+#logo					{ order: 5; }
+header hgroup	{ order: 6; }
+header h1			{ order: 7; }
+header h2			{ order: 8; }
+
+
+/*************************************************************************************************/
+/*** HEADER **************************************************************************************/
+
+#logo {
+	background-image: url("http://placehold.it/192&text=LOGO");
+	background-position: center;	
+	background-repeat: no-repeat;
+	height: 224px;
+	width: 224px;	
+}
+
+hgroup.rib {
+	align-self: center !important;
+}
+hgroup.rib h1.rib, hgroup.rib h2.rib {
+	align-self: stretch;
+}
+
+
+/*************************************************************************************************/
+/*** NAVIGATION **********************************************************************************/
+
+nav ul {
+	list-style: none;
+	margin: 0;
+	padding: 8px;
+}
+
+nav ul li {
+	background-color: rgb(245,118,118);
+	float: left;
+	font-weight: bold;
+	line-height: 1em !important;
+	margin: 0;
+	margin-right: 16px;
+	padding: 8px !important; 
+}
+nav ul li:last-child {
+	margin-right: 0;
+}
+
+
+/*************************************************************************************************/
+/*** MEDIA QUERIES *******************************************************************************/
+
+@media all and (max-width: 360px) {
+  nav ul li {
+		margin-right: 0 !important;
+		width: 100%;		
+	}
+}
+
+@media all and (max-width: 600px) {
+	#stuff-personal {
+		margin-bottom: 8px;
+	}
+}
+
+@media all and (max-width: 720px) {
+	#logo, #stuff-personal {
+		margin-right: 0 !important;
+		width: 100%;		
+	}
+
+	#stuff-personal {
+		margin-bottom: 16px;
+	}
+
+	#stuff-bones, #stuff-flesh {
+		flex-grow: 1;
+	}
+}
+
+@media all and (min-width: 720px) {
+	#logo {
+		margin-right: 16px !important;
+	}
+}
+
+
+/*************************************************************************************************/
+/*** THEME ***************************************************************************************/
+
+.themed body    { background-color: rgb(40,40,40); }
+.themed .tendon { background-color: rgba(101,111,128,0.7); }
+.themed .muscle { background-color: rgba(121,133,153,0.5); }
+.themed .skin   { background-color: rgba(141,155,179,0.5); }
+
+html.themed     { color: rgba(0,0,0,0.7); }
+
+#bg-fx {
+	height: 100%;
+	left: 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: -1000;
+}
+
+
+/*************************************************************************************************/
+/*** EOF *****************************************************************************************/
