@@ -110,12 +110,14 @@ pre, p pre {
 }
 
 a {
-	text-decoration: none;
+	border-bottom: 2px dashed; 	
   color: rgb(87,85,72);
-  cursor: pointer; 
+  cursor: pointer;
+	text-decoration: none;    
 }
-a:hover { 
-  position: relative; 
+a:hover {
+	border-bottom: none;
+  position: relative;  
   top: -0.125em;
 }
 
