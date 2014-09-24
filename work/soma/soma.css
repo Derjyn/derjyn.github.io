@@ -8,7 +8,7 @@
 
 
 /*************************************************************************************************/
-/*** FLEX LAYOUT ORDER ***************************************************************************/
+/*** FLEX LAYOUT ORDER AND FRIENDS ***************************************************************/
 
 header				{ order: 1; }
 nav						{ order: 2; }
@@ -19,14 +19,17 @@ header hgroup	{ order: 6; }
 header h1			{ order: 7; }
 header h2			{ order: 8; }
 
+#wrapper {
+	margin: 0 auto;
+	max-width: 960px;
+}
+
 
 /*************************************************************************************************/
 /*** HEADER **************************************************************************************/
 
 #logo {
-	background-image: url("http://placehold.it/192&text=LOGO");
-	background-position: center;	
-	background-repeat: no-repeat;
+	background: url("http://placehold.it/192/D2D2D9/404040/&text=LOGO") center no-repeat;
 	height: 224px;
 	width: 224px;	
 }
@@ -45,13 +48,13 @@ hgroup.rib h1.rib, hgroup.rib h2.rib {
 nav ul {
 	list-style: none;
 	margin: 0;
-	padding: 8px;
+	padding: 0 !important;
 }
 
 nav ul li {
-	background-color: rgb(245,118,118);
+	display: block;
 	float: left;
-	font-weight: bold;
+	font-family: 'Source Sans Pro', sans-serif;	
 	line-height: 1em !important;
 	margin: 0;
 	margin-right: 16px;
@@ -61,14 +64,62 @@ nav ul li:last-child {
 	margin-right: 0;
 }
 
+nav ul li a {
+	color: rgb(32,32,32) !important;
+	display: block;
+	font-weight: normal !important;
+	text-align: center;
+	transition: color 0.5s;
+	width: 64px;
+}
+nav ul li a:hover, nav ul li a:hover i.fa {
+	color: white !important;
+	top: 0 !important;
+}
+nav ul li a i.fa {
+	color: rgb(64,64,64);
+	position: relative;
+	top: 2px;
+	transition: color 0.5s;
+}
+
+
+/*************************************************************************************************/
+/*** THEME ***************************************************************************************/
+
+.themed body    { background-color: rgb(230,230,240); }
+
+.themed .tendon { 
+	background-color: rgba(240,240,245,0.7);
+	box-shadow: 8px 8px 0 0 rgba(128,128,136,0.1);
+}
+.themed .muscle { background-color: transparent; }
+.themed .skin   { background-color: rgba(215,215,220,0.9); }
+
+.themed nav.tendon { background-color: rgba(255,140,30,0.7); }
+.themed footer.tendon { background-color: rgba(215,215,220,0.6); }
+
+.themed h1, html.themed h2 { color: rgb(64,64,64); }
+.themed h3, html.themed h4 { color: rgb(32,32,32); }
+.themed p { color: rgb(16,16,16); }
+
+#bg-fx {
+	height: 100%;
+	left: 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: -1;
+}
+
 
 /*************************************************************************************************/
 /*** MEDIA QUERIES *******************************************************************************/
 
-@media all and (max-width: 360px) {
+@media all and (max-width: 500px) {
   nav ul li {
 		margin-right: 0 !important;
-		width: 100%;		
+		width: 100%;	
 	}
 }
 
@@ -97,26 +148,6 @@ nav ul li:last-child {
 	#logo {
 		margin-right: 16px !important;
 	}
-}
-
-
-/*************************************************************************************************/
-/*** THEME ***************************************************************************************/
-
-.themed body    { background-color: rgb(40,40,40); }
-.themed .tendon { background-color: rgba(101,111,128,0.7); }
-.themed .muscle { background-color: rgba(121,133,153,0.5); }
-.themed .skin   { background-color: rgba(141,155,179,0.5); }
-
-html.themed     { color: rgba(0,0,0,0.7); }
-
-#bg-fx {
-	height: 100%;
-	left: 0;
-	position: fixed;
-	top: 0;
-	width: 100%;
-	z-index: -1000;
 }
 
 

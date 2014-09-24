@@ -6,14 +6,15 @@
 
 		<meta charset="utf-8">
 
-		<meta name="description" content="Soma - Flesh and Bones based boilerplate">
+		<meta name="description" content="Soma - A Flesh and Bones based boilerplate">
 		<meta name="author" content="Nathan Harris">
 
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro|Laila|Inconsolata">
-		<link rel="stylesheet" href="https://rawgit.com/Derjyn/Bones/master/bones.css">
-		<link rel="stylesheet" href="https://rawgit.com/Derjyn/Flesh/master/flesh.css">
+		<link rel="stylesheet" href="https://rawgit.com/Derjyn/Bones/master/bones.min.css">
+		<link rel="stylesheet" href="https://rawgit.com/Derjyn/Flesh/master/flesh.min.css">
 		<link rel="stylesheet" href="soma.css">
 
 		<!--[if lt IE 9]>
@@ -23,27 +24,28 @@
 	<!-- /HEAD -->
 
 	<!-- BODY -->
-	<body class="spaced nine-sixty">
-		<header class="spine b-margin tendon">
+	<body>
+		<div id="wrapper">
+		<header class="spine tendon">
 			<hgroup class="rib grower muscle">
-				<h1 class="rib full skin">Soma</h1>
-				<h2 class="rib full skin">Flesh and Bones Based Boilerplate</h2>
+				<h1 class="rib full">Soma</h1>
+				<h2 class="rib full">A Flesh and Bones Based Boilerplate</h2>
 			</hgroup>
 
-			<div class="rib muscle" id="logo"></div>
+			<div class="rib" id="logo"></div>
 		</header>
 
-		<nav class="spine center b-margin tendon">
+		<nav class="spine center t-margin tendon">
 			<ul class="rib muscle">
-				<li class="rib grower skin">Link</li>
-				<li class="rib grower skin">Link</li>
-				<li class="rib grower skin">Link</li>
-				<li class="rib grower skin">Link</li>
-				<li class="rib grower skin">Link</li>
+				<li class="rib grower"><a href="#"><i class="fa fa-link fa-fw"></i> Link</a></li>
+				<li class="rib grower"><a href="#"><i class="fa fa-link fa-fw"></i> Link</a></li>
+				<li class="rib grower"><a href="#"><i class="fa fa-link fa-fw"></i> Link</a></li>
+				<li class="rib grower"><a href="#"><i class="fa fa-link fa-fw"></i> Link</a></li>
+				<li class="rib grower"><a href="#"><i class="fa fa-link fa-fw"></i> Link</a></li>
 			</ul>
 		</nav>
 
-		<main class="spine b-margin tendon">
+		<main class="spine t-margin tendon">
 			<section class="rib full b-margin muscle" id="cnt-overview">
 				<h3>Soma Overview and Usage</h3>
 
@@ -69,7 +71,7 @@
 			</section>
 		</main>
 
-		<footer class="spine stretch tendon">
+		<footer class="spine stretch t-margin tendon">
 			<section class="rib four r-margin muscle" id="stuff-personal">
 				<h4>Personal Stuff</h4>
 
@@ -94,6 +96,7 @@
 				</p>
 			</section>
 		</footer>
+		</div>
 
 		<!-- OPTIONAL BACKGROUND FANCINESS -->
 		<div id="bg-fx"></div>
