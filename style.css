@@ -57,13 +57,13 @@ i.icon {
 	margin-right: 8px;
 }
 a.active i.icon.home, a.inactive i.icon.home 
-{ background-image: url("https://rawgit.com/Derjyn/derjyn.github.io/master/home.png"); }
+{ background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAZQTFRF+KAcAAAANk5VCgAAAAJ0Uk5T/wDltzBKAAAAOElEQVR42mJgJAAYhqACBiCgRAEDFJCrgAEJkKOAAQ2QqoABCyBNAeVuGEwKUFn0VjCkcxZAgAEAQeIC+S/lgBkAAAAASUVORK5CYII=) }
 a.active i.icon.work, a.inactive i.icon.work 
-{ background-image: url("https://rawgit.com/Derjyn/derjyn.github.io/master/work.png"); }
+{ background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAZQTFRF+KAcAAAANk5VCgAAAAJ0Uk5T/wDltzBKAAAASElEQVR42mJgJAAYhqwCBjAgXwFIihIFEGkIJkcBujQpCmBeQ5UmXgFMEl2aFAXICilRgG4B8QqQPUu+AuRkQp6CIZyzAAIMADaJA4FwzWKQAAAAAElFTkSuQmCC); }
 a.active i.icon.labs, a.inactive i.icon.labs 
-{ background-image: url("https://rawgit.com/Derjyn/derjyn.github.io/master/labs.png"); }
+{ background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAZQTFRF+KAcAAAANk5VCgAAAAJ0Uk5T/wDltzBKAAAAKElEQVR42mJgJAAYRhVQVwEDnGZAFyFJASY5FBVQEg6jKYr2CgACDACfiQOxyshmewAAAABJRU5ErkJggg==); }
 a.active i.icon.creds, a.inactive i.icon.creds  
-{ background-image: url("https://rawgit.com/Derjyn/derjyn.github.io/master/creds.png"); }
+{ background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAZQTFRF+KAcAAAANk5VCgAAAAJ0Uk5T/wDltzBKAAAANklEQVR42mJgJAAYRhWgK2AAAmSaVAUMaGBoKkBVgjMc8CpAKMEZFwQVoAczOQpGUzUuABBgAOn6A2Gk3D9fAAAAAElFTkSuQmCC); }
 a.inactive i.icon { -webkit-filter: grayscale(1); }
 
 
