@@ -1,7 +1,7 @@
 /*
 **
 ** FILE:        custom.css
-** UPDATED:     09/23/2014
+** UPDATED:     09/24/2014
 ** DESCRIPTION: Custom demo CSS for Bones
 ** CREDITS:     Nathan Harris aka Derjyn
 */
@@ -10,13 +10,12 @@
 /*************************************************************************************************/
 /*** SPECIFIC LAYOUT CRAP ************************************************************************/
 
-footer section { height: 96px; }
+footer section { min-height: 96px; }
 footer small {
   font-weight: bold;
   margin-top: 16px;
   text-align: center;
 }
-
 
 /*************************************************************************************************/
 /*** CUSTOM DEMO STYLE & FIXES *******************************************************************/
@@ -31,22 +30,25 @@ header h1 { order: 6; }
 header h1, header h2 {
   line-height: 64px;  
 }
+header h1 {
+  margin-top: 48px;
+}
 header h2 {
-	min-height: 96px;
-	min-width: 96px;
-	text-align : center;
+  min-height: 96px;
+  min-width: 96px;
+  text-align : center;
 }
 #logo {
-	background: url("logo.png") no-repeat;
-	min-height: 192px;
-	min-width: 192px;	
+  background: url("logo.png") no-repeat;
+  min-height: 192px;
+  min-width: 192px; 
 }
 
 main aside { align-self: stretch; }
 
 div#demo h4 { text-align: center; }
 div#explanation h4 {
-  margin-top: 32px;	
+  margin-top: 32px; 
   text-align: left;
 }
 div#explanation ul { margin-bottom: -32px; }
@@ -58,69 +60,67 @@ div#explanation ul { margin-bottom: -32px; }
   text-align: center;
 }
 
-
 /*************************************************************************************************/
 /*** TYPOGRAPHY **********************************************************************************/
 
 html {
-	font-family: sans-serif;
-	font-size: 16px;
-	color: rgb(60,59,56);
+  font-family: sans-serif;
+  font-size: 16px;
+  color: rgb(60,59,56);
 }
 
-h1 { font-size: 2em;	} /* 2*16       = 32    */
-h2 { font-size: 1.5em;	} /* 1.5*16     = 24    */
-h3 { font-size: 1.17em;	} /* 1.17*16    = 18.72 */
-h4 { font-size: 1em;	} /* 1*16       = 16    */
-h5 { font-size: 0.83em;	} /* 0.83*16    = 13.28 */
-h6 { font-size: 0.75em;	} /* 0.75*16    = 12    */
+h1 { font-size: 2em;    } /* 2*16       = 32    */
+h2 { font-size: 1.5em;  } /* 1.5*16     = 24    */
+h3 { font-size: 1.17em; } /* 1.17*16    = 18.72 */
+h4 { font-size: 1em;    } /* 1*16       = 16    */
+h5 { font-size: 0.83em; } /* 0.83*16    = 13.28 */
+h6 { font-size: 0.75em; } /* 0.75*16    = 12    */
 
 p, ul {
-	font-size: 1em;
-	line-height: 1.5em;
-	margin-bottom: 1em;
+  font-size: 1em;
+  line-height: 1.5em;
+  margin-bottom: 1em;
 }
 p:last-child { margin-bottom: 0; }
 
 ul {
-	margin: 0;
-	margin-bottom: 1em;
-	list-style-type: square;
+  margin: 0;
+  margin-bottom: 1em;
+  list-style-type: square;
 }
 ul lh { font-weight: bold; }
 ul li {
-	line-height: 1.5em;
-	margin-left: 1.5em;
+  line-height: 1.5em;
+  margin-left: 1.5em;
 }
 
 p code, code {
-	font-family: monospace;
-	white-space: pre;
-	overflow-x: auto;
-	margin-right: 0.125em;
-	padding: 0.0625em 0.25em;
-	background-color: rgb(230,229,210);
+  font-family: monospace;
+  white-space: pre;
+  overflow-x: auto;
+  margin-right: 0.125em;
+  padding: 0.0625em 0.25em;
+  background-color: rgb(230,229,210);
 }
 
 pre, p pre {
-	font-family: monospace;
-	overflow : auto;
-	white-space: pre-wrap;
-	word-wrap: break-word;
+  font-family: monospace;
+  overflow : auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 a {
-	border-bottom: 2px dashed; 	
+  border-bottom: 2px dashed;  
   color: rgb(87,85,72);
   cursor: pointer;
-	text-decoration: none;    
+  text-decoration: none;    
 }
 a:hover {
-	border-bottom: none;
+  border-bottom: none;
   position: relative;  
   top: -0.125em;
 }
-
 
 /*************************************************************************************************/
 /*** THEME ***************************************************************************************/
@@ -130,24 +130,22 @@ body    { background-color: rgb(87,85,72); }
 .muscle { background-color: rgb(212,211,183); }
 .skin   { background-color: rgb(230,229,210); }
 
-
 /*************************************************************************************************/
 /*** MEDIA QUERIES *******************************************************************************/
 
 @media all and (max-width: 800px) {
-	h1 { font-size: 150% !important; }
+  h1 { font-size: 150% !important; }
 
   div#demo h4         { font-size: 60% !important; }
   div#explanation h4  { font-size: 100% !important; }
 
    #content, #sidebar { width: 100% !important; }
-   #content {	margin-right: 0; }
+   #content { margin-right: 0; }
 }
 
 @media all and (min-width: 800px) {
-	#content { margin-bottom: 0; }
+  #content { margin-bottom: 0; }
 }
-
 
 /*************************************************************************************************/
 /*** EOF *****************************************************************************************/
