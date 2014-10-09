@@ -2,7 +2,7 @@
 **
 ** FILE:        custom.css
 ** UPDATED:     09/23/2014
-** DESCRIPTION: Custom styling and overrides
+** DESCRIPTION: Custom styling and overrides for Flesh
 ** CREDITS:     Nathan Harris aka Derjyn
 */
 
@@ -10,24 +10,24 @@
 /*************************************************************************************************/
 /*** BONES OVERRIDES *****************************************************************************/
 
-header		{ order: 1; }
-nav				{ order: 2; }
-main			{ order: 3; }
-footer		{ order: 4; }
-header h2	{ order: 5; }
-header h1	{ order: 6; }
+header    { order: 1; }
+nav       { order: 2; }
+main      { order: 3; }
+footer    { order: 4; }
+header h2 { order: 5; }
+header h1 { order: 6; }
 
 header h1, header h2 {
-	font-weight: bold;
-	line-height: 64px;	
-	text-align: center;
+  font-weight: bold;
+  line-height: 64px;  
+  text-align: center;
 }
 header h2 { min-width: 96px; }
 
 .breaker { 
-	padding: 16px;
-	text-align: center;
-	line-height: 32px;
+  padding: 16px;
+  text-align: center;
+  line-height: 32px;
 }
 
 
