@@ -1,0 +1,5 @@
+@ECHO OFF
+
+grunt
+
+PAUSE
