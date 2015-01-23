@@ -40,7 +40,7 @@ div#ui {
   clear: both;
   display: block;
   float: left;
-  padding: 16px;  
+  padding: 16px;
 }
 
 #starfield { left: 0; } /* STARSCROLL POSITION FIX */
@@ -63,6 +63,7 @@ nav ul {
 nav ul li {
   width: 144px;
   height: 32px;
+  float: left;
   line-height: 1em !important;
   padding: 8px !important;
   font-weight: bold;
@@ -81,13 +82,13 @@ i.icon {
   background-repeat: no-repeat;
   margin-right: 8px;
 }
-a.active i.icon.home, a.inactive i.icon.home 
+a.active i.icon.home, a.inactive i.icon.home
 { background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAZQTFRF+KAcAAAANk5VCgAAAAJ0Uk5T/wDltzBKAAAAOElEQVR42mJgJAAYhqACBiCgRAEDFJCrgAEJkKOAAQ2QqoABCyBNAeVuGEwKUFn0VjCkcxZAgAEAQeIC+S/lgBkAAAAASUVORK5CYII=) }
-a.active i.icon.work, a.inactive i.icon.work 
+a.active i.icon.work, a.inactive i.icon.work
 { background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAZQTFRF+KAcAAAANk5VCgAAAAJ0Uk5T/wDltzBKAAAASElEQVR42mJgJAAYhqwCBjAgXwFIihIFEGkIJkcBujQpCmBeQ5UmXgFMEl2aFAXICilRgG4B8QqQPUu+AuRkQp6CIZyzAAIMADaJA4FwzWKQAAAAAElFTkSuQmCC); }
-a.active i.icon.labs, a.inactive i.icon.labs 
+a.active i.icon.labs, a.inactive i.icon.labs
 { background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAZQTFRF+KAcAAAANk5VCgAAAAJ0Uk5T/wDltzBKAAAAKElEQVR42mJgJAAYRhVQVwEDnGZAFyFJASY5FBVQEg6jKYr2CgACDACfiQOxyshmewAAAABJRU5ErkJggg==); }
-a.active i.icon.creds, a.inactive i.icon.creds  
+a.active i.icon.creds, a.inactive i.icon.creds
 { background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAZQTFRF+KAcAAAANk5VCgAAAAJ0Uk5T/wDltzBKAAAANklEQVR42mJgJAAYRhWgK2AAAmSaVAUMaGBoKkBVgjMc8CpAKMEZFwQVoAczOQpGUzUuABBgAOn6A2Gk3D9fAAAAAElFTkSuQmCC); }
 a.inactive i.icon { -webkit-filter: grayscale(1); }
 
@@ -102,7 +103,7 @@ body {
 @font-face {
   font-family: "Joystix";
   font-style: normal;
-  font-weight: normal;    
+  font-weight: normal;
   src: url("joystix.otf");
 }
 
@@ -129,7 +130,7 @@ header h1 {
   margin: 0;
   padding: 24px;
   padding-top: 8px;
-  color: rgb(224,224,224);  
+  color: rgb(224,224,224);
 }
 .rib p a, .rib li a{ color: rgb(248,160,28); }
 
