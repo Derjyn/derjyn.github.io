@@ -1,233 +1,151 @@
-<!doctype html>
-<html>
-  <!-- HEAD -->
+<!DOCTYPE html>
+<!--[if IE 9]><html class="lt-ie10" lang="en"><![endif]-->
+<html class="no-js" lang="en" >
+  <!-- ~~ HEAD ~~ -->
   <head>
     <title>Derjyn Digital Design</title>
 
     <meta charset="utf-8">
-
-    <meta name="description" content="The personal playground and laboratory of Derjyn">
-    <meta name="author" content="Nathan Harris">
-    <meta name="keywords" content="derjyn,derjyn digital design,d3,design,digital design,web design,programming,coding, development">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Nathan Harris' personal playground">
+    <meta name="author" content="Nathan Harris">
 
-    <link rel="stylesheet" href="derjyn.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/foundation.min.css">
+    <link rel="stylesheet" href="css/derjyn.css">
 
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <script src="js/vendor/modernizr.js"></script>
   </head>
-  <!-- /HEAD -->
+  <!-- ~~ END HEAD ~~ -->
 
-  <!-- BODY -->
-  <body class="nine-sixty spaced">
-    <header class="spine spacedRibs b-margin">
-      <div class="buzz_wrapper">
-        <div class="text">
-          <h1>Derjyn Digital Design</h1>
-        </div>
+  <!-- ~~ BODY ~~ -->
+  <body>
+
+    <!-- ~~ HEADER ~~ -->
+    <header class="row debug-level-1" role="header">
+      <div class="small-9 medium-10 small-push-3 medium-push-2 columns debug-level-2">
+        <h1 class="debug-level-3">Derjyn</h1>
+      </div>
+      <div class="small-3 medium-2 small-pull-9 medium-pull-10 columns end debug-level-2">
+        <img src="img/logo.png" class="debug-level-3">
       </div>
     </header>
+    <!-- ~~ END HEADER ~~ -->
 
-    <nav class="spine spacedRibs">
-      <ul>
-        <li class="rib r-margin selected"><a href="#home" class="active"><i class="icon home"></i>Home</a></li>
-        <li class="rib r-margin"><a href="#work" class="inactive"><i class="icon work"></i>Work</a></li>
-        <li class="rib r-margin"><a href="#labs" class="inactive"><i class="icon labs"></i>Labs</a></li>
-        <li class="rib"><a href="#creds" class="inactive"><i class="icon creds"></i>Creds</a></li>
-      </ul>
+    <!-- ~~ NAV ~~ -->
+    <nav class="row debug-level-1" role="nav">
+      <div class="small-12 medium-6 large-3 columns debug-level-2">
+        <div class="debug-level-3">
+          <a href="#">
+            <i class="icon icon-badge">Personal</i>
+          </a>
+        </div>
+      </div>
+      <div class="small-12 medium-6 large-3 columns debug-level-2">
+        <div class="debug-level-3">
+          <a href="#">
+            <i class="icon icon-portfolio">Portfolio</i>
+          </a>
+        </div>
+      </div>
+      <div class="small-12 medium-6 large-3 columns debug-level-2">
+        <div class="debug-level-3">
+          <a href="#">
+            <i class="icon icon-skills">Skills</i>
+          </a>
+        </div>
+      </div>
+      <div class="small-12 medium-6 large-3 columns debug-level-2">
+        <div class="debug-level-3">
+          <a href="#">
+            <i class="icon icon-projects">Projects</i>
+          </a>
+        </div>
+      </div>
     </nav>
+    <!-- ~~ END NAV ~~ -->
 
-    <main class="spine spacedRibs items t-margin b-margin">
-      <section id="home" class="rib full">
-        <h2>Home</h2>
-        <p>
-          Welcome to Derjyn Digital Design, my personal playground. Here you can view my current and
-          previous work, take a peek at my projects in the laboratory, and find some links to cool
-          places around the net related to design, coding, or bits I simply find pure awesome.
-        </p>
+    <hr class="style-three">
 
-        <div class="breaker sixteen"></div>
-
-        <h3>About the design</h3>
-        <p>
-          I am a sucker for pixel based design, retro 8 and 16bit schemes... The nostalgia of the
-          old days has never gone away for me. When I approached this personal project, I went in
-          several different directions at first, until deciding that the site was just that: personal.
-          Therefore, I needed to actually look inside for a vision that truly left me satisfied.
-        </p>
-        <p>
-          There is still work needed before I am truly happy with everything though. Much more needs
-          to be done to make the site standards compliant and responsive. More tweaks need to be made
-          on the performance end. There are also plans for adding some "easter eggs", because I really
-          enjoy user discovery in code and design. In the end, this is my playground and I will
-          certainly be playing. Enjoy.
-        </p>
-      </section>
-
-      <section id="work" class="rib full">
-        <h2>My Work</h2>
-        <p>
-          Under construction. <a href="http://goo.gl/9bpDM3" target="_blank">Eek!</a>
-        </p>
-
-        <div class="breaker sixteen"></div>
-
-        <div id="art">
-          <h3>Art</h3>
-          <ul>
-            <li>
-              <a href="work/art/wp_001.jpg" target="_blank">
-                <img src="work/art/thumb_wp_001.png">
-              </a>
-            </li>
-            <li>
-              <a href="work/art/wp_002.jpg" target="_blank">
-                <img src="work/art/thumb_wp_002.png">
-              </a>
-            </li>
-            <li>
-              <a href="work/art/wp_003.jpg" target="_blank">
-                <img src="work/art/thumb_wp_003.png">
-              </a>
-            </li>
-            <li>
-              <a href="work/art/wp_004.jpg" target="_blank">
-                <img src="work/art/thumb_wp_004.png">
-              </a>
-            </li>
-            <li>
-              <a href="work/art/wp_005.jpg" target="_blank">
-                <img src="work/art/thumb_wp_005.png">
-              </a>
-            </li>
-            <li>
-              <a href="work/art/wp_006.jpg" target="_blank">
-                <img src="work/art/thumb_wp_006.png">
-              </a>
-            </li>
-            <li>
-              <a href="work/art/wp_007.jpg" target="_blank">
-                <img src="work/art/thumb_wp_007.png">
-              </a>
-            </li>
-            <li>
-              <a href="work/art/wp_008.jpg" target="_blank">
-                <img src="work/art/thumb_wp_008.png">
-              </a>
-            </li>
-            <li>
-              <a href="work/art/wp_009.jpg" target="_blank">
-                <img src="work/art/thumb_wp_009.png">
-              </a>
-            </li>
-            <li>
-              <a href="work/art/wp_010.jpg" target="_blank">
-                <img src="work/art/thumb_wp_010.png">
-              </a>
-            </li>
-            <li>
-              <a href="work/art/wp_011.jpg" target="_blank">
-                <img src="work/art/thumb_wp_011.png">
-              </a>
-            </li>
-            <li>
-              <a href="work/art/wp_012.jpg" target="_blank">
-                <img src="work/art/thumb_wp_012.png">
-              </a>
-            </li>
-          </ul>
+    <!-- ~~ MAIN ~~ -->
+    <main class="row debug-level-1" role="main">
+      <!-- ~~ PERSONAL SECTION ~~ -->
+      <section class="small-12 columns debug-level-2" data-equalizer data-equalizer-mq="medium-up">
+        <div class="small-12 medium-10 right columns debug-level-3" data-equalizer-watch>
+          <h2 class="debug-level-4">Personal</h2>
         </div>
-
-        <div id="ui">
-          <h3>UI Design</h3>
+        <div class="small-12 medium-2 left show-for-medium-up columns debug-level-3" data-equalizer-watch>
+          <i class="icon icon-badge debug-level-4"></i>
+        </div>
+        <div class="small-12 columns debug-level-3">
+          <div class="padded debug-level-4"></div>
         </div>
       </section>
+      <!-- ~~ END PERSONAL SECTION ~~ -->
 
-      <section id="labs" class="rib full">
-        <h2>The Laboratory</h2>
-
-        <div class="breaker sixteen"></div>
-
-        <h3>Code</h3>
-        <ul id="code">
-        	<li>
-            <a href="https://erebusdg.github.com/" target="_blank">EDG</a>
-            <p>
-              The design team I put together. Our website is currently in a flux of evolution
-              and blasphemy.
-            </p>
-          </li>
-          <li>
-            <a href="https://github.com/Derjyn/Bones" target="_blank">Bones</a>
-            <p>
-              Ever in development, Bones is a "skinny" flexbox-based layout system.
-            </p>
-          </li>
-
-          <li>
-            <a href="https://github.com/Derjyn/Flesh" target="_blank">Flesh</a>
-            <p>
-              The (alpha) companion framework to Bones. Flesh is the visual side of things. When
-              combined, Flesh and Bones will become a clean and fast HTML5/CSS3 boilerplate.
-            </p>
-          </li>
-
-          <li>
-            <a href="https://github.com/Derjyn/Soma" target="_blank">Soma</a>
-            <p>
-              A boilerplate or starting kit for a site utilizing Flesh and Bones, with
-              some added fanciness.
-            </p>
-          </li>
-
-          <li>
-            <a href="https://github.com/Derjyn/Kerberos" target="_blank">Kerberos</a>
-            <p>
-              Kerberos is currently a test lab for various functionality and features
-              of rendering, physics, AI, etc. Eventually it will become a usable game engine.
-            </p>
-          </li>
-        </ul>
+      <!-- ~~ PORTFOLIO SECTION ~~ -->
+      <section class="small-12 columns debug-level-2" data-equalizer data-equalizer-mq="medium-up">
+        <div class="small-12 medium-10 right columns debug-level-3" data-equalizer-watch>
+          <h2 class="debug-level-4">Portfolio</h2>
+        </div>
+        <div class="small-12 medium-2 left show-for-medium-up columns debug-level-3" data-equalizer-watch>
+          <i class="icon icon-portfolio debug-level-4"></i>
+        </div>
+        <div class="small-12 columns debug-level-3">
+          <div class="padded debug-level-4"></div>
+        </div>
       </section>
+      <!-- ~~ END PORTFOLIO SECTION ~~ -->
 
-      <section id="creds" class="rib full">
-        <h2>Credits and Respect</h2>
-        <p>
-          Not every wheel needs to be invented, and sometimes other gifted people can do things
-          much better. As such, other resources and tools were wrangled together to make D3 shine
-          as brightly as I envisioned. Here are links to those kind entities.
-        </p>
-
-        <div class="breaker sixteen"></div>
-
-        <h3>Credits</h3>
-        <ul>
-          <li><a href="http://bite-software.co.uk/starscroll/" target="_blank">Starcroll</a> - for the awesome parallax background effect
-          </li>
-          <li><a href="http://codepen.io/cRckls/" target="_blank">Chris Rickels</a> - for the distorted effect on the header</li>
-        </ul>
-
-        <h3>Respect</h3>
-        <ul>
-          <li><a href="http://google.com" target="_blank">Google</a> - for being Google</li>
-          <li><a href="http://jquery.org/team/" target="_blank">jQuery</a> - Javascript gold</li>
-          <li><a href="http://github.com/" target="_blank">Github</a> - rockin' the repository</li>
-          <li><a href="http://www.sublimetext.com/" target="_blank">Sublime Text</a> - text editor of choice</li>
-        </ul>
+      <!-- ~~ SKILLS SECTION ~~ -->
+      <section class="small-12 columns debug-level-2" data-equalizer data-equalizer-mq="medium-up">
+        <div class="small-12 medium-10 right columns debug-level-3" data-equalizer-watch>
+          <h2 class="debug-level-4">Skills</h2>
+        </div>
+        <div class="small-12 medium-2 left show-for-medium-up columns debug-level-3" data-equalizer-watch>
+          <i class="icon icon-skills debug-level-4"></i>
+        </div>
+        <div class="small-12 columns debug-level-3">
+          <div class="padded debug-level-4"></div>
+        </div>
       </section>
+      <!-- ~~ END SKILLS SECTION ~~ -->
+
+      <!-- ~~ PROJECTS SECTION ~~ -->
+      <section class="small-12 columns debug-level-2" data-equalizer data-equalizer-mq="medium-up">
+        <div class="small-12 medium-10 right columns debug-level-3" data-equalizer-watch>
+          <h2 class="debug-level-4">Projects</h2>
+        </div>
+        <div class="small-12 medium-2 left show-for-medium-up columns debug-level-3" data-equalizer-watch>
+          <i class="icon icon-projects debug-level-4"></i>
+        </div>
+        <div class="small-12 columns debug-level-3">
+          <div class="padded debug-level-4"></div>
+        </div>
+      </section>
+      <!-- ~~ END PROJECTS SECTION ~~ -->
     </main>
+    <!-- ~~ END MAIN ~~ -->
 
-    <footer class="spine spacedRibs">
-      <small class="rib full">Content Copyright &copy; 2014</small>
+    <hr class="style-three">
+
+    <!-- ~~ FOOTER ~~ -->
+    <footer class="row debug-level-1" role="contentinfo">
+      <div class="columns debug-level-2">
+        <div class="padded debug-level-3"></div>
+      </div>
     </footer>
+    <!-- ~~ END FOOTER ~~ -->
 
-    <div id="starfield"></div>
+    <!-- ~~ SCRIPTS ~~ -->
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/foundation.min.js"></script>
+    <script>
+      $(document).foundation('equalizer', 'reflow');
+    </script>
+    <!-- ~~ END SCRIPTS ~~ -->
+
   </body>
-  <!-- /BODY -->
+  <!-- ~~ END BODY ~~ -->
 
-  <!-- SCRIPTS -->
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <script src="derjyn.min.js"></script>
-  <!-- /SCRIPTS -->
 </html>
