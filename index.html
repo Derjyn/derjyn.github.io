@@ -20,70 +20,102 @@
     <!-- /HEAD -->
 
     <!-- BODY -->
-    <body>
+    <body class="c-8">
         <!-- HEADER -->
         <header>
-            <div class="buzz_wrapper">
-                <div class="text">
-                    <h1 class="c-3">D3 Labs</h1>
-                </div>
-            </div>
+            <h1>D3 Labs</h1>
         </header>
         <!-- /HEADER -->
 
         <!-- NAV -->
-        <nav class="bg-c-1">
+        <nav class="bg-c-3">
             <ul>
-                <li class="bg-c-2"><a href="#home" class="active"><i class="icon home"></i>Home</a></li>
-                <li class="bg-c-2"><a href="#works" class="inactive"><i class="icon works"></i>Works</a></li>
-                <li class="bg-c-2"><a href="#labs" class="inactive"><i class="icon labs"></i>Labs</a></li>
-                <li class="bg-c-2"><a href="#creds" class="inactive"><i class="icon creds"></i>Creds</a></li>
+                <li class="bg-c-4"><a href="#home" class="active"><i class="icon home"></i>Home</a></li>
+                <li class="bg-c-4"><a href="#works" class="inactive"><i class="icon works"></i>Works</a></li>
+                <li class="bg-c-4"><a href="#labs" class="inactive"><i class="icon labs"></i>Labs</a></li>
+                <li class="bg-c-4"><a href="#creds" class="inactive"><i class="icon creds"></i>Creds</a></li>
             </ul>
         </nav>
         <!-- /NAV -->
 
         <!-- MAIN -->
-        <main class="bg-c-1">
+        <main class="bg-c-3">
             <!-- HOME SECTION -->
-            <section id="home" class="bg-c-2">
-                <h2 class="bg-c-3 c-7">Home</h2>
+            <section id="home">
+                <h2>Home</h2>
 
-                <div class="content bg-c-3 c-7">
-                    <p>Bla bla blah, I'm a buncha filler.</p>
+                <div class="content">
+                    <h3>Notice</h3>
+                    <p>
+                        The site is madly in a state of disarray. Don't mind the dust if you stumbled up in here,
+                        lookin' like a confused 7th grader walking into Ms. Henderson's class during 3rd period.
+                        Just slowly back out, without losing eye contact with her.
+                    </p>
+
+                    <h3>About The Design</h3>
+                    <p>
+                        Back to the retro, yo. Utilizing an 8 color palette and some cool effects, like the buzzing
+                        header and the parallax stars in the background there.
+                    </p>
                 </div>
             </section>
 
             <!-- WORKS SECTION -->
-            <section id="works" class="bg-color-02">
-                <h2 class="bg-c-3 c-7">Works</h2>
+            <section id="works">
+                <h2>Works</h2>
 
-                <div class="content bg-c-3 c-7"></div>
+                <div class="content">
+                    <ul>
+                        <lh>Web</lh>
+                        <li><a href="works/web/edg/index.html" target="_blank">EDG Concept</a></li>
+                        <li><a href="http://crosswindlogistics.com/" target="_blank">Crosswind Logistics</a></li></li>
+                    </ul>
+                    <ul>
+                        <lh>Code</lh>
+                        <li><a href="https://github.com/Derjyn/Bones" target="_blank">Bones</a></li>
+                        <li><a href="https://github.com/Derjyn/Flesh" target="_blank">Flesh</a></li>
+                        <li><a href="https://github.com/Derjyn/Soma" target="_blank">Soma</a></li>
+                        <li><a href="https://github.com/Derjyn/Kerberos" target="_blank">Kerberos</a></li>
+                    </ul>
+                </div>
             </section>
 
             <!-- LABS SECTION -->
-            <section id="labs" class="bg-c-2">
-                <h2 class="bg-c-3 c-7">Labs</h2>
+            <section id="labs">
+                <h2>Labs</h2>
 
-                <div class="content bg-c-3 c-7"></div>
+                <div class="content">
+                    <p>
+                        Here in the lab, you will find information on our current project(s). Proceed
+                        with caution, as these projects are usually not in a publically consumable state.
+                    </p>
+
+                    <h3>Current Project: Ultra Puck Battle</h3>
+                    <p>
+                        Ultra Puck Battle (UPB from here on) is a tubular game. It has the fun. It is like
+                        Pong or air hockey is.
+                    </p>
+                </div>
             </section>
 
             <!-- CREDS SECTION -->
-            <section id="creds" class="bg-c-2">
-                <h2 class="bg-c-3 c-7">Creds</h2>
+            <section id="creds">
+                <h2>Creds</h2>
 
-                <div class="content bg-c-3 c-7"></div>
+                <div class="content"></div>
             </section>
         </main>
         <!-- /MAIN -->
 
         <!-- STARFIELD CONTAINER -->
+        <div id="scanlines"></div>
         <div id="starfield"></div>
     </body>
     <!-- /BODY -->
 
     <!-- SCRIPTS -->
     <script src="assets/jquery.min.js"></script>
-    <script src="assets/starscroll.min.js"></script>
+    <script src="assets/starfield.js"></script>
     <script src="assets/jquery.idTabs.min.js"></script>
     <script src="assets/d3.js"></script>
     <!-- /SCRIPTS -->

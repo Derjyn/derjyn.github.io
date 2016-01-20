@@ -19,13 +19,11 @@ $(function() {
 $(document).ready(function () {
     "use strict";
 
-    toggleActive("nav ul li a", "active c-4", "inactive c-3");
-
-    $(".buzz_wrapper h1:nth-child(1)").addClass("c-1");
+    toggleActive("nav ul li a", "active c-8", "inactive c-1");
+    $("main section h2").addClass("c-8");
+    $("main section h3").addClass("c-7");
 
     $("nav").idTabs("#home");
-
-    $("#starfield").starscroll(16, 5, 10, 3, 0.4, 2, [192, 196, 157], true, true);
 });
 
 // EOF ////////////////////////////////////////////////////////////////////////////////////////////
