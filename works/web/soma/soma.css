@@ -1,0 +1,160 @@
+/*
+**
+** FILE:        soma.css
+** UPDATED:     11/13/2014
+** DESCRIPTION: Soma - Flesh and Bones based sitekit
+** CREDITS:     Nathan Harris aka Derjyn
+*/
+
+
+/*************************************************************************************************/
+/*** FLEX LAYOUT ORDER AND FRIENDS ***************************************************************/
+
+header        { order: 1; }
+nav			  { order: 2; }
+main		  { order: 3; }
+footer		  { order: 4; }
+header hgroup { order: 6; }
+header h1	  { order: 7; }
+header h2	  { order: 8; }
+
+body,#wrapper,#bg-fx-matte,#bg-fx {
+  margin: 0 auto;
+  min-height: 100%;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  width: 960px;
+}
+body,#wrapper { left: calc(50% - 480px); }
+#wrapper { overflow: hidden; }
+
+/*************************************************************************************************/
+/*** HEADER **************************************************************************************/
+
+header {
+  height: 192px;	
+}
+header hgroup {
+  display: none;
+}
+hgroup.rib {
+  align-self: center !important;
+}
+hgroup.rib h1.rib, hgroup.rib h2.rib {
+  align-self: stretch;
+}
+
+/*************************************************************************************************/
+/*** NAVIGATION **********************************************************************************/
+
+nav.tendon {
+  height: 96px;
+}
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0 !important;
+}
+nav ul li {
+  display: block;
+  float: left;
+  font-family: 'Source Sans Pro', sans-serif;	
+  line-height: 33px !important;
+  margin: 0;
+  margin-right: 16px;
+  padding: 0 !important; 
+}
+nav ul li:last-child {
+  margin-right: 0;
+}
+nav ul li a {
+  color: rgb(32,32,32) !important;
+  display: block;
+  font-size: 16px;
+  font-weight: normal !important;
+  text-align: center;
+  transition: color 0.5s;
+  width: 80px;
+}
+nav ul li a:hover, nav ul li a:hover i.fa {
+}
+nav ul li a i.fa {
+  color: rgb(64,64,64);
+  position: relative;
+  top: 2px;
+}
+
+/*************************************************************************************************/
+/*** MAIN ****************************************************************************************/
+
+main {
+  min-height: 512px;
+}
+
+/*************************************************************************************************/
+/*** FOOTER **************************************************************************************/
+
+footer {
+  height: 240px;
+}
+
+/*************************************************************************************************/
+/*** THEME ***************************************************************************************/
+
+/* Z-INDEX MAP */
+body          { z-index: -5; }
+#wrapper      { z-index: -4; }
+#bg-fx-matte  { z-index: -3; }
+#bg-fx        { z-index: -2; }
+
+/* BASE COLORS */
+html, body { background-color: rgb(33, 36, 30); }
+#bg-fx-matte { background-color: rgb(44, 57, 29); }
+
+#wrapper {
+  box-shadow: 
+    6px 0 10px 0 rgba(0, 0, 0, 0.308),
+    -6px 0 10px 0 rgba(0, 0, 0, 0.308);
+}
+
+/* SKIN! */
+.tendon,.muscle,.skin { background-color: transparent; }
+.tendon {
+  background-image: url("ui_skin.png");
+}
+
+header.tendon {
+  background-position: top;
+  background-repeat: no-repeat;
+}
+nav.tendon {
+  background-position: 0 -192px;
+  background-repeat: no-repeat;
+}
+main.tendon {
+  background-image: url("ui_skin_main.png");
+}
+footer.tendon {
+  background-position: 0 -720px;
+  background-repeat: no-repeat;
+}
+
+
+
+h1, h2 { 
+  color: rgb(255,255,255); 
+}
+h3, h4 { 
+  color: rgb(32,32,32); 
+}
+p { 
+  color: rgb(16,16,16); 
+  font-family: 'Laila', serif; 
+}
+
+/*************************************************************************************************/
+/*** MEDIA QUERIES *******************************************************************************/
+
+/*************************************************************************************************/
+/*** EOF *****************************************************************************************/
