@@ -23,7 +23,7 @@ $(document).ready(function () {
     $("main section h2").addClass("c-8");
     $("main section h3").addClass("c-7");
 
-    $("nav").idTabs("#home");
+    $("nav").idTabs("home");
 });
 
 // EOF ////////////////////////////////////////////////////////////////////////////////////////////
