@@ -1,0 +1,733 @@
+/* ]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]
+   derjyn.github.io: Site CSS
+   Only what Corpus classes and the skin can't say. Each section is marked:
+   PERSONALITY is this site's own look and stays here; GAP is something a
+   small site in general needs, logged as a Corpus gap (Corpus docs/NOTES.md).
+   ]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-] */
+
+/* Derjyn Sigil (Saira, OFL 1.1, fonts/OFL-saira.txt): only the name's letters, drawn as ƊƎƦĴҰŊ. Built by
+   Corpus's tools/derjyn-sigil.py. One static weight, declared for every weight so nothing gets faux bolded. */
+@font-face {
+    font-family: "Derjyn Sigil";
+    src: url("fonts/derjyn-sigil.woff2") format("woff2");
+    font-weight: 100 900;
+    font-display: swap;
+}
+
+/* Share Tech Mono (OFL 1.1, fonts/OFL-share-tech-mono.txt; "Share" is a Reserved Font Name, so the file stays unmodified).
+   Basic Latin only: other letters fall through to the next mono font in --label. */
+@font-face {
+    font-family: "Share Tech Mono";
+    src: url("fonts/share-tech-mono.woff2") format("woff2");
+    font-display: swap;
+}
+
+/* |>|>|>|>|>|>-- THEME SWITCH ---------------------------------------------- */
+
+/* Flesh's documented switch: prefs.js sets data-scheme, every role and atlas follows. */
+:root[data-scheme="dark"] { --flesh-color-scheme: dark; }
+:root[data-scheme="light"] { --flesh-color-scheme: light; }
+
+/* PERSONALITY: what differs between paper (light) and glass (dark) beyond colors.
+   --display-fx is never none: it joins other filters in one list, and opacity(1) draws nothing. */
+:root {
+    --dither: url("#dither");
+    --wordmark-fx: drop-shadow(3px 3px 0 oklch(26% 0.012 80 / 0.18));
+    --display-fx: opacity(1);
+    --overlay: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    --overlay-opacity: 0.13;
+    --overlay-blend: multiply;
+    /* Code speaks in the label voice too: a system mono read heavier than the thin body. Share Tech Mono's
+       x-height already matches Saira's, so it drops the skin's smaller code size. */
+    --flesh-font-mono: "Share Tech Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+    --flesh-code-size: 1em;
+    --label: var(--flesh-font-mono);
+    scroll-padding-block-start: 6rem;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-scheme="light"]) {
+        --dither: url("#dither-glass");
+        --display-fx: drop-shadow(-0.8px 0 oklch(60% 0.2 28 / 0.4)) drop-shadow(0.8px 0 oklch(72% 0.12 210 / 0.4)) drop-shadow(0 0 2.5px color-mix(in oklch, var(--flesh-text) 22%, transparent));
+        --wordmark-fx: var(--display-fx);
+        --overlay: repeating-linear-gradient(0deg, oklch(0% 0 0 / 0.09) 0 1px, transparent 1px 3px), radial-gradient(ellipse at 50% 40%, transparent 65%, oklch(0% 0 0 / 0.3));
+        --overlay-opacity: 1;
+        --overlay-blend: normal;
+    }
+}
+
+:root[data-scheme="dark"] {
+    --dither: url("#dither-glass");
+    --display-fx: drop-shadow(-0.8px 0 oklch(60% 0.2 28 / 0.4)) drop-shadow(0.8px 0 oklch(72% 0.12 210 / 0.4)) drop-shadow(0 0 2.5px color-mix(in oklch, var(--flesh-text) 22%, transparent));
+    --wordmark-fx: var(--display-fx);
+    --overlay: repeating-linear-gradient(0deg, oklch(0% 0 0 / 0.09) 0 1px, transparent 1px 3px), radial-gradient(ellipse at 50% 40%, transparent 65%, oklch(0% 0 0 / 0.3));
+    --overlay-opacity: 1;
+    --overlay-blend: normal;
+}
+
+:root[data-fx="off"] {
+    --wordmark-fx: none;
+    --display-fx: opacity(1);
+    --overlay: none;
+}
+
+/* |>|>|>|>|>|>-- BACKGROUND AND SCREEN --------------------------------------- */
+
+/* PERSONALITY: the live canvas behind everything, the screen overlay above. */
+.field {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    inline-size: 100%;
+    block-size: 100%;
+    pointer-events: none;
+}
+
+:root[data-bg="off"] .field { display: none; }
+
+.defs { position: absolute; inline-size: 0; block-size: 0; }
+.ink-flood { flood-color: var(--flesh-text); }
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    background: var(--overlay);
+    opacity: var(--overlay-opacity);
+    mix-blend-mode: var(--overlay-blend);
+    pointer-events: none;
+}
+
+/* Text that sits on the page gets a backing that reaches past it, so the background shows only in gaps. */
+:is(.topbar, .label, .foot) {
+    background-color: var(--flesh-surface);
+}
+
+.label {
+    box-shadow: -1.25rem 0 var(--flesh-surface), 1.25rem 0 var(--flesh-surface);
+}
+
+/* GAP: Flesh has no token for a font's width, so a variable font's narrower cut needs site CSS.
+   Saira at its condensed width (75%) reads lighter and crisper than at its normal one. */
+body { font-stretch: 75%; }
+
+/* |>|>|>|>|>|>-- THE NAME -------------------------------------------------- */
+
+/* PERSONALITY: the name is the plain word "Derjyn" in the page, for search, copying and screen readers; the
+   Derjyn Sigil font draws it as ƊƎƦĴҰŊ. If the font fails to load, it reads DERJYN in Saira. */
+.sigil {
+    font-family: "Derjyn Sigil", var(--flesh-font-heading), sans-serif;
+    font-synthesis: none;
+}
+
+/* PERSONALITY: the mark (logo.svg#mark) on a 16-cell grid, sized in multiples of 16px. Its head takes the
+   text color; its eye inherits this fill. */
+.logo {
+    flex: none;
+    fill: var(--flesh-accent);
+    shape-rendering: crispEdges;
+}
+
+/* |>|>|>|>|>|>-- LABELS ---------------------------------------------------- */
+
+/* PERSONALITY: the monospace caps voice for labels and data. */
+:is(.mod-head, .label, .path, .foot, .freckle, button, a.nerve, .options, .datacard, time, .years, .now-state, .poster-name, .poster-no) {
+    font-family: var(--label), monospace;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+:is(button, a.nerve, .freckle) { font-size: 0.75rem; }
+
+/* |>|>|>|>|>|>-- TOP BAR --------------------------------------------------- */
+
+/* PERSONALITY: a sticky panel strip; nav links are hardware keys with a lamp. Always one row, never a
+   wrapping one: as the window narrows the path goes (the lit key already says where you are), then the
+   name beside the mark, then the keys shorten to panel labels. Article pages have no keys, so they keep
+   their path. */
+.topbar {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: 10;
+    display: grid;
+    grid-template-columns: auto auto 1fr auto;
+    grid-template-areas: "mark nav path opts";
+    gap: var(--bones-space-3) var(--bones-space-5);
+    border-block-end: var(--flesh-border-width) solid var(--flesh-line);
+}
+
+.topbar > .mark { grid-area: mark; justify-self: start; }
+.topbar > nav { grid-area: nav; }
+.topbar > .path { grid-area: path; justify-self: end; }
+.topbar:not(:has(nav)) > .path { grid-column-end: -1; }
+.topbar > .options-toggle { grid-area: opts; }
+
+.mark {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: inherit;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+}
+
+/* The mark is drawn at a power of 2 or not at all: it never shrinks to make room. */
+.mark .logo { flex: none; inline-size: 2rem; block-size: 2rem; }
+
+.topbar ul {
+    gap: var(--bones-space-2);
+    font-family: var(--label), monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.topbar :is(ul a, .options-toggle) {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.35rem 0.75rem;
+    border: var(--flesh-border-width) solid var(--flesh-line);
+    background: none;
+    color: var(--flesh-muted);
+    font-weight: normal;
+    text-decoration: none;
+}
+
+/* The lamp carries the space after it: a flex gap would also split a label cut for phones (key-rest). */
+.topbar :is(ul a, .options-toggle)::before {
+    content: "";
+    margin-inline-end: 0.55rem;
+    inline-size: 6px;
+    block-size: 6px;
+    background-color: var(--flesh-line);
+}
+
+.topbar :is(ul a, .options-toggle):hover { border-color: var(--flesh-muted); color: var(--flesh-text); }
+.topbar :is(ul a[aria-current], .options-toggle[aria-expanded="true"]) { border-color: var(--flesh-text); color: var(--flesh-text); }
+.topbar :is(ul a[aria-current], .options-toggle[aria-expanded="true"])::before { background-color: var(--flesh-accent); }
+
+.path {
+    white-space: nowrap;
+    color: var(--flesh-muted);
+    font-size: 0.75rem;
+    text-transform: none;
+}
+
+/* The flyout hangs under the bar's right edge. */
+.options {
+    position: absolute;
+    inset-block-start: calc(100% + var(--bones-space-2));
+    inset-inline-end: max(var(--bones-gutter), (100% - var(--bones-page-width)) / 2);
+    display: grid;
+    gap: var(--bones-space-3);
+    font-size: 0.8rem;
+}
+
+.options fieldset { display: flex; flex-wrap: wrap; gap: var(--bones-space-2) var(--bones-space-3); margin: 0; }
+
+/* The keys never fold: when the bar runs short it switches layout instead. */
+.topbar ul { flex-wrap: nowrap; }
+
+/* The narrower layouts come last so they win over the keys' own rules. Each breakpoint is where its row,
+   measured, still fits with a desktop scrollbar and some room to spare; the path's is sized for its longest
+   text (derjyn // projects), since the script swaps it as sections scroll into view. */
+@media (width < 59rem) {
+    .topbar:has(nav) {
+        grid-template-columns: auto 1fr auto;
+        grid-template-areas: "mark nav opts";
+    }
+
+    .topbar:has(nav) > .path { display: none; }
+    .topbar > nav { justify-self: start; }
+}
+
+/* The name sits large in Ident right below; it stays in the link for screen readers. */
+@media (width < 47rem) {
+    .topbar:has(nav) > .mark { gap: 0; font-size: 0; }
+}
+
+/* Phones: keys show the start of their word, like panel labels (LOOT, PROJ, LOG, OPER, CONF), and pack a
+   little tighter. The whole word stays in the page, so the accessible name still holds the visible one. */
+@media (width < 41rem) {
+    .topbar { column-gap: var(--bones-space-2); }
+    .topbar .key-rest { display: none; }
+    .topbar :is(ul a, .options-toggle) { padding-inline: 0.5rem; letter-spacing: 0.06em; }
+    .topbar :is(ul a, .options-toggle)::before { margin-inline-end: 0.4rem; }
+}
+
+/* Small phones lose the lamps; the current key still shows by its bright frame and text. */
+@media (width < 26rem) {
+    .topbar :is(ul a, .options-toggle)::before { display: none; }
+}
+
+/* The smallest lose the mark too: on the home page it only links to the page itself, and Ident is below. */
+@media (width < 22rem) {
+    .topbar:has(nav) {
+        grid-template-columns: 1fr auto;
+        grid-template-areas: "nav opts";
+    }
+
+    .topbar:has(nav) > .mark { display: none; }
+}
+
+/* An article's path never folds; on a phone it goes, and the article's own header gives its number. */
+@media (width < 28rem) {
+    .topbar > .path { display: none; }
+}
+
+/* |>|>|>|>|>|>-- MODULES --------------------------------------------------- */
+
+/* PERSONALITY: every tissue is a module with a header row (lamp and name left, ID right);
+   the skin draws its corner nodes, which light in the signal color under the cursor. */
+:is(.tissue, dialog) { padding-block-start: 0; }
+
+/* GAP: Flesh sizes flourishes with one value, so an image with no aspect ratio of its own (a gradient)
+   stretches to the box's full height. Both sides given keeps the nodes square. */
+:is(.organ, .tissue, dialog) { background-size: var(--flesh-atlas-cell) var(--flesh-atlas-cell); }
+
+.tissue {
+    transition: border-color 0.2s;
+}
+
+.tissue:hover {
+    --flesh-flourish-tl: linear-gradient(var(--flesh-accent) 0 0);
+    --flesh-flourish-tr: var(--flesh-flourish-tl);
+    --flesh-flourish-bl: var(--flesh-flourish-tl);
+    --flesh-flourish-br: var(--flesh-flourish-tl);
+    border-color: var(--flesh-muted);
+}
+
+.mod-head {
+    display: flex;
+    gap: var(--bones-space-3);
+    align-items: center;
+    justify-content: space-between;
+    max-inline-size: none;
+    margin-inline: calc(-1 * var(--bones-space-4));
+    padding: 0.6rem var(--bones-space-4);
+    border-block-end: var(--flesh-border-width) solid var(--flesh-line);
+    font-size: 0.72rem;
+    font-weight: normal;
+    line-height: var(--flesh-leading);
+}
+
+.mod-head > :first-child { display: flex; gap: 0.6rem; align-items: center; }
+.mod-head > :last-child { color: var(--flesh-muted); }
+
+.mod-head > :first-child::before {
+    content: "";
+    inline-size: 6px;
+    block-size: 6px;
+    background-color: var(--flesh-line);
+}
+
+.mod-head.lit > :first-child::before { background-color: var(--flesh-accent); }
+
+/* Section labels end in a hairline tipped with a node. */
+.label {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    max-inline-size: none;
+    padding-block: var(--bones-space-2);
+    color: var(--flesh-muted);
+    font-size: 0.75rem;
+    font-weight: normal;
+}
+
+.label::after {
+    content: "";
+    flex: 1;
+    block-size: 5px;
+    background:
+        linear-gradient(var(--flesh-line) 0 0) right center / 5px 5px no-repeat,
+        linear-gradient(var(--flesh-line) 0 0) center / 100% 1px no-repeat;
+}
+
+/* GAP: Bones collapses a spine only below 30rem; each row here splits only from a measured width. Log and
+   Operator from 60rem: the reader then gets a 36rem column, and below it Operator's photo column ran about
+   300px short of the bio. Ident's own step is below. */
+@container (inline-size < 60rem) {
+    .spine > * { grid-column: 1 / -1; }
+}
+
+/* |>|>|>|>|>|>-- IDENT AND NOW --------------------------------------------- */
+
+/* PERSONALITY: the wordmark is the heavy grotesk built from whole 4px display cells (snap-4 in the page's SVG). */
+.wordmark { filter: var(--wordmark-fx); }
+
+/* The mark and the name in fixed steps. Derjyn Sigil's capitals are 0.688em tall (688 of 1000 units), so
+   at 4rem / 0.688 they are 64px, the mark's height, and each mark cell is one 4px display cell. The mark's
+   bottom sits on the baseline. The steps follow the Ident row's width; measured lockups: 128px 687px wide,
+   64px 343px, 64px without the mark 259px, plus Ident's 48px of padding. */
+.ident-row { container-name: ident-row; }
+
+/* Ident and Now share a row only where the 128px lockup fits in Ident's 8 columns; below that Ident takes
+   the full width and keeps it, and Now sits under it. */
+@container ident-row (inline-size < 71rem) {
+    .ident-row > * { grid-column: 1 / -1; }
+}
+
+.dm {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    font-size: calc(4rem / 0.688);
+    font-stretch: 75%;
+    font-weight: 700;
+    line-height: 0.82;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    /* The filter draws only inside the box, and the tight line box would cut the stylized name's accent (Ĵ)
+       and tails (Ʀ, Ŋ): the padding is their room. */
+    padding-block: 0.2em 0.25em;
+    margin-block: 0;
+    filter: url("#snap-4");
+}
+
+.dm .logo { inline-size: 4rem; block-size: 4rem; }
+
+/* 128px: 2 by 2 display cells per mark cell. */
+@container ident-row (inline-size >= 47rem) {
+    .dm { gap: 2rem; font-size: calc(8rem / 0.688); }
+    .dm .logo { inline-size: 8rem; block-size: 8rem; }
+}
+
+/* Phones drop the mark; the top bar still shows it. */
+@container ident-row (inline-size < 25rem) {
+    .dm .logo { display: none; }
+}
+
+/* The smallest phones set the name at 48px. The mark is gone, so its powers of 2 no longer bind it; the
+   name stays on whole 4px cells. */
+@container ident-row (inline-size < 20rem) {
+    .dm { font-size: calc(3rem / 0.688); }
+}
+
+:is(.subhead, .now-name) {
+    color: var(--flesh-muted);
+    font-family: var(--flesh-font-heading);
+    font-size: clamp(1.25rem, 3vi, 2rem);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    filter: var(--display-fx);
+}
+
+.now-name {
+    color: var(--flesh-text);
+    font-size: var(--flesh-type-6);
+    letter-spacing: 0.06em;
+}
+
+/* The whole Now card opens the project: the name is the link (a short accessible name) and its hit area
+   covers the card. A filter would make the heading the hit area's box, so the glow sits on the text. */
+.now { position: relative; }
+.now-name { filter: none; }
+.now-name span { display: inline-block; filter: var(--display-fx); }
+.now-name a { color: inherit; text-decoration: none; }
+.now-name a::after { content: ""; position: absolute; inset: 0; }
+.now:hover .now-name span { text-decoration: underline; text-decoration-color: var(--flesh-accent); }
+.now-name a:focus-visible { outline: none; }
+.now:has(a:focus-visible) { outline: 2px solid var(--flesh-link); outline-offset: 2px; }
+
+.now-state {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--bones-space-2) var(--bones-space-3);
+    font-size: 0.75rem;
+}
+
+.now-state dt { color: var(--flesh-muted); font-weight: normal; }
+.now-state dd { padding: 0; }
+
+/* |>|>|>|>|>|>-- ARTICLES -------------------------------------------------- */
+
+/* PERSONALITY: the index stays in view beside the reader on wide screens. */
+@container (inline-size >= 60rem) {
+    .article-index {
+        position: sticky;
+        inset-block-start: 6rem;
+        align-self: start;
+    }
+}
+
+.article-list {
+    max-inline-size: none;
+    margin-inline: calc(-1 * var(--bones-space-4));
+    padding: 0;
+    list-style: none;
+}
+
+.article-list a {
+    display: grid;
+    gap: var(--bones-space-1);
+    padding: 0.75rem var(--bones-space-4);
+    border-block-end: var(--flesh-border-width) solid var(--flesh-line);
+    color: inherit;
+    text-decoration: none;
+}
+
+.article-list li:last-child a { border-block-end: 0; }
+
+.title { font-weight: 600; line-height: 1.25; }
+.title small { display: block; margin-block-start: 0.2rem; font-weight: normal; }
+
+.article-list :is(time, .years) { color: var(--flesh-muted); font-size: 0.75rem; }
+
+/* NieR's selection: the row lifts onto the page and gains a pointer; the open one keeps it, lit. */
+.article-list a:is(:hover, :focus-visible, [aria-current]) { background-color: var(--flesh-surface); }
+.article-list a:is(:hover, :focus-visible) .title::before { content: "\25B8\00A0"; }
+.article-list a[aria-current] .title::before { content: "\25B8\00A0"; color: var(--flesh-accent); }
+
+.reader { min-block-size: 12rem; }
+.reader[aria-busy="true"] { opacity: 0.5; }
+
+/* An article reads the same in the panel and on its own page. */
+.article-head { margin-block-end: var(--bones-space-5); }
+.article-head .label { box-shadow: none; background: none; padding: 0; }
+.article-head :is(h1, h3) { font-size: var(--flesh-type-6); }
+.reader article img, .article-page article img { max-inline-size: 100%; block-size: auto; }
+
+/* |>|>|>|>|>|>-- PROJECTS -------------------------------------------------- */
+
+/* GAP: a strip that scrolls sideways and snaps to each item; galleries need it too. */
+.strip-frame { container-type: inline-size; }
+
+/* A whole number of posters always fits, so every scroll stop, the last one included, lands on edges. */
+.strip {
+    --per: 2;
+    position: relative;
+    display: grid;
+    grid-auto-columns: calc((100cqi - 8px - (var(--per) - 1) * var(--bones-gap)) / var(--per));
+    grid-auto-flow: column;
+    gap: var(--bones-gap);
+    max-inline-size: none;
+    /* Room for a poster's focus outline, which the scroll box would clip. */
+    padding: 4px 4px var(--bones-space-3);
+    scroll-padding-inline: 4px;
+    overflow-x: auto;
+    scroll-snap-type: inline mandatory;
+    list-style: none;
+}
+
+.strip > li { scroll-snap-align: start; }
+
+@container (inline-size >= 36rem) { .strip { --per: 3; } }
+@container (inline-size >= 48rem) { .strip { --per: 4; } }
+@container (inline-size >= 62rem) { .strip { --per: 5; } }
+
+/* PERSONALITY: with JavaScript, keys and lamps replace the scrollbar. The strip grows past its frame
+   and the frame clips the bottom, where the native scrollbar sits; it still scrolls by touch and wheel. */
+.strip-frame.strip-enhanced { overflow: hidden; }
+
+.strip-enhanced .strip {
+    padding-block-end: 2rem;
+    margin-block-end: -2rem;
+}
+
+/* One row, never folded: on small phones the lamp track goes and the count stays. */
+.strip-ctl {
+    display: flex;
+    gap: var(--bones-space-3);
+    align-items: center;
+    margin-block-end: var(--bones-space-3);
+}
+
+.strip-ctl button {
+    display: inline-flex;
+    gap: 0.55rem;
+    align-items: center;
+    padding: 0.35rem 0.75rem;
+    border-color: var(--flesh-line);
+    background: var(--flesh-surface);
+    color: var(--flesh-muted);
+}
+
+.strip-ctl button::before {
+    content: "";
+    inline-size: 6px;
+    block-size: 6px;
+    background-color: var(--flesh-line);
+}
+
+.strip-ctl button:not(:disabled):hover { border-color: var(--flesh-text); color: var(--flesh-text); }
+.strip-ctl button:not(:disabled):hover::before { background-color: var(--flesh-accent); }
+.strip-ctl button:disabled { opacity: 0.45; }
+
+/* One lamp per poster, lit while it's in view. */
+.strip-track { display: flex; flex: 1; gap: 3px; }
+
+.strip-track i {
+    flex: 1;
+    max-inline-size: 2.5rem;
+    block-size: 6px;
+    background-color: var(--flesh-line);
+    transition: background-color 0.2s;
+}
+
+.strip-track i.on { background-color: var(--flesh-accent); }
+
+/* Measured: the keys and count take about 270px, and six lamps need about 90px to read, so the track goes
+   where the top bar's lamps go. */
+@media (width < 26rem) {
+    .strip-track { display: none; }
+}
+
+.strip-count {
+    margin-inline-start: auto;
+    color: var(--flesh-muted);
+    font-family: var(--label), monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+}
+
+/* PERSONALITY: posters are modules in the site's look; the project's identity is two colors, a main and a
+   signal, on its logo, its name and the hairline above it. Each is a light-dark() pair so it reads on paper
+   and glass alike. */
+.poster {
+    --p-main: var(--flesh-text);
+    --p-sig: var(--flesh-accent);
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: var(--bones-space-3);
+    aspect-ratio: 3 / 5;
+    padding: var(--bones-space-3);
+    color: var(--flesh-text);
+    text-decoration: none;
+}
+
+.poster-no { color: var(--flesh-muted); font-size: 0.75rem; }
+
+.poster-logo {
+    align-self: center;
+    inline-size: 100%;
+    block-size: auto;
+    fill: none;
+    stroke: var(--p-main);
+    stroke-width: 6;
+    filter: var(--display-fx);
+}
+
+.poster-logo .sig { fill: var(--p-sig); stroke: none; }
+.poster-logo .ink { fill: var(--p-main); stroke: none; }
+
+.poster-name {
+    display: grid;
+    gap: 0.15rem;
+    padding-block-start: 0.6rem;
+    border-block-start: 1px solid var(--p-sig);
+    color: var(--flesh-muted);
+    font-size: 0.7rem;
+}
+
+.poster-name b { color: var(--p-main); font-family: var(--flesh-font-heading), sans-serif; font-size: 1.15rem; letter-spacing: 0.04em; }
+
+/* Under the cursor a poster's frame and nodes take its own colors instead of the site's signal. */
+:is(.poster:hover, .poster:focus-visible, .project-dialog) {
+    --flesh-flourish-tl: linear-gradient(var(--p-sig) 0 0);
+    --flesh-flourish-tr: var(--flesh-flourish-tl);
+    --flesh-flourish-bl: var(--flesh-flourish-tl);
+    --flesh-flourish-br: var(--flesh-flourish-tl);
+}
+
+.poster:is(:hover, :focus-visible) { border-color: var(--p-main); color: var(--flesh-text); }
+.poster:hover .poster-name b { text-decoration: underline; text-decoration-color: var(--p-sig); }
+
+/* Each project's own pair (.p-<slug>) is in projects.css, written by build.py from content/projects/. */
+
+/* PERSONALITY: loot posters are shorter cartridge labels in the site's own signal, with a size readout
+   where a project has its logo, so the two strips never read as one. */
+.poster.loot { aspect-ratio: 3 / 4; }
+
+.loot-size {
+    align-self: center;
+    justify-self: center;
+    color: var(--flesh-muted);
+    font-family: var(--label), monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+}
+
+.loot-size b {
+    color: var(--flesh-text);
+    font-family: var(--flesh-font-heading);
+    font-size: var(--flesh-type-6);
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    filter: var(--display-fx);
+}
+
+dialog .mod-head { margin-block-end: var(--bones-space-3); }
+
+/* A project's dialog sits in the site's frame with its logo, its signal on the lamp and nodes. */
+.project-dialog .mod-head > :first-child::before { background-color: var(--p-sig); }
+.project-id { display: flex; gap: var(--bones-space-3); align-items: center; margin-block-end: var(--bones-space-3); }
+.project-id .poster-logo { flex: none; inline-size: 3.5rem; stroke-width: 7; }
+.project-id h2 { margin: 0; color: var(--p-main); }
+
+/* |>|>|>|>|>|>-- OPERATOR -------------------------------------------------- */
+
+/* PERSONALITY: images print in ordered dither, one filter per substrate. */
+img.dither {
+    inline-size: 100%;
+    block-size: auto;
+    filter: var(--dither) var(--display-fx);
+}
+
+/* The dither filters live in the home page's markup; an article's own page has none to point at. */
+.article-page img.dither { filter: var(--display-fx); }
+
+/* Beside the bio, the tagline sits on the module's floor, level with the bio's last line. */
+.operator-fig { display: flex; flex-direction: column; }
+.operator-fig > :last-child { margin-block-start: auto; }
+
+/* Stacked under the bio, Fig. 01 would print the photo the row's full width: between phones and the split
+   the photo takes half (at least 250px, so its one-line caption fits), the tagline the other half. */
+@container (36rem <= inline-size < 60rem) {
+    .operator-fig {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: var(--bones-gap);
+    }
+}
+
+/* Outside the query: the header would ask its own module's width, not the spine's. */
+.operator-fig > .mod-head { grid-column: 1 / -1; }
+
+/* Cyber Drive's data card: a ruled table, label left, value right. */
+.datacard { display: table; inline-size: 100%; max-inline-size: none; font-size: 0.8rem; }
+.datacard th, .datacard td { padding-inline: 0; }
+.datacard th { color: var(--flesh-muted); font-weight: normal; }
+.datacard td { text-align: end; }
+
+/* |>|>|>|>|>|>-- FOOTER ---------------------------------------------------- */
+
+.foot {
+    border-block-start: var(--flesh-border-width) solid var(--flesh-line);
+    color: var(--flesh-muted);
+    font-size: 0.75rem;
+}
+
+/* The home footer's five items need about 650px in one row. Below that they stand in three planned rows:
+   domain and GitHub, the credit alone, Legacy and end of line. */
+@media (width < 48rem) {
+    .foot:has(.foot-credit) {
+        display: grid;
+        grid-template-columns: 1fr auto;
+    }
+
+    .foot-credit { grid-area: 2 / 1 / 3 / -1; }
+}
+
+/* |>|>|>|>|>|>-- MOTION ---------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+    :is(.tissue, .strip-track i) { transition: none; }
+}
+
+/* ]-]-] EOF ]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]- */

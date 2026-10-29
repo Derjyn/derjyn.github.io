@@ -1,0 +1,345 @@
+<!doctype html>
+<!-- ]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]
+     derjyn.github.io (prototype)
+     The one home page: ident and now, articles in a panel, projects in a strip,
+     the operator. Corpus classes and the derjyn skin; site.css holds only the
+     site's personality and marked Corpus gaps.
+     ]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-] -->
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Derjyn</title>
+    <meta name="description" content="Derjyn's corner of the web: articles, projects and the person behind them.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="corpus/detox.css">
+    <link rel="stylesheet" href="corpus/bones.css">
+    <link rel="stylesheet" href="corpus/flesh.css">
+    <link rel="stylesheet" href="skin/derjyn.css">
+    <link rel="stylesheet" href="site.css">
+    <link rel="stylesheet" href="projects.css">
+    <script src="prefs.js"></script>
+    <script type="module" src="field.js"></script>
+    <script type="module" src="site.js"></script>
+</head>
+<body class="skeleton">
+    <header class="topbar knuckles">
+        <a class="mark sigil" href="./"><svg class="logo" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="logo.svg#mark"/></svg>Derjyn</a>
+        <nav aria-label="Main">
+            <ul>
+                <li><a href="#loot">Loot</a></li>
+                <li><a href="#projects">Proj<span class="key-rest">ects</span></a></li>
+                <li><a href="#log">Log</a></li>
+                <li><a href="#operator">Oper<span class="key-rest">ator</span></a></li>
+            </ul>
+        </nav>
+        <span class="path">derjyn // index</span>
+        <button class="options-toggle" type="button" aria-expanded="false" aria-controls="options" hidden>Conf<span class="key-rest">ig</span></button>
+        <div class="options tissue" id="options" hidden>
+            <fieldset>
+                <legend>Theme</legend>
+                <label><input type="radio" name="scheme" value="system"> System</label>
+                <label><input type="radio" name="scheme" value="light"> Light</label>
+                <label><input type="radio" name="scheme" value="dark"> Dark</label>
+            </fieldset>
+            <fieldset>
+                <legend>Background</legend>
+                <label><input type="radio" name="bg" value="lattice"> Lattice</label>
+                <label><input type="radio" name="bg" value="field"> Field</label>
+                <label><input type="radio" name="bg" value="off"> Off</label>
+            </fieldset>
+            <fieldset>
+                <legend>Sound</legend>
+                <label><input type="radio" name="sound" value="on"> On</label>
+                <label><input type="radio" name="sound" value="off"> Off</label>
+            </fieldset>
+            <label><input type="checkbox" name="fx" value="on"> Screen effects</label>
+        </div>
+    </header>
+
+    <main>
+        <canvas class="field" aria-hidden="true"></canvas>
+        <svg class="defs" aria-hidden="true" focusable="false">
+            <!-- The wordmark's display cells: sample one spot per 4px cell, grow it to 3px, snap it on or off. -->
+            <filter id="snap-4" x="0" y="0" width="100%" height="100%">
+                <feFlood x="1" y="1" width="1" height="1" result="dot"/>
+                <feComposite in="dot" in2="dot" width="4" height="4"/>
+                <feTile result="grid"/>
+                <feComposite in="SourceGraphic" in2="grid" operator="in"/>
+                <feMorphology operator="dilate" radius="1"/>
+                <feComponentTransfer><feFuncA type="discrete" tableValues="0 1"/></feComponentTransfer>
+            </filter>            <filter id="dither" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+                <feColorMatrix type="saturate" values="0" result="gray"/>
+                <feImage href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='8' shape-rendering='crispEdges'><rect x='0' y='0' width='2' height='2' fill='rgb(247,247,247)'/><rect x='2' y='0' width='2' height='2' fill='rgb(120,120,120)'/><rect x='4' y='0' width='2' height='2' fill='rgb(215,215,215)'/><rect x='6' y='0' width='2' height='2' fill='rgb(88,88,88)'/><rect x='0' y='2' width='2' height='2' fill='rgb(56,56,56)'/><rect x='2' y='2' width='2' height='2' fill='rgb(183,183,183)'/><rect x='4' y='2' width='2' height='2' fill='rgb(24,24,24)'/><rect x='6' y='2' width='2' height='2' fill='rgb(151,151,151)'/><rect x='0' y='4' width='2' height='2' fill='rgb(199,199,199)'/><rect x='2' y='4' width='2' height='2' fill='rgb(72,72,72)'/><rect x='4' y='4' width='2' height='2' fill='rgb(231,231,231)'/><rect x='6' y='4' width='2' height='2' fill='rgb(104,104,104)'/><rect x='0' y='6' width='2' height='2' fill='rgb(8,8,8)'/><rect x='2' y='6' width='2' height='2' fill='rgb(135,135,135)'/><rect x='4' y='6' width='2' height='2' fill='rgb(40,40,40)'/><rect x='6' y='6' width='2' height='2' fill='rgb(167,167,167)'/></svg>" x="0" y="0" width="8" height="8" preserveAspectRatio="none" result="cell"/>
+                <feTile in="cell" result="bayer"/>
+                <feComposite in="gray" in2="bayer" operator="arithmetic" k2="1" k3="1" k4="-0.5" result="sum"/>
+                <feComponentTransfer in="sum" result="bw">
+                    <feFuncR type="discrete" tableValues="0 1"/>
+                    <feFuncG type="discrete" tableValues="0 1"/>
+                    <feFuncB type="discrete" tableValues="0 1"/>
+                </feComponentTransfer>
+                <feColorMatrix in="bw" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -1 0 0 0 1" result="mask"/>
+                <feFlood class="ink-flood" result="ink"/>
+                <feComposite in="ink" in2="mask" operator="in"/>
+            </filter>
+            <filter id="dither-glass" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+                <feColorMatrix type="saturate" values="0" result="gray"/>
+                <feImage href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='8' shape-rendering='crispEdges'><rect x='0' y='0' width='2' height='2' fill='rgb(247,247,247)'/><rect x='2' y='0' width='2' height='2' fill='rgb(120,120,120)'/><rect x='4' y='0' width='2' height='2' fill='rgb(215,215,215)'/><rect x='6' y='0' width='2' height='2' fill='rgb(88,88,88)'/><rect x='0' y='2' width='2' height='2' fill='rgb(56,56,56)'/><rect x='2' y='2' width='2' height='2' fill='rgb(183,183,183)'/><rect x='4' y='2' width='2' height='2' fill='rgb(24,24,24)'/><rect x='6' y='2' width='2' height='2' fill='rgb(151,151,151)'/><rect x='0' y='4' width='2' height='2' fill='rgb(199,199,199)'/><rect x='2' y='4' width='2' height='2' fill='rgb(72,72,72)'/><rect x='4' y='4' width='2' height='2' fill='rgb(231,231,231)'/><rect x='6' y='4' width='2' height='2' fill='rgb(104,104,104)'/><rect x='0' y='6' width='2' height='2' fill='rgb(8,8,8)'/><rect x='2' y='6' width='2' height='2' fill='rgb(135,135,135)'/><rect x='4' y='6' width='2' height='2' fill='rgb(40,40,40)'/><rect x='6' y='6' width='2' height='2' fill='rgb(167,167,167)'/></svg>" x="0" y="0" width="8" height="8" preserveAspectRatio="none" result="cell"/>
+                <feTile in="cell" result="bayer"/>
+                <feComposite in="gray" in2="bayer" operator="arithmetic" k2="1" k3="1" k4="-0.5" result="sum"/>
+                <feComponentTransfer in="sum" result="bw">
+                    <feFuncR type="discrete" tableValues="0 1"/>
+                    <feFuncG type="discrete" tableValues="0 1"/>
+                    <feFuncB type="discrete" tableValues="0 1"/>
+                </feComponentTransfer>
+                <feColorMatrix in="bw" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1 0 0 0 0" result="mask"/>
+                <feFlood class="ink-flood" result="ink"/>
+                <feComposite in="ink" in2="mask" operator="in"/>
+            </filter>
+        </svg>
+
+        <!-- |>|>|>|>|>|>-- IDENT AND NOW -------------------------------------- -->
+
+        <div class="spine ident-row">
+            <section class="tissue rib-8" aria-labelledby="ident-h">
+                <p class="mod-head lit"><span>Ident</span><span>M/01</span></p>
+                <div class="wordmark"><h1 class="dm sigil" id="ident-h"><svg class="logo" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="logo.svg#mark"/></svg>Derjyn</h1></div>
+                <p class="subhead">Quiet code, loud ideas</p>
+            </section>
+
+            <section class="tissue rib-4 now" aria-labelledby="now-h">
+                <h2 class="mod-head" id="now-h"><span>Now building</span><span>M/02</span></h2>
+                <h3 class="now-name"><a href="https://github.com/Derjyn" target="_blank" rel="noopener"><span>Corpus</span></a></h3>
+                <p>A raw CSS stack for small static sites, in three layers: Detox resets, Bones lays out, Flesh dresses. This site is its first real test.</p>
+            </section>
+        </div>
+
+        <!-- |>|>|>|>|>|>-- LOOT ------------------------------------------------ -->
+
+        <section id="loot" aria-labelledby="loot-h">
+            <h2 class="label" id="loot-h">S/01 / Loot</h2>
+            <div class="strip-ctl" hidden>
+                <button class="strip-prev" type="button" aria-controls="loot-strip" aria-label="Prev loot">Prev</button>
+                <span class="strip-track" aria-hidden="true"></span>
+                <span class="strip-count" aria-hidden="true"></span>
+                <button class="strip-next" type="button" aria-controls="loot-strip" aria-label="Next loot">Next</button>
+            </div>
+            <div class="strip-frame">
+            <ul class="strip" id="loot-strip">
+                <!-- build:loot-posters -->
+                <li><a class="poster loot tissue" href="#loot" data-dialog="l-test-sounds">
+                    <span class="poster-no">L/01</span>
+                    <span class="loot-size"><b>12</b> MB</span>
+                    <span class="poster-name"><b>Test sounds</b> Sound pack / WAV</span>
+                </a></li>
+                <li><a class="poster loot tissue" href="#loot" data-dialog="l-test-icons">
+                    <span class="poster-no">L/02</span>
+                    <span class="loot-size"><b>340</b> KB</span>
+                    <span class="poster-name"><b>Test icons</b> Icon set / SVG</span>
+                </a></li>
+                <li><a class="poster loot tissue" href="#loot" data-dialog="l-test-wallpaper">
+                    <span class="poster-no">L/03</span>
+                    <span class="loot-size"><b>4.2</b> MB</span>
+                    <span class="poster-name"><b>Test wallpaper</b> Wallpaper / PNG</span>
+                </a></li>
+                <!-- /build:loot-posters -->
+            </ul>
+            </div>
+
+            <!-- build:loot-dialogs -->
+            <dialog class="project-dialog loot-dialog" id="l-test-sounds" aria-labelledby="l-test-sounds-h">
+                <p class="mod-head lit"><span>Loot</span><span>L/01</span></p>
+                <h2 id="l-test-sounds-h">Test sounds</h2>
+                <dl class="now-state"><dt>Kind</dt><dd>Sound pack</dd><dt>Format</dt><dd>WAV</dd><dt>Size</dt><dd>12 MB</dd><dt>License</dt><dd>CC BY 4.0</dd></dl>
+                <p class="scar"><strong>Placeholder:</strong> not real loot. It tests the Loot strip and comes out before launch.</p>
+                <form method="dialog" class="knuckles"><a class="nerve" href="#loot">Download, 12 MB</a> <button>Close</button></form>
+            </dialog>
+            <dialog class="project-dialog loot-dialog" id="l-test-icons" aria-labelledby="l-test-icons-h">
+                <p class="mod-head lit"><span>Loot</span><span>L/02</span></p>
+                <h2 id="l-test-icons-h">Test icons</h2>
+                <dl class="now-state"><dt>Kind</dt><dd>Icon set</dd><dt>Format</dt><dd>SVG</dd><dt>Size</dt><dd>340 KB</dd><dt>License</dt><dd>CC BY 4.0</dd></dl>
+                <p class="scar"><strong>Placeholder:</strong> not real loot. It tests the Loot strip and comes out before launch.</p>
+                <form method="dialog" class="knuckles"><a class="nerve" href="#loot">Download, 340 KB</a> <button>Close</button></form>
+            </dialog>
+            <dialog class="project-dialog loot-dialog" id="l-test-wallpaper" aria-labelledby="l-test-wallpaper-h">
+                <p class="mod-head lit"><span>Loot</span><span>L/03</span></p>
+                <h2 id="l-test-wallpaper-h">Test wallpaper</h2>
+                <dl class="now-state"><dt>Kind</dt><dd>Wallpaper</dd><dt>Format</dt><dd>PNG</dd><dt>Size</dt><dd>4.2 MB</dd><dt>License</dt><dd>CC BY 4.0</dd></dl>
+                <p class="scar"><strong>Placeholder:</strong> not real loot. It tests the Loot strip and comes out before launch.</p>
+                <form method="dialog" class="knuckles"><a class="nerve" href="#loot">Download, 4.2 MB</a> <button>Close</button></form>
+            </dialog>
+            <!-- /build:loot-dialogs -->
+        </section>
+
+        <!-- |>|>|>|>|>|>-- PROJECTS ------------------------------------------- -->
+
+        <section id="projects" aria-labelledby="projects-h">
+            <h2 class="label" id="projects-h">S/02 / Projects</h2>
+            <div class="strip-ctl" hidden>
+                <button class="strip-prev" type="button" aria-controls="projects-strip" aria-label="Prev projects">Prev</button>
+                <span class="strip-track" aria-hidden="true"></span>
+                <span class="strip-count" aria-hidden="true"></span>
+                <button class="strip-next" type="button" aria-controls="projects-strip" aria-label="Next projects">Next</button>
+            </div>
+            <div class="strip-frame">
+            <ul class="strip" id="projects-strip">
+                <!-- build:project-posters -->
+                <li><a class="poster tissue p-corpus" href="https://github.com/Derjyn" data-dialog="p-corpus">
+                    <span class="poster-no">P/01</span>
+                    <svg class="poster-logo" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><rect class="ink" x="20" y="20" width="60" height="14"/><rect x="23" y="46" width="54" height="8"/><rect class="sig" x="20" y="66" width="60" height="14"/></svg>
+                    <span class="poster-name"><b>Corpus</b> Raw CSS stack</span>
+                </a></li>
+                <li><a class="poster tissue p-notitia" href="https://github.com/Derjyn" data-dialog="p-notitia">
+                    <span class="poster-no">P/02</span>
+                    <svg class="poster-logo" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle cx="50" cy="50" r="32"/><circle class="sig" cx="50" cy="50" r="11"/></svg>
+                    <span class="poster-name"><b>Notitia</b> Memory server</span>
+                </a></li>
+                <li><a class="poster tissue p-prudentia" href="https://github.com/Derjyn" data-dialog="p-prudentia">
+                    <span class="poster-no">P/03</span>
+                    <svg class="poster-logo" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><path d="M50 16 L84 80 H16 Z"/><rect class="sig" x="43" y="54" width="14" height="14"/></svg>
+                    <span class="poster-name"><b>Prudentia</b> Standards</span>
+                </a></li>
+                <li><a class="poster tissue p-indago" href="https://github.com/Derjyn" data-dialog="p-indago">
+                    <span class="poster-no">P/04</span>
+                    <svg class="poster-logo" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle cx="42" cy="42" r="24"/><path d="M60 60 L84 84"/><circle class="sig" cx="42" cy="42" r="7"/></svg>
+                    <span class="poster-name"><b>Indago</b> Search</span>
+                </a></li>
+                <li><a class="poster tissue p-syntagma" href="https://github.com/Derjyn" data-dialog="p-syntagma">
+                    <span class="poster-no">P/05</span>
+                    <svg class="poster-logo" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><rect x="20" y="20" width="26" height="26"/><rect class="ink" x="54" y="20" width="26" height="26"/><rect class="ink" x="20" y="54" width="26" height="26"/><rect class="sig" x="54" y="54" width="26" height="26"/></svg>
+                    <span class="poster-name"><b>Syntagma</b> The stack</span>
+                </a></li>
+                <li><a class="poster tissue p-tabularium" href="https://github.com/Derjyn" data-dialog="p-tabularium">
+                    <span class="poster-no">P/06</span>
+                    <svg class="poster-logo" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><path d="M16 24H84M16 42H84M16 60H84M16 78H58"/><circle class="sig" cx="76" cy="78" r="7"/></svg>
+                    <span class="poster-name"><b>Tabularium</b> The hub</span>
+                </a></li>
+                <!-- /build:project-posters -->
+            </ul>
+            </div>
+
+            <!-- build:project-dialogs -->
+            <dialog class="project-dialog p-corpus" id="p-corpus" aria-labelledby="p-corpus-h">
+                <p class="mod-head lit"><span>Project</span><span>P/01</span></p>
+                <div class="project-id"><svg class="poster-logo" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><rect class="ink" x="20" y="20" width="60" height="14"/><rect x="23" y="46" width="54" height="8"/><rect class="sig" x="20" y="66" width="60" height="14"/></svg><h2 id="p-corpus-h">Corpus</h2></div>
+                <p>A lean, raw-CSS stack for quick static sites: Detox (reset), Bones (layout), Flesh (visual system) and skins. No build step, no required JavaScript.</p>
+                <p class="scar"><strong>Prototype:</strong> real links come before launch.</p>
+                <form method="dialog" class="knuckles"><a class="nerve" href="https://github.com/Derjyn">GitHub</a> <button>Close</button></form>
+            </dialog>
+            <dialog class="project-dialog p-notitia" id="p-notitia" aria-labelledby="p-notitia-h">
+                <p class="mod-head lit"><span>Project</span><span>P/02</span></p>
+                <div class="project-id"><svg class="poster-logo" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle cx="50" cy="50" r="32"/><circle class="sig" cx="50" cy="50" r="11"/></svg><h2 id="p-notitia-h">Notitia</h2></div>
+                <p>A persistent memory server for AI agents: decisions and facts that stay true from one session to the next.</p>
+                <p class="scar"><strong>Prototype:</strong> real links come before launch.</p>
+                <form method="dialog" class="knuckles"><a class="nerve" href="https://github.com/Derjyn">GitHub</a> <button>Close</button></form>
+            </dialog>
+            <dialog class="project-dialog p-prudentia" id="p-prudentia" aria-labelledby="p-prudentia-h">
+                <p class="mod-head lit"><span>Project</span><span>P/03</span></p>
+                <div class="project-id"><svg class="poster-logo" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><path d="M50 16 L84 80 H16 Z"/><rect class="sig" x="43" y="54" width="14" height="14"/></svg><h2 id="p-prudentia-h">Prudentia</h2></div>
+                <p>A standards server: coding and writing guidelines, served to agents by file type and topic.</p>
+                <p class="scar"><strong>Prototype:</strong> real links come before launch.</p>
+                <form method="dialog" class="knuckles"><a class="nerve" href="https://github.com/Derjyn">GitHub</a> <button>Close</button></form>
+            </dialog>
+            <dialog class="project-dialog p-indago" id="p-indago" aria-labelledby="p-indago-h">
+                <p class="mod-head lit"><span>Project</span><span>P/04</span></p>
+                <div class="project-id"><svg class="poster-logo" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle cx="42" cy="42" r="24"/><path d="M60 60 L84 84"/><circle class="sig" cx="42" cy="42" r="7"/></svg><h2 id="p-indago-h">Indago</h2></div>
+                <p>Semantic search over ingested documents, for the reference material that isn't code.</p>
+                <p class="scar"><strong>Prototype:</strong> real links come before launch.</p>
+                <form method="dialog" class="knuckles"><a class="nerve" href="https://github.com/Derjyn">GitHub</a> <button>Close</button></form>
+            </dialog>
+            <dialog class="project-dialog p-syntagma" id="p-syntagma" aria-labelledby="p-syntagma-h">
+                <p class="mod-head lit"><span>Project</span><span>P/05</span></p>
+                <div class="project-id"><svg class="poster-logo" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><rect x="20" y="20" width="26" height="26"/><rect class="ink" x="54" y="20" width="26" height="26"/><rect class="ink" x="20" y="54" width="26" height="26"/><rect class="sig" x="54" y="54" width="26" height="26"/></svg><h2 id="p-syntagma-h">Syntagma</h2></div>
+                <p>The toolbox the other projects come from: memory, standards, search and the documentation framework, as one stack.</p>
+                <p class="scar"><strong>Prototype:</strong> real links come before launch.</p>
+                <form method="dialog" class="knuckles"><a class="nerve" href="https://github.com/Derjyn">GitHub</a> <button>Close</button></form>
+            </dialog>
+            <dialog class="project-dialog p-tabularium" id="p-tabularium" aria-labelledby="p-tabularium-h">
+                <p class="mod-head lit"><span>Project</span><span>P/06</span></p>
+                <div class="project-id"><svg class="poster-logo" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><path d="M16 24H84M16 42H84M16 60H84M16 78H58"/><circle class="sig" cx="76" cy="78" r="7"/></svg><h2 id="p-tabularium-h">Tabularium</h2></div>
+                <p>The hub across all projects: what exists, what has priority, and where each one left off.</p>
+                <p class="scar"><strong>Prototype:</strong> real links come before launch.</p>
+                <form method="dialog" class="knuckles"><a class="nerve" href="https://github.com/Derjyn">GitHub</a> <button>Close</button></form>
+            </dialog>
+            <!-- /build:project-dialogs -->
+        </section>
+
+        <!-- |>|>|>|>|>|>-- ARTICLES ------------------------------------------- -->
+
+        <section id="log" aria-labelledby="log-h">
+            <h2 class="label" id="log-h">S/03 / Log</h2>
+            <div class="spine">
+                <div class="tissue rib-4 article-index">
+                    <p class="mod-head"><span>Index</span><span>M/03</span></p>
+                    <!-- Newest first: the first item is what the panel opens with. -->
+                    <ol class="article-list" reversed>
+                        <!-- build:articles -->
+                        <li><a href="articles/rebuilt.html" data-slug="rebuilt"><span class="title">Rebuilt: the new derjyn.github.io<small>What changed, how it was made, and what it borrows from.</small></span><time datetime="2026-10-26">2026-10-26</time></a></li>
+                        <li><a href="articles/placeholder-three.html" data-slug="placeholder-three"><span class="title">Placeholder article three<small>A long one, to test reading in the panel.</small></span><time datetime="2026-10-25">2026-10-25</time></a></li>
+                        <li><a href="articles/placeholder-two.html" data-slug="placeholder-two"><span class="title">Placeholder article two<small>Code, a quote and an image.</small></span><time datetime="2026-10-20">2026-10-20</time></a></li>
+                        <li><a href="articles/placeholder-one.html" data-slug="placeholder-one"><span class="title">Placeholder article one<small>The shortest possible article.</small></span><time datetime="2026-10-12">2026-10-12</time></a></li>
+                        <!-- /build:articles -->
+                    </ol>
+                </div>
+                <div class="tissue rib-8 reader-mod">
+                    <p class="mod-head lit"><span>Reader</span><span>M/04</span></p>
+                    <div class="reader" id="reader">
+                        <!-- build:reader -->
+                        <p><a href="articles/rebuilt.html">Read the latest: Rebuilt: the new derjyn.github.io</a></p>
+                        <!-- /build:reader -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- |>|>|>|>|>|>-- OPERATOR ------------------------------------------- -->
+
+        <section id="operator" aria-labelledby="operator-h">
+            <h2 class="label" id="operator-h">S/04 / Operator</h2>
+            <div class="spine">
+                <div class="tissue rib-7">
+                    <p class="mod-head" id="card-h"><span>Data card</span><span>M/05</span></p>
+                    <table class="datacard" aria-labelledby="card-h">
+                        <tbody>
+                            <tr><th scope="row">Handle</th><td><span class="sigil">Derjyn</span></td></tr>
+                            <tr><th scope="row">Class</th><td>Dev wizard</td></tr>
+                            <tr><th scope="row">First rig</th><td>IBM 5155</td></tr>
+                        </tbody>
+                    </table>
+                    <p>Some call me a wizard, which is generous: I have an engineering brain and point it at whatever's in front of me. I write the code, I'm decent at design, and where my pixel pushing runs out, I art direct.</p>
+                    <p>It started on an <a href="img/ibm-5155.jpg" data-dialog="fig-ibm-5155">IBM 5155</a>, a thirty-pound "portable" with an amber screen, handed to me with a stack of printed manuals. They taught me BASICA, and I made it draw vector shapes across that amber glass.</p>
+                    <p>Since then I've tinkered with hundreds of languages: compiled, scripted and config. I've set up the environments to match, from Visual Studio and GCC to Unreal Engine, Rust and Go, on Windows and Linux alike.</p>
+                    <p>Today I keep dozens of projects open and hop between them. VSCode is the one tool I swear by. The rest I swear at. I work on facts, not flattery.</p>
+                    <p>Reach out about anything, except the game you think I should make.</p>
+                </div>
+                <div class="tissue rib-5 operator-fig">
+                    <p class="mod-head"><span>Fig. 01</span><span>M/06</span></p>
+                    <figure>
+                        <img class="dither" src="img/operator.jpg" width="684" height="684" alt="A close-up selfie of Derjyn, cut off by the frame: one eye on the camera, a short beard, a dark room behind, printed in ordered dither.">
+                        <figcaption>Fig. 01 / the operator / ordered dither, 4&times;4 Bayer</figcaption>
+                    </figure>
+                    <p><i>Lone wolf by trade. My work is a study in parallel development.</i></p>
+                </div>
+            </div>
+
+            <dialog id="fig-ibm-5155" aria-labelledby="fig-ibm-5155-h">
+                <p class="mod-head lit"><span>Fig. 02</span><span>M/07</span></p>
+                <figure>
+                    <img src="img/ibm-5155.jpg" width="960" height="576" alt="An IBM 5155 Portable Personal Computer: a beige case with a small built-in screen beside two floppy drives, its keyboard folded down in front.">
+                    <figcaption id="fig-ibm-5155-h">Fig. 02 / IBM 5155, the first rig. Photo: Fredrik Pihl, <a href="https://digitaltmuseum.org/021026362166/portabel-dator">Tekniska museet</a>, <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>; resized.</figcaption>
+                </figure>
+                <form method="dialog" class="knuckles"><button>Close</button></form>
+            </dialog>
+        </section>
+    </main>
+
+    <footer class="foot knuckles-split">
+        <span>derjyn.github.io</span>
+        <span class="foot-credit">Built on Corpus / static HTML</span>
+        <a href="https://github.com/Derjyn">GitHub</a>
+        <a href="legacy/">Legacy</a>
+        <span>End of line</span>
+    </footer>
+</body>
+</html>
+<!-- ]-]-] EOF ]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]- -->

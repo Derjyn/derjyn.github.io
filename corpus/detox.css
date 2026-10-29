@@ -1,0 +1,76 @@
+/* ]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]
+   Detox
+   Browser reset and normalizer: the first layer of the Corpus stack.
+   ]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-] */
+
+@layer detox {
+
+/* |>|>|>|>|>|>-- BOX MODEL ------------------------------------------------- */
+
+:where(*, *::before, *::after) {
+    box-sizing: border-box;
+}
+
+:where(*) {
+    margin: 0;
+}
+
+/* Corpus's one !important: any author display beats the browser's [hidden], and important in the first layer outranks every later one. */
+:where([hidden]:not([hidden="until-found"])) {
+    /* eslint-disable-next-line css/no-important -- the stated exception: hidden must win over every layer */
+    display: none !important;
+}
+
+/* |>|>|>|>|>|>-- TEXT ------------------------------------------------------ */
+
+/* overflow-wrap only acts on a word that would overflow, so it is safe on everything. */
+:where(body) {
+    line-height: 1.5;
+    overflow-wrap: break-word;
+}
+
+/* Browsers shrink a lone monospace to 13px; the doubled family plus 1em keeps the surrounding size. */
+:where(code, kbd, samp, pre) {
+    font-family: monospace, monospace;
+    font-size: 1em;
+}
+
+:where(sub, sup) {
+    position: relative;
+    font-size: 75%;
+    line-height: 0;
+    vertical-align: baseline;
+}
+
+:where(sub) {
+    inset-block-end: -0.25em;
+}
+
+:where(sup) {
+    inset-block-start: -0.5em;
+}
+
+/* |>|>|>|>|>|>-- MEDIA ----------------------------------------------------- */
+
+:where(img, picture, video, canvas) {
+    display: block;
+}
+
+/* svg stays inline: it is often an icon inside text or a button. Embeds keep their height attribute. */
+:where(img, picture, video, canvas, svg, iframe, embed, object) {
+    max-inline-size: 100%;
+}
+
+:where(img, video) {
+    block-size: auto;
+}
+
+/* |>|>|>|>|>|>-- FORMS ----------------------------------------------------- */
+
+:where(input, button, textarea, select) {
+    font: inherit;
+}
+
+}
+
+/* ]-]-] EOF ]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]- */

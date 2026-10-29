@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320" width="480" height="320">
+    <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#0c0c0c"/>
+            <stop offset="0.7" stop-color="#8f8f8f"/>
+            <stop offset="1" stop-color="#e6e6e6"/>
+        </linearGradient>
+        <radialGradient id="ball" cx="0.34" cy="0.3" r="0.8">
+            <stop offset="0" stop-color="#ffffff"/>
+            <stop offset="0.45" stop-color="#9a9a9a"/>
+            <stop offset="1" stop-color="#121212"/>
+        </radialGradient>
+        <linearGradient id="far" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#7a7a7a"/>
+            <stop offset="1" stop-color="#3a3a3a"/>
+        </linearGradient>
+        <linearGradient id="near" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#3c3c3c"/>
+            <stop offset="1" stop-color="#050505"/>
+        </linearGradient>
+    </defs>
+    <rect width="480" height="320" fill="url(#sky)"/>
+    <circle cx="300" cy="118" r="78" fill="url(#ball)"/>
+    <ellipse cx="300" cy="126" rx="134" ry="22" fill="none" stroke="#d4d4d4" stroke-width="5" transform="rotate(-12 300 126)"/>
+    <path d="M0 250 L70 205 L120 228 L190 178 L260 234 L330 208 L400 238 L480 198 L480 320 L0 320 Z" fill="url(#far)"/>
+    <path d="M0 292 L90 256 L170 282 L250 250 L340 286 L420 262 L480 280 L480 320 L0 320 Z" fill="url(#near)"/>
+</svg>

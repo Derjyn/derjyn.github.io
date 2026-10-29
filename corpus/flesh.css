@@ -1,0 +1,727 @@
+/* ]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]
+   Flesh
+   Visual layer: a plain default skin for bare HTML, and the engine that dresses it in a skin atlas.
+   ]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-] */
+
+@layer flesh {
+
+/* |>|>|>|>|>|>-- TOKENS ---------------------------------------------------- */
+
+:root {
+    --flesh-paper: oklch(96% 0.008 70);
+    --flesh-ink: oklch(22% 0.025 55);
+    --flesh-accent: oklch(46% 0.16 25);
+    --flesh-bruise: oklch(72% 0.13 70);
+    --flesh-color-scheme: light dark;
+
+    --flesh-font: system-ui, sans-serif;
+    --flesh-font-mono: Consolas, Menlo, monospace;
+    /* Mono beside a narrow body font reads larger than its size; a skin scales it here. */
+    --flesh-code-size: 1em;
+    --flesh-type-1: clamp(0.833rem, 0.811rem + 0.111vw, 0.9rem);
+    --flesh-type-2: clamp(1rem, 0.958rem + 0.208vw, 1.125rem);
+    --flesh-type-3: clamp(1.2rem, 1.131rem + 0.344vw, 1.406rem);
+    --flesh-type-4: clamp(1.44rem, 1.334rem + 0.53vw, 1.758rem);
+    --flesh-type-5: clamp(1.728rem, 1.572rem + 0.782vw, 2.197rem);
+    --flesh-type-6: clamp(2.074rem, 1.849rem + 1.122vw, 2.747rem);
+    --flesh-leading: 1.5;
+    --flesh-leading-tight: 1.15;
+    /* About 65 characters of body text, and one length on every element: ch would be each heading's own. */
+    --flesh-measure: calc(var(--flesh-type-2) * 36);
+    --flesh-border-width: 1px;
+    --flesh-radius: 0.25rem;
+    /* Drop shadows are CSS, not atlas art: art outside the box would show the element's own background. */
+    --flesh-shadow-button: none;
+    --flesh-shadow-box: none;
+    --flesh-shadow-dialog: none;
+
+    --flesh-atlas-cell: 1em;
+    --flesh-atlas-rendering: auto;
+    --flesh-frame-repeat: repeat;
+
+    --flesh-heading-weight: bold;
+    --flesh-heading-tracking: -0.01em;
+    --flesh-heading-case: none;
+    --flesh-texture-size: calc(2 * var(--flesh-atlas-cell));
+
+    /* Each role is a light and a dark value; color-scheme picks one, so --flesh-color-scheme is the theme switch.
+       oklab keeps the accent's hue in the dark link; oklch would drag it toward the paper's. */
+    --flesh-surface: light-dark(var(--flesh-paper), var(--flesh-ink));
+    --flesh-text: light-dark(var(--flesh-ink), var(--flesh-paper));
+    --flesh-muted: light-dark(color-mix(in oklch, var(--flesh-ink) 62%, var(--flesh-paper)), color-mix(in oklch, var(--flesh-paper) 62%, var(--flesh-ink)));
+    --flesh-line: light-dark(color-mix(in oklch, var(--flesh-ink) 25%, var(--flesh-paper)), color-mix(in oklch, var(--flesh-paper) 25%, var(--flesh-ink)));
+    --flesh-tint: light-dark(color-mix(in oklch, var(--flesh-ink) 6%, var(--flesh-paper)), color-mix(in oklch, var(--flesh-paper) 6%, var(--flesh-ink)));
+    --flesh-link: light-dark(var(--flesh-accent), color-mix(in oklab, var(--flesh-accent) 50%, var(--flesh-paper)));
+    --flesh-on-accent: var(--flesh-paper);
+    --flesh-danger: var(--flesh-link);
+}
+
+/* |>|>|>|>|>|>-- PAGE ------------------------------------------------------ */
+
+:root {
+    color-scheme: var(--flesh-color-scheme);
+    /* eslint-disable-next-line css/use-baseline -- harmless where unsupported: controls keep the browser's default color */
+    accent-color: var(--flesh-link);
+    background-color: var(--flesh-surface);
+    color: var(--flesh-text);
+}
+
+:where(body) {
+    font-family: var(--flesh-font);
+    font-size: var(--flesh-type-2);
+    line-height: var(--flesh-leading);
+}
+
+/* |>|>|>|>|>|>-- TEXT ------------------------------------------------------ */
+
+:where(h1, h2, h3, h4, h5, h6) {
+    font-family: var(--flesh-font-heading, var(--flesh-font));
+    font-weight: var(--flesh-heading-weight);
+    line-height: var(--flesh-leading-tight);
+    letter-spacing: var(--flesh-heading-tracking);
+    text-transform: var(--flesh-heading-case);
+    /* eslint-disable-next-line css/use-baseline -- harmless where unsupported: headings wrap normally */
+    text-wrap: balance;
+}
+
+:where(h1) { font-size: var(--flesh-type-6); }
+:where(h2) { font-size: var(--flesh-type-5); }
+:where(h3) { font-size: var(--flesh-type-4); }
+:where(h4) { font-size: var(--flesh-type-3); }
+:where(h5, h6) { font-size: var(--flesh-type-2); }
+
+/* Text shares one right edge; figures, tables and code keep their own width (galleries, data, long lines). */
+:where(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, blockquote, figcaption, hr, details, fieldset) {
+    max-inline-size: var(--flesh-measure);
+}
+
+:where(small, figcaption, caption) {
+    font-size: var(--flesh-type-1);
+    color: var(--flesh-muted);
+}
+
+/* Indented like the cells' text, so the table has one left edge. */
+:where(caption) {
+    padding-block-end: var(--bones-space-2);
+    padding-inline: var(--bones-space-3);
+    text-align: start;
+}
+
+:where(figure > figcaption:not(:first-child)) {
+    margin-block-start: var(--bones-space-2);
+}
+
+/* Space goes after, never before: more before a small heading, most before a big one or a new section (a heading
+   right after a heading stays close). Page bands and grid items skip it: a margin would open a strip between
+   bands and stretch a grid row. */
+:where(p, ul, ol, dl, blockquote, pre, table, figure, hr, details, h1, h2, h3, h4, h5, h6, section, article, aside, form, fieldset, .organ, .tissue, .scar, .bruise):where(:not(.skeleton > *, .spine > *, .spine-auto > *, .knuckles > *, .knuckles-split > *)) {
+    &:where(:not(:last-child)) {
+        margin-block-end: var(--bones-space-3);
+    }
+
+    &:where(:not(h1, h2, h3, h4, h5, h6):has(+ :is(h3, h4, h5, h6))) {
+        margin-block-end: var(--bones-space-5);
+    }
+
+    &:where(:not(h1, h2, h3, h4, h5, h6):has(+ :is(h1, h2, section, article))) {
+        margin-block-end: var(--bones-space-6);
+    }
+}
+
+:where(ul, ol) {
+    padding-inline-start: var(--bones-space-4);
+}
+
+:where(nav ul, nav ol) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--bones-space-3);
+    padding-inline-start: 0;
+    list-style-type: none;
+}
+
+:where(dt) {
+    font-weight: bold;
+}
+
+:where(dd) {
+    padding-inline-start: var(--bones-space-4);
+}
+
+:where(blockquote) {
+    padding-inline-start: var(--bones-space-3);
+    border-inline-start: calc(3 * var(--flesh-border-width)) solid var(--flesh-line);
+    color: var(--flesh-muted);
+}
+
+/* A line centered in a 1em box, so a drawn divider strip can replace it without moving anything. */
+:where(hr) {
+    block-size: 1em;
+    border: 0;
+    background: linear-gradient(var(--flesh-line), var(--flesh-line)) center / 100% var(--flesh-border-width) no-repeat;
+}
+
+:where(mark) {
+    background-color: color-mix(in oklab, var(--flesh-link) 25%, var(--flesh-surface));
+    color: inherit;
+}
+
+/* |>|>|>|>|>|>-- LINKS AND FOCUS ------------------------------------------- */
+
+:where(a) {
+    color: var(--flesh-link);
+    text-underline-offset: 0.15em;
+}
+
+:where(a:hover) {
+    color: color-mix(in oklab, var(--flesh-link) 70%, var(--flesh-text));
+    text-decoration-thickness: 0.125em;
+}
+
+/* Navigation and the site's name read as links by where they sit; the underline comes back on hover. */
+:where(nav a, header > a) {
+    text-decoration-line: none;
+}
+
+:where(nav a, header > a):where(:hover) {
+    text-decoration-line: underline;
+}
+
+/* The current page is already open: it reads as text, set off by weight, not color alone. */
+:where(a[aria-current]:not([aria-current="false"])) {
+    color: inherit;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+:where(:focus-visible) {
+    outline: 2px solid var(--flesh-link);
+    outline-offset: 2px;
+}
+
+/* |>|>|>|>|>|>-- CODE ------------------------------------------------------ */
+
+:where(code, kbd, samp, pre) {
+    font-family: var(--flesh-font-mono);
+    font-size: var(--flesh-code-size);
+}
+
+:where(code, kbd, samp) {
+    padding-inline: 0.25em;
+    border-radius: var(--flesh-radius);
+    background-color: var(--flesh-tint);
+}
+
+:where(kbd) {
+    border: var(--flesh-border-width) solid var(--flesh-line);
+}
+
+:where(pre) {
+    padding: var(--bones-space-3);
+    overflow-x: auto;
+    background-color: var(--flesh-tint);
+}
+
+/* Code in a pre is already scaled once. */
+:where(pre code) {
+    padding: 0;
+    background: none;
+    font-size: 1em;
+}
+
+/* |>|>|>|>|>|>-- TABLES ---------------------------------------------------- */
+
+/* A block box around the table grid: a wide table scrolls in place instead of pushing a phone's page sideways. */
+:where(table) {
+    display: block;
+    max-inline-size: max-content;
+    overflow-x: auto;
+    border-collapse: collapse;
+}
+
+:where(th, td) {
+    padding: var(--bones-space-2) var(--bones-space-3);
+    border-block-end: var(--flesh-border-width) solid var(--flesh-line);
+    text-align: start;
+}
+
+:where(thead th) {
+    background-color: var(--flesh-tint);
+}
+
+/* |>|>|>|>|>|>-- INPUTS ---------------------------------------------------- */
+
+/* Every input starts as a text field; buttons, checkboxes, radios and sliders override it below. */
+:where(input, textarea, select) {
+    padding: var(--bones-space-1) var(--bones-space-2);
+    border: var(--flesh-border-width) solid var(--flesh-muted);
+    border-radius: var(--flesh-radius);
+    max-inline-size: 100%;
+    background-color: var(--flesh-surface);
+    color: var(--flesh-text);
+    font: inherit;
+}
+
+:where(input, textarea, select):where(:hover) {
+    border-color: var(--flesh-text);
+}
+
+:where(input, textarea, select):where(:user-invalid) {
+    border-color: var(--flesh-danger);
+}
+
+:where(input, textarea, select):where(:disabled) {
+    border-color: var(--flesh-line);
+    background-color: var(--flesh-tint);
+    color: var(--flesh-muted);
+    cursor: not-allowed;
+}
+
+/* A label right before its field sits above it, and the field takes the line. */
+:where(label):where(:has(+ :is(input:not([type="checkbox"], [type="radio"], [type="submit"], [type="reset"], [type="button"], [type="hidden"]), select, textarea))) {
+    display: block;
+}
+
+:where(label) + :where(input:not([type="checkbox"], [type="radio"], [type="submit"], [type="reset"], [type="button"], [type="hidden"]), select, textarea) {
+    display: block;
+    inline-size: 100%;
+    max-inline-size: var(--flesh-measure);
+}
+
+/* A stacked field keeps the next label, or the button, off it. */
+:where(label) + :where(input:not([type="checkbox"], [type="radio"], [type="submit"], [type="reset"], [type="button"], [type="hidden"]), select, textarea):where(:not(:last-child)) {
+    margin-block-end: var(--bones-space-3);
+}
+
+:where(label):where(:has(> [type="checkbox"], > [type="radio"])) {
+    margin-inline-end: var(--bones-space-3);
+}
+
+:where(fieldset) {
+    padding: var(--bones-space-3);
+    border: var(--flesh-border-width) solid var(--flesh-line);
+    border-radius: var(--flesh-radius);
+}
+
+:where(legend) {
+    padding-inline: var(--bones-space-1);
+}
+
+/* |>|>|>|>|>|>-- BUTTONS --------------------------------------------------- */
+
+:where(button, [type="button"], [type="submit"], [type="reset"], a.nerve) {
+    padding: var(--bones-space-2) var(--bones-space-3);
+    border: var(--flesh-border-width) solid var(--flesh-muted);
+    border-radius: var(--flesh-radius);
+    background-color: var(--flesh-tint);
+    box-shadow: var(--flesh-shadow-button);
+    color: var(--flesh-text);
+    font: inherit;
+}
+
+:where(button, [type="button"], [type="submit"], [type="reset"], a.nerve):where(:hover) {
+    background-color: color-mix(in oklch, var(--flesh-text) 12%, var(--flesh-surface));
+}
+
+/* A pressed button loses its shadow: it sinks to the page. */
+:where(button, [type="button"], [type="submit"], [type="reset"], a.nerve):where(:active) {
+    background-color: color-mix(in oklch, var(--flesh-text) 20%, var(--flesh-surface));
+    box-shadow: none;
+}
+
+/* The raw accent in both schemes, so a bright accent works: the skin sets the text on it. */
+:where(.nerve) {
+    border-color: var(--flesh-accent);
+    background-color: var(--flesh-accent);
+    color: var(--flesh-on-accent);
+}
+
+:where(.nerve:hover) {
+    background-color: color-mix(in oklab, var(--flesh-accent) 80%, var(--flesh-text));
+}
+
+:where(.nerve:active) {
+    background-color: color-mix(in oklab, var(--flesh-accent) 65%, var(--flesh-text));
+}
+
+/* A link that looks like a button: Download, View on GitHub. */
+:where(a.nerve) {
+    display: inline-block;
+    text-decoration: none;
+}
+
+:where(button, [type="button"], [type="submit"], [type="reset"]):where(:disabled) {
+    border-color: var(--flesh-line);
+    background-color: var(--flesh-tint);
+    box-shadow: none;
+    color: var(--flesh-muted);
+    cursor: not-allowed;
+}
+
+/* |>|>|>|>|>|>-- CHECKBOXES AND RADIOS ------------------------------------- */
+
+/* Native, in the accent color; a skin can draw its own checkboxes and radios (see the atlas). Sliders stay native. */
+:where([type="checkbox"], [type="radio"], [type="range"]) {
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+    font: inherit;
+    vertical-align: middle;
+}
+
+/* |>|>|>|>|>|>-- BOXES ----------------------------------------------------- */
+
+:where(.organ, .tissue, dialog) {
+    padding: var(--bones-space-4);
+    border: var(--flesh-border-width) solid var(--flesh-line);
+}
+
+:where(.organ, .tissue) {
+    box-shadow: var(--flesh-shadow-box);
+}
+
+:where(.organ) {
+    border-radius: var(--flesh-radius);
+    background-color: var(--flesh-surface);
+}
+
+:where(.tissue) {
+    background-color: var(--flesh-tint);
+}
+
+/* Detox zeroes margins, and dialogs center with margin: auto. */
+:where(dialog) {
+    margin: auto;
+    max-inline-size: min(var(--flesh-measure), 100% - 2 * var(--bones-gutter));
+    background-color: var(--flesh-surface);
+    box-shadow: var(--flesh-shadow-dialog);
+    color: var(--flesh-text);
+}
+
+:where(dialog)::backdrop {
+    background-color: color-mix(in oklch, var(--flesh-ink) 60%, transparent);
+}
+
+:where(.scar, .bruise) {
+    padding: var(--bones-space-3);
+    border-inline-start: calc(3 * var(--flesh-border-width)) solid var(--flesh-link);
+    background-color: color-mix(in oklab, var(--flesh-link) 8%, var(--flesh-surface));
+}
+
+:where(.bruise) {
+    border-color: var(--flesh-bruise);
+    background-color: color-mix(in oklab, var(--flesh-bruise) 15%, var(--flesh-surface));
+}
+
+:where(.freckle) {
+    display: inline-block;
+    padding-inline: var(--bones-space-2);
+    border: var(--flesh-border-width) solid var(--flesh-line);
+    border-radius: var(--flesh-radius);
+    background-color: var(--flesh-tint);
+    font-size: var(--flesh-type-1);
+}
+
+/* |>|>|>|>|>|>-- ATLAS ----------------------------------------------------- */
+
+/* Everything above is the default skin. A skin's atlas replaces it slot by slot; an empty slot keeps the default. */
+
+/* |>-- Page art: texture, cursors and pixel rendering */
+
+:root {
+    background-image: var(--flesh-texture, none);
+    background-size: var(--flesh-texture-size);
+    image-rendering: var(--flesh-atlas-rendering);
+    cursor: var(--flesh-cursor, auto);
+}
+
+/* The atlas rendering is set only where atlas art is painted, so the site's own images and backgrounds keep theirs. */
+:where(body, img, video, canvas) {
+    image-rendering: auto;
+}
+
+:where(hr) {
+    image-rendering: var(--flesh-atlas-rendering);
+}
+
+:where(a:any-link, button, summary, label, select, [type="checkbox"], [type="radio"], [type="submit"], [type="reset"], [type="button"]) {
+    cursor: var(--flesh-cursor-pointer, pointer);
+}
+
+/* |>-- Frames: one 9-slice rule for every framed element */
+
+/* The art always draws a cell wide; the border is only as wide as the drawn part (Pack measures it), so the rest overlaps the padding. */
+:where(button, a.nerve, textarea, select, input:not([type="checkbox"], [type="radio"], [type="range"]), pre, blockquote, dialog, .freckle, .scar, .bruise, .tissue, .organ) {
+    border-style: solid;
+    border-image-source: var(--_frame, none);
+    border-image-slice: 33.3333%;
+    border-image-width: var(--flesh-atlas-cell);
+    border-image-repeat: var(--flesh-frame-repeat);
+    image-rendering: var(--flesh-atlas-rendering);
+}
+
+/* |>-- Frame map: which 3x3 frame dresses which element, and the border width Pack measured when drawn */
+
+:where(textarea, select, input:not([type="checkbox"], [type="radio"], [type="range"])) {
+    --_frame: var(--flesh-frame-input);
+    border-width: var(--flesh-frame-input-width, var(--flesh-border-width));
+}
+
+:where(button, [type="button"], [type="submit"], [type="reset"], a.nerve) {
+    --_frame: var(--flesh-frame-button);
+    border-width: var(--flesh-frame-button-width, var(--flesh-border-width));
+}
+
+:where(.freckle) {
+    --_frame: var(--flesh-frame-tag);
+    border-width: var(--flesh-frame-tag-width, var(--flesh-border-width));
+}
+
+:where(.tissue) {
+    --_frame: var(--flesh-frame-panel);
+    border-width: var(--flesh-frame-panel-width, var(--flesh-border-width));
+}
+
+:where(.organ) {
+    --_frame: var(--flesh-frame-card);
+    border-width: var(--flesh-frame-card-width, var(--flesh-border-width));
+}
+
+:where(dialog) {
+    --_frame: var(--flesh-frame-dialog);
+    border-width: var(--flesh-frame-dialog-width, var(--flesh-border-width));
+}
+
+:where(pre) {
+    --_frame: var(--flesh-frame-code);
+    border-width: var(--flesh-frame-code-width, 0);
+}
+
+:where(blockquote) {
+    --_frame: var(--flesh-frame-quote);
+    border-block-width: var(--flesh-frame-quote-width, 0);
+    border-inline-width: var(--flesh-frame-quote-width, calc(3 * var(--flesh-border-width)) 0);
+}
+
+:where(.scar, .bruise) {
+    --_frame: var(--flesh-frame-callout);
+    border-block-width: var(--flesh-frame-callout-width, 0);
+    border-inline-width: var(--flesh-frame-callout-width, calc(3 * var(--flesh-border-width)) 0);
+}
+
+/* |>-- Frame states: Pack writes every state of a drawn frame, drawn or derived from the default */
+
+:where(textarea, select, input):where(:hover) {
+    --_frame: var(--flesh-frame-input-hover, var(--flesh-frame-input));
+}
+
+:where(textarea, select, input):where(:user-invalid) {
+    --_frame: var(--flesh-frame-input-invalid, var(--flesh-frame-input));
+}
+
+:where(textarea, select, input):where(:disabled) {
+    --_frame: var(--flesh-frame-input-disabled, var(--flesh-frame-input));
+}
+
+:where(button, [type="button"], [type="submit"], [type="reset"], a.nerve):where(:hover) {
+    --_frame: var(--flesh-frame-button-hover, var(--flesh-frame-button));
+}
+
+:where(button, [type="button"], [type="submit"], [type="reset"], a.nerve):where(:active) {
+    --_frame: var(--flesh-frame-button-pressed, var(--flesh-frame-button));
+}
+
+:where(button, [type="button"], [type="submit"], [type="reset"]):where(:disabled) {
+    --_frame: var(--flesh-frame-button-disabled, var(--flesh-frame-button));
+}
+
+/* |>-- Strips: the divider, 3x1 art (cap, middle, cap) whose middle tiles */
+
+/* Halves, not a filled middle: a fill with no top or bottom edge keeps its native width and stretches. */
+:where(hr) {
+    block-size: var(--flesh-atlas-cell);
+    border: 0 solid transparent;
+    border-image: var(--flesh-strip-divider, none) 50% 33.3333% / calc(var(--flesh-atlas-cell) / 2) var(--flesh-atlas-cell) / 0 var(--flesh-frame-repeat);
+}
+
+/* |>-- Packed singles: select arrow and corner flourishes */
+
+:where(select) {
+    padding-inline-end: var(--flesh-select-arrow-room, var(--bones-space-2));
+    background-image: var(--flesh-select-arrow, none);
+    background-repeat: no-repeat;
+    background-position: right var(--bones-space-2) center;
+    background-size: var(--flesh-atlas-cell);
+}
+
+:where(.organ, .tissue, dialog) {
+    background-image:
+        var(--flesh-flourish-tl, none), var(--flesh-flourish-tr, none),
+        var(--flesh-flourish-bl, none), var(--flesh-flourish-br, none);
+    background-position: left top, right top, left bottom, right bottom;
+    background-repeat: no-repeat;
+    background-size: var(--flesh-atlas-cell);
+}
+
+/* |>-- Sprites: an element one cell big is a window onto the atlas */
+
+/* eslint-disable css/prefer-logical-properties -- atlas axes are physical; logical sizes would swap in vertical writing modes */
+:where(.tattoo, [class^="tattoo-"], [class*=" tattoo-"], .birthmark, .birthmark-small, [type="checkbox"], [type="radio"]),
+:where(ul:not([class], nav ul) > li, summary)::before {
+    width: calc(var(--flesh-sprite-w, 1) * var(--flesh-atlas-cell));
+    height: calc(var(--flesh-sprite-h, 1) * var(--flesh-atlas-cell));
+    background-image: var(--flesh-atlas, none);
+    background-repeat: no-repeat;
+    background-size: calc(16 * var(--flesh-atlas-cell)) auto;
+    background-position:
+        calc(var(--flesh-sprite-col, 0) * -1 * var(--flesh-atlas-cell))
+        calc(var(--flesh-sprite-row, 0) * -1 * var(--flesh-atlas-cell));
+    image-rendering: var(--flesh-atlas-rendering);
+}
+/* eslint-enable css/prefer-logical-properties */
+
+:where(.tattoo, [class^="tattoo-"], [class*=" tattoo-"], .birthmark, .birthmark-small) {
+    vertical-align: middle;
+}
+
+/* mono icons: the atlas becomes a mask filled with the text color. */
+:where(.tattoo, [class^="tattoo-"], [class*=" tattoo-"]) {
+    background-image: var(--flesh-icon-image, var(--flesh-atlas, none));
+    background-color: var(--flesh-icon-fill, transparent);
+    mask-image: var(--flesh-icon-mask, none);
+    mask-repeat: no-repeat;
+    mask-size: calc(16 * var(--flesh-atlas-cell)) auto;
+    mask-position:
+        calc(var(--flesh-sprite-col, 0) * -1 * var(--flesh-atlas-cell))
+        calc(var(--flesh-sprite-row, 0) * -1 * var(--flesh-atlas-cell));
+}
+
+:where(ul:not([class], nav ul) > li, summary)::before {
+    content: "";
+    vertical-align: middle;
+}
+
+:where(ul:not([class], nav ul) > li)::before {
+    margin-inline: calc(-1 * var(--flesh-atlas-cell) - var(--bones-space-2)) var(--bones-space-2);
+}
+
+:where(summary)::before {
+    margin-inline-end: var(--bones-space-2);
+}
+
+/* |>-- Sprite map: name to cell, as laid out in the atlas */
+
+:where(.birthmark) { --flesh-sprite-w: 8; --flesh-sprite-h: 2; }
+:where(.birthmark-small) { --flesh-sprite-col: 8; --flesh-sprite-w: 4; --flesh-sprite-h: 2; }
+
+:where([type="checkbox"], [type="radio"]) { --flesh-sprite-row: 11; }
+:where([type="checkbox"]) { --flesh-sprite-col: 0; }
+:where([type="checkbox"]:checked) { --flesh-sprite-col: 1; }
+:where([type="checkbox"]:indeterminate) { --flesh-sprite-col: 2; }
+:where([type="checkbox"]:disabled) { --flesh-sprite-col: 3; }
+:where([type="checkbox"]:disabled:checked) { --flesh-sprite-col: 4; }
+:where([type="radio"]) { --flesh-sprite-col: 5; }
+:where([type="radio"]:checked) { --flesh-sprite-col: 6; }
+:where([type="radio"]:disabled) { --flesh-sprite-col: 7; }
+:where([type="radio"]:disabled:checked) { --flesh-sprite-col: 8; }
+
+:where(ul:not([class], nav ul) > li)::before { --flesh-sprite-col: 15; --flesh-sprite-row: 6; }
+:where(summary)::before { --flesh-sprite-col: 15; --flesh-sprite-row: 7; }
+:where(details[open] > summary)::before { --flesh-sprite-row: 8; }
+
+:where(.tattoo-menu) { --flesh-sprite-col: 0; --flesh-sprite-row: 13; }
+:where(.tattoo-close) { --flesh-sprite-col: 1; --flesh-sprite-row: 13; }
+:where(.tattoo-search) { --flesh-sprite-col: 2; --flesh-sprite-row: 13; }
+:where(.tattoo-home) { --flesh-sprite-col: 3; --flesh-sprite-row: 13; }
+:where(.tattoo-arrow-up) { --flesh-sprite-col: 4; --flesh-sprite-row: 13; }
+:where(.tattoo-arrow-right) { --flesh-sprite-col: 5; --flesh-sprite-row: 13; }
+:where(.tattoo-arrow-down) { --flesh-sprite-col: 6; --flesh-sprite-row: 13; }
+:where(.tattoo-arrow-left) { --flesh-sprite-col: 7; --flesh-sprite-row: 13; }
+:where(.tattoo-chevron-up) { --flesh-sprite-col: 8; --flesh-sprite-row: 13; }
+:where(.tattoo-chevron-right) { --flesh-sprite-col: 9; --flesh-sprite-row: 13; }
+:where(.tattoo-chevron-down) { --flesh-sprite-col: 10; --flesh-sprite-row: 13; }
+:where(.tattoo-chevron-left) { --flesh-sprite-col: 11; --flesh-sprite-row: 13; }
+:where(.tattoo-check) { --flesh-sprite-col: 12; --flesh-sprite-row: 13; }
+:where(.tattoo-info) { --flesh-sprite-col: 13; --flesh-sprite-row: 13; }
+:where(.tattoo-warning) { --flesh-sprite-col: 14; --flesh-sprite-row: 13; }
+:where(.tattoo-error) { --flesh-sprite-col: 15; --flesh-sprite-row: 13; }
+:where(.tattoo-external) { --flesh-sprite-col: 0; --flesh-sprite-row: 14; }
+:where(.tattoo-link) { --flesh-sprite-col: 1; --flesh-sprite-row: 14; }
+:where(.tattoo-copy) { --flesh-sprite-col: 2; --flesh-sprite-row: 14; }
+:where(.tattoo-mail) { --flesh-sprite-col: 3; --flesh-sprite-row: 14; }
+:where(.tattoo-plus) { --flesh-sprite-col: 4; --flesh-sprite-row: 14; }
+:where(.tattoo-minus) { --flesh-sprite-col: 5; --flesh-sprite-row: 14; }
+:where(.tattoo-download) { --flesh-sprite-col: 6; --flesh-sprite-row: 14; }
+:where(.tattoo-rss) { --flesh-sprite-col: 7; --flesh-sprite-row: 14; }
+:where(.tattoo-tag) { --flesh-sprite-col: 8; --flesh-sprite-row: 14; }
+:where(.tattoo-calendar) { --flesh-sprite-col: 9; --flesh-sprite-row: 14; }
+:where(.tattoo-clock) { --flesh-sprite-col: 10; --flesh-sprite-row: 14; }
+:where(.tattoo-user) { --flesh-sprite-col: 11; --flesh-sprite-row: 14; }
+:where(.tattoo-sun) { --flesh-sprite-col: 12; --flesh-sprite-row: 14; }
+:where(.tattoo-moon) { --flesh-sprite-col: 13; --flesh-sprite-row: 14; }
+:where(.tattoo-play) { --flesh-sprite-col: 14; --flesh-sprite-row: 14; }
+:where(.tattoo-pause) { --flesh-sprite-col: 15; --flesh-sprite-row: 14; }
+
+/* |>-- Switches: where drawn art replaces a native look; Pack sets them only for slots it found art in */
+
+:where([type="checkbox"]) { appearance: var(--flesh-check-appearance, auto); }
+:where([type="radio"]) { appearance: var(--flesh-radio-appearance, auto); }
+/* A native control keeps the text size; only drawn ones take the cell size. */
+:where([type="checkbox"]) { inline-size: var(--flesh-check-size, 1em); block-size: var(--flesh-check-size, 1em); }
+:where([type="radio"]) { inline-size: var(--flesh-radio-size, 1em); block-size: var(--flesh-radio-size, 1em); }
+:where(select) { appearance: var(--flesh-select-appearance, auto); }
+:where(.tattoo, [class^="tattoo-"], [class*=" tattoo-"], .birthmark, .birthmark-small) { display: var(--flesh-sprite-display, none); }
+:where(ul:not([class], nav ul)) { list-style-type: var(--flesh-bullet-style, disc); }
+:where(ul ul:not([class], nav ul)) { list-style-type: var(--flesh-bullet-style, circle); }
+:where(ul:not([class], nav ul) > li)::before { display: var(--flesh-bullet-display, none); }
+:where(summary) { list-style-type: var(--flesh-marker-style, disclosure-closed); }
+:where(details[open] > summary) { list-style-type: var(--flesh-marker-style, disclosure-open); }
+:where(summary)::before { display: var(--flesh-marker-display, none); }
+
+/* |>|>|>|>|>|>-- FORCED COLORS --------------------------------------------- */
+
+/* System colors replace the skin: drawn frames go plain, controls go native, mono icons take the text color. */
+@media (forced-colors: active) {
+    :where(button, a.nerve, input, textarea, select, pre, blockquote, dialog, .freckle, .scar, .bruise, .tissue, .organ) {
+        border-width: var(--flesh-border-width);
+        border-image-source: none;
+    }
+
+    :where([type="checkbox"], [type="radio"], select) {
+        appearance: auto;
+        background-image: none;
+    }
+
+    :where([type="checkbox"], [type="radio"]) {
+        inline-size: 1em;
+        block-size: 1em;
+    }
+
+    :where(select) {
+        padding-inline-end: var(--bones-space-2);
+    }
+
+    :where(hr) {
+        border-image: none;
+        border-block-start: var(--flesh-border-width) solid CanvasText;
+    }
+
+    :where(ul:not([class], nav ul) > li, summary)::before {
+        display: none;
+    }
+
+    :where(ul:not([class], nav ul), summary) {
+        list-style-type: revert;
+    }
+
+    :where(.tattoo, [class^="tattoo-"], [class*=" tattoo-"]) {
+        /* eslint-disable-next-line css/use-baseline -- every browser with a forced colors mode supports it */
+        forced-color-adjust: none;
+        color: CanvasText;
+    }
+}
+
+}
+
+/* ]-]-] EOF ]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]- */
+

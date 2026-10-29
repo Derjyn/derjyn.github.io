@@ -1,0 +1,18 @@
+<!-- ]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]
+     derjyn.github.io: favicon
+     The mark (logo.svg) in the skin's ink and signal for the browser's scheme.
+     A favicon can't read tokens or load other files, so the colors are hex
+     from derjyn.css's OKLCH and the drawing is a copy of logo.svg's.
+     ]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-] -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" shape-rendering="crispEdges">
+    <style>
+        .ink { fill: #27231e; }
+        .eye { fill: #a83825; }
+        @media (prefers-color-scheme: dark) {
+            .ink { fill: #e9ebef; }
+            .eye { fill: #f84d3e; }
+        }
+    </style>
+    <path class="ink" fill-rule="evenodd" d="M8 0H16V16H8V15H7V14H6V12H0V10H4V9H0V7H4V6H0V4H6V2H7V1H8ZM10 4V12H13V4Z"/>
+    <rect class="eye" x="10" y="4" width="3" height="8"/>
+</svg>

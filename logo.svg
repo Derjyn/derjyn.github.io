@@ -1,0 +1,15 @@
+<!-- ]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]
+     derjyn.github.io: the mark
+     The old derjyn.com prototype mark redrawn on a 16x16 cell grid (L/23 in
+     lab/derjyn/logo/): three teeth on a stem (a mirrored E, the Ǝ of the name)
+     and a flat-backed head with one lit eye. Pages draw it with
+     <use href="logo.svg#mark">: the head takes the text color, the eye the
+     element's fill. Opened on its own it shows the paper colors. Draw it at
+     multiples of 16px so every cell lands on whole pixels.
+     ]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-] -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" shape-rendering="crispEdges" color="#27231e" fill="#a83825">
+    <g id="mark">
+        <path fill="currentColor" fill-rule="evenodd" d="M8 0H16V16H8V15H7V14H6V12H0V10H4V9H0V7H4V6H0V4H6V2H7V1H8ZM10 4V12H13V4Z"/>
+        <rect x="10" y="4" width="3" height="8"/>
+    </g>
+</svg>

@@ -1,0 +1,63 @@
+/* ]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]
+   Derjyn
+   derjyn.github.io's look: glass (dark) and paper (light), Vermilion signal, hairline frames with square
+   corner nodes. Tokens only and no atlas yet, so Pack has nothing to cut: this file ships as written.
+   ]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-] */
+
+/* Saira (OFL 1.1, OFL.txt), variable in weight and width; Google Fonts' latin and latin-ext files, so a page
+   fetches the second only when it uses those letters. */
+@font-face {
+    font-family: "Saira";
+    src: url("saira-latin.woff2") format("woff2");
+    font-weight: 100 900;
+    font-stretch: 50% 125%;
+    font-display: swap;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: "Saira";
+    src: url("saira-latin-ext.woff2") format("woff2");
+    font-weight: 100 900;
+    font-stretch: 50% 125%;
+    font-display: swap;
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@layer skin {
+    :root {
+        --bones-page-width: 72rem;
+
+        --flesh-font: "Saira", system-ui, sans-serif;
+        --flesh-font-heading: "Saira", system-ui, sans-serif;
+        --flesh-font-mono: ui-monospace, "Cascadia Mono", Consolas, monospace;
+        /* Body text is Saira at 75% width (site.css); mono at full size towers over it. */
+        --flesh-code-size: 0.85em;
+        --flesh-heading-weight: 600;
+        --flesh-heading-tracking: 0.01em;
+
+        --flesh-radius: 0;
+        --flesh-paper: oklch(89% 0.01 80);
+        --flesh-ink: oklch(15.5% 0.006 265);
+
+        /* Paper is warm stone with warm ink, low in chroma so it reads warm, not yellow; glass is graphite with cool
+           ink. Every role is set as a pair. Contrast (AA): text 11.2 / 16.4, muted 5.8 / 7.9, link 4.64 / 5.7, text on accent 5.6 / 5.7. */
+        --flesh-accent: light-dark(oklch(50% 0.15 32), oklch(66% 0.21 29));
+        --flesh-surface: light-dark(oklch(89% 0.01 80), oklch(15.5% 0.006 265));
+        --flesh-tint: light-dark(oklch(92% 0.008 80), oklch(18.5% 0.008 265));
+        --flesh-text: light-dark(oklch(26% 0.012 80), oklch(94% 0.006 265));
+        --flesh-muted: light-dark(oklch(43% 0.012 80), oklch(72% 0.012 265));
+        --flesh-line: light-dark(oklch(70% 0.008 80), oklch(35% 0.012 265));
+        --flesh-link: var(--flesh-accent);
+        --flesh-on-accent: light-dark(oklch(95% 0.006 80), oklch(15.5% 0.006 265));
+
+        /* The corner nodes: flourishes are one atlas cell big, so a 5px cell and a flat fill draw a 5px node. */
+        --flesh-atlas-cell: 5px;
+        --flesh-flourish-tl: linear-gradient(var(--flesh-line) 0 0);
+        --flesh-flourish-tr: var(--flesh-flourish-tl);
+        --flesh-flourish-bl: var(--flesh-flourish-tl);
+        --flesh-flourish-br: var(--flesh-flourish-tl);
+    }
+}
+
+/* ]-]-] EOF ]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]- */

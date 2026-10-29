@@ -1,0 +1,127 @@
+/* ]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]
+   Bones
+   Skinny grid layout system: skeleton, spine and ribs.
+   ]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-] */
+
+@layer bones {
+
+/* |>|>|>|>|>|>-- TOKENS ---------------------------------------------------- */
+
+:root {
+    --bones-space-1: 0.25rem;
+    --bones-space-2: 0.5rem;
+    --bones-space-3: 1rem;
+    --bones-space-4: 1.5rem;
+    --bones-space-5: 2.5rem;
+    --bones-space-6: 4rem;
+    --bones-gutter: clamp(var(--bones-space-3), 5vw, var(--bones-space-5));
+    --bones-gap: var(--bones-space-4);
+    --bones-page-width: 60rem;
+    --bones-rib-min: 16rem;
+}
+
+/* |>|>|>|>|>|>-- PAGE ------------------------------------------------------ */
+
+/* An always-present scrollbar stops content jumping between short and long pages. */
+:root {
+    overflow-y: scroll;
+}
+
+/* |>|>|>|>|>|>-- SKELETON -------------------------------------------------- */
+
+:where(.skeleton) {
+    display: flex;
+    flex-direction: column;
+    min-block-size: 100svb;
+}
+
+/* Full-bleed box, centered content: no inner wrapper needed. */
+:where(.skeleton > *) {
+    padding-block: var(--bones-space-3);
+    padding-inline: max(var(--bones-gutter), (100% - var(--bones-page-width)) / 2);
+}
+
+:where(.skeleton > main) {
+    flex-grow: 1;
+    padding-block: var(--bones-space-5);
+}
+
+:where(.skeleton > .dirt) {
+    padding: 0;
+}
+
+/* Media in a dirt band fills it, even past its own width: a hero never stops short of the edge. */
+:where(.dirt:is(img, video, canvas, iframe), .dirt > :is(img, video, canvas, iframe), .dirt > picture > img) {
+    inline-size: 100%;
+}
+
+/* |>|>|>|>|>|>-- SPINE ----------------------------------------------------- */
+
+:where(.spine, .spine-auto) {
+    display: grid;
+    gap: var(--bones-gap);
+}
+
+/* A grid or row followed by more content keeps one gap from it, like the gaps inside. */
+:where(.spine, .spine-auto, .knuckles, .knuckles-split):where(:not(:last-child, .skeleton > *, .knuckles > *, .knuckles-split > *)) {
+    margin-block-end: var(--bones-gap);
+}
+
+/* Capped so 11 gaps always fit: a narrow spine would otherwise overflow its stacked ribs. */
+:where(.spine) {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: min(var(--bones-gap), 100% / 12);
+    container-type: inline-size;
+}
+
+:where(.spine-auto) {
+    grid-template-columns: repeat(auto-fit, minmax(min(var(--bones-rib-min), 100%), 1fr));
+}
+
+/* Ribs are containers so their content can adapt to the rib, not the page. */
+:where(.spine > *, .spine-auto > *) {
+    container-type: inline-size;
+}
+
+/* |>|>|>|>|>|>-- KNUCKLES -------------------------------------------------- */
+
+/* A wrapping row: a header, tags, buttons, thumbnails. knuckles-split pushes the first and last to the edges. */
+:where(.knuckles, .knuckles-split) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--bones-space-3);
+}
+
+:where(.knuckles-split) {
+    justify-content: space-between;
+}
+
+/* A spine is a container with no width of its own; in a row it would shrink to nothing. */
+:where(.knuckles, .knuckles-split) > :where(.spine, .spine-auto) {
+    flex: 1 1 var(--bones-rib-min);
+}
+
+/* |>|>|>|>|>|>-- RIBS ------------------------------------------------------ */
+
+:where(.spine > *) { grid-column: 1 / -1; }
+:where(.rib-1) { grid-column: span 1; }
+:where(.rib-2) { grid-column: span 2; }
+:where(.rib-3) { grid-column: span 3; }
+:where(.rib-4) { grid-column: span 4; }
+:where(.rib-5) { grid-column: span 5; }
+:where(.rib-6) { grid-column: span 6; }
+:where(.rib-7) { grid-column: span 7; }
+:where(.rib-8) { grid-column: span 8; }
+:where(.rib-9) { grid-column: span 9; }
+:where(.rib-10) { grid-column: span 10; }
+:where(.rib-11) { grid-column: span 11; }
+
+/* Measures the spine around the rib; a container never matches its own query. */
+@container (inline-size < 30rem) {
+    :where(.spine > *) { grid-column: 1 / -1; }
+}
+
+}
+
+/* ]-]-] EOF ]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]- */
