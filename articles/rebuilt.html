@@ -11,16 +11,17 @@
     <title>Rebuilt: the new derjyn.github.io / Derjyn</title>
     <meta name="description" content="What changed, how it was made, and what it borrows from.">
     <link rel="icon" href="../favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="../corpus/detox.css">
-    <link rel="stylesheet" href="../corpus/bones.css">
-    <link rel="stylesheet" href="../corpus/flesh.css">
-    <link rel="stylesheet" href="../skin/derjyn.css">
-    <link rel="stylesheet" href="../site.css">
-    <script src="../prefs.js"></script>
+    <link rel="alternate" type="application/atom+xml" title="Derjyn's Log" href="../feed.xml">
+    <link rel="stylesheet" href="../assets/corpus/detox.css">
+    <link rel="stylesheet" href="../assets/corpus/bones.css">
+    <link rel="stylesheet" href="../assets/corpus/flesh.css">
+    <link rel="stylesheet" href="../assets/css/skin.css">
+    <link rel="stylesheet" href="../assets/css/site.css">
+    <script src="../assets/js/prefs.js"></script>
 </head>
 <body class="skeleton article-page">
     <header class="topbar knuckles">
-        <a class="mark sigil" href="../"><svg class="logo" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="../logo.svg#mark"/></svg>Derjyn</a>
+        <a class="mark sigil" href="../"><svg class="logo" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="../assets/img/logo.svg#mark"/></svg>Derjyn</a>
         <span class="path">derjyn // log // 004</span>
     </header>
 
@@ -31,36 +32,32 @@
                 <h1>Rebuilt: the new derjyn.github.io</h1>
                 <p class="knuckles"><span class="freckle">Site</span> <span class="freckle">Design</span> <span class="freckle">Corpus</span></p>
             </header>
-<p class="scar"><strong>Draft:</strong> the skeleton of this article. The facts are in; the voice is still to come.</p>
-<!-- YOU: an opening in your own words. Why rebuild now? What was wrong with the old site, or what did you want it to say that it didn't? -->
+<p>This rebuild was long overdue. D3 Labs had been the site since 2016, and I wanted a more complete space: somewhere to showcase my projects, share my thoughts, and hand out loot I think others might enjoy.</p>
 <p>The site is new from the ground up: new look, new mark, new code underneath. This is the short tour of what changed and how it got here.</p>
 <h2>Built on Corpus</h2>
 <p>Every page here runs on Corpus, a raw CSS stack I'm building for small static sites: Detox resets the browser, Bones lays out the page, Flesh dresses it, and a skin gives it this look. No framework, no build step for the CSS, and the pages read fine with JavaScript off.</p>
+<p>Why build my own instead of grabbing an existing one? The practice, for one. It's also my own opinionated design, and I don't need the bloat that comes with the other &quot;micro&quot; frameworks.</p>
 <p>The site is also Corpus's first real test. Anything this site needed that Corpus couldn't do became a fix in Corpus, not a hack here.</p>
-<!-- YOU: why build your own stack instead of grabbing an existing one? -->
 <h2>The look: an instrument panel</h2>
-<p>The design is an industrial instrument panel with a retro display soul. Every section is a module in a thin frame with a square node on each corner, a lamp and a name in its header, and an ID on the right. The nav keys are hardware keys with a lamp that lights on the section you're in.</p>
+<p>The design is an industrial instrument panel with a retro display soul. It pulls from the cyberpunk genre in general, the books, films and games, and from my love of industrial UI. Every section is a module in a thin frame with a square node on each corner, a lamp and a name in its header, and an ID on the right. The nav keys are hardware keys with a lamp that lights on the section you're in.</p>
 <p>It took seven moodboards to get here. The early ones put scanlines, grain and color fringing over everything, and they were hard to read. From the fifth board on, the retro effects touch display elements only (the wordmark, big numbers, images) and body text stays crisp.</p>
-<!-- YOU: what inspired it? Hardware, games, films, old interfaces: name the things you pulled from. -->
 <h2>Two grounds, one signal</h2>
 <p>There are two looks, flipped with the theme setting. Glass is near-black with a cool off-white ink and is the main one. Paper is a warm stone stock with near-black ink. Both share one palette, Vermilion: the vermilion signal marks what is live (the current key, lamps, the newest entry) and nothing else.</p>
-<p>Two other palettes, Sodium and Mosaic, made it as far as the last moodboard and lost.</p>
-<!-- YOU: why vermilion? -->
+<p>Why vermilion? Several themes were tested, and it just felt right. Plus I love that general color mix. Two of the others, Sodium and Mosaic, made it as far as the last moodboard and lost.</p>
 <h2>The mark</h2>
 <figure>
-    <img src="../img/avatar-512.png" width="256" height="256" alt="The Derjyn mark on glass: three teeth on a stem and a flat-backed head with one tall vermilion eye, drawn in square pixels.">
+    <img src="../assets/img/avatar-512.png" width="256" height="256" alt="The Derjyn mark on glass: three teeth on a stem and a flat-backed head with one tall vermilion eye, drawn in square pixels.">
     <figcaption>The mark, drawn on a 16 by 16 grid.</figcaption>
 </figure>
 <p>The mark is the old derjyn.com prototype mark, redrawn on a 16 by 16 grid and picked from 23 drafts. Three teeth on a stem read as a mirrored E, the Ǝ in the stylized name, and the flat-backed head with its one tall eye reads as a D, a 3 and a cyclops skull at once. Turn it upright and it's a plain skull.</p>
 <p>It's only ever drawn at 16, 32, 64 or 128 pixels, so every cell lands on whole pixels and stays sharp.</p>
-<p>The name has its own font too. The wordmark text is the plain word &quot;Derjyn&quot;, so search, copy and paste, and screen readers all get the real word, but it's set in a tiny custom font that draws it as ƊƎƦĴҰŊ.</p>
-<!-- YOU: where did the stylized spelling come from? -->
+<p>The name has its own font too. The stylized spelling started with me, a character map, and a lot of tinkering with ways to make &quot;Derjyn&quot; look cool; ƊƎƦĴҰŊ is where that landed. The wordmark text is the plain word &quot;Derjyn&quot;, so search, copy and paste, and screen readers all get the real word, but it's set in a tiny custom font that draws it as ƊƎƦĴҰŊ.</p>
 <h2>The background</h2>
 <p>Behind the page is a live lattice: X-shaped arms around small nodes, faint at rest. Move the cursor and the arms along its path light up and slowly fade. Click on empty space and a ping ring runs out from the click. The content boxes block the rings and bounce weaker copies back, a little like ripples on water.</p>
-<p>Config switches it to Field, a dot grid with slow bands that part around the cursor, or turns it off. With Sound on, each mode has its own click sound. Visitors don't expect a site to make noise, so it's off by default.</p>
+<p>Config switches it to Field, a dot grid with slow bands that part around the cursor, or turns it off. With Sound on, each mode has its own click sound, synthesized in an old little tool called <a href="https://sfbgames.itch.io/chiptone">ChipTone</a>. Visitors don't expect a site to make noise, so it's off by default.</p>
 <p>With reduced motion set in your system, the background draws one still frame and nothing follows the cursor.</p>
-<!-- YOU: anything about making the click sounds? -->
-<!-- YOU: a closing "What's next" section: articles you plan to write, projects coming to the strip. -->
+<h2>What's next</h2>
+<p>Coming up in the Log: future plans, for the site and for the projects.</p>
         </article>
         <p><a href="../#log">Back to the log</a></p>
     </main>

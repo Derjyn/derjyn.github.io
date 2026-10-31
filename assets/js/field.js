@@ -1,9 +1,11 @@
 // ]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]
 //   derjyn.github.io: Live Background
 //   A segment lattice or an LED dot field behind the page, answering the
-//   cursor and click pings; ported from moodboard 07. Colors are Flesh's
-//   roles, so it follows the skin and the theme. Reduced motion: one still
-//   frame, no pointer tracking.
+//   cursor and click pings; ported from moodboard 07. Or D3 Labs' falling
+//   starfield, lit by the same pings. Colors are Flesh's
+//   roles, so it follows the skin and the theme. Each UTC day seeds its own
+//   weather, shown in the footer. Reduced motion: one still frame, no
+//   pointer tracking.
 // ]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]
 
 import { play } from "./sfx.js";
@@ -29,6 +31,17 @@ const EDGE_R = 32;       // how far a moving edge's wake reaches
 const FADE_TRAIL = 1.5;  // how fast a lattice arm the cursor lit fades, per second
 const FADE_WAVE = 3.0;   // and one a wave lit: a short tail behind a moving band, like the field's ripple
 const LEVELS = [0, 0.53, 0.9, 1.35, 1.9]; // dot radius per quantized level
+const IDLE_ARM = [0.06, 0.11, 0.19];   // a resting arm's alpha per weather level
+const IDLE_NODE = [0.12, 0.2, 0.32];   // and a resting node's
+// D3 Labs' starfield, back to front: its speeds (px/s), each star's cell size, and how far the layer moves
+// when the page scrolls (the back layers lag behind, for depth). Counts are per 1280x800 of window and scale
+// with it: the back layers 4 times D3 Labs' (72 and 48), the front twice (24), so waves have stars to light.
+const STAR_LAYERS = [
+    { count: 288, speed: 33, size: 2, depth: 1 / 3, alpha: 0.45 },
+    { count: 192, speed: 50, size: 3, depth: 2 / 3, alpha: 0.6 },
+    { count: 48, speed: 100, size: 4, depth: 1, alpha: 0.5 },
+];
+const STAR_AREA = 1280 * 800;
 
 const ARM_LEN = CELL * 0.40;
 const ARM_OFF = CELL * 0.25;
@@ -39,8 +52,9 @@ let segs = [];
 // The lattice is pinned to the page, not the viewport: segs cover the viewport plus a row, and rowBase is the
 // page row at the top, so lit arms keep their place in the page while it scrolls.
 let cols = 0;
+let rows = 0;
 let rowBase = 0;
-// The resting lattice never changes, so it is drawn once here and copied each frame.
+// The resting lattice is drawn once here and copied each frame; scrolling paints only the rows that come in.
 const idle = document.createElement("canvas");
 const ictx = idle.getContext("2d");
 const pointer = { x: -9999, y: -9999, sx: -9999, sy: -9999 };
@@ -48,6 +62,67 @@ const pings = [];
 // Moving page elements report their leading edges each frame; a wake lights the lattice along them.
 let edges = [];
 let edgesAt = 0;
+
+// |>|>|>|>|>|>-- WEATHER ------------------------------------------------------
+
+// One seed per UTC day, so everyone sees the same weather. It is 16 bits, so the footer's four hex digits
+// are all of it: the same seed always draws the same sky.
+const DAY = new Date().toISOString().slice(0, 10);
+const SEED = daySeed(DAY);
+
+// FNV-1a over the date, folded to 16 bits.
+function daySeed(day) {
+    let x = 0x811c9dc5;
+    for (const ch of day) x = Math.imul(x ^ ch.charCodeAt(0), 0x01000193);
+    return (x ^ (x >>> 16)) & 0xffff;
+}
+
+// mulberry32: a small seeded generator, 0 to 1.
+function seeded(seed) {
+    let a = seed;
+    return () => {
+        a = (a + 0x6d2b79f5) | 0;
+        let t = Math.imul(a ^ (a >>> 15), 1 | a);
+        t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+        return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+}
+
+const rand = seeded(SEED);
+// Three slow fronts at the day's angles and wavelengths cross the lattice; the field's bands start at the
+// day's phases.
+const FRONTS = Array.from({ length: 3 }, () => {
+    const a = rand() * Math.PI * 2, k = (Math.PI * 2) / (240 + rand() * 400);
+    return { kx: Math.cos(a) * k, ky: Math.sin(a) * k, ph: rand() * Math.PI * 2 };
+});
+const PHASE = Array.from({ length: 4 }, () => rand() * Math.PI * 2);
+// Where the stars start, 0 to 1 across the window, from their own generator: a resize changes how many there
+// are, and the same seed and window size always place them the same way.
+let stars = [];
+
+function buildStars() {
+    const starRand = seeded(SEED ^ 0x5741);
+    const scale = (w * h) / STAR_AREA;
+    stars = STAR_LAYERS.map((layer) => Array.from({ length: Math.round(layer.count * scale) },
+        () => ({ u: starRand(), v: starRand(), e: 0, hot: false })));
+}
+
+// The weather at a page point, quantized to three levels (dim, plain, bright) so it reads as a grid, not a haze.
+function weather(x, y) {
+    let v = 0;
+    for (const f of FRONTS) v += Math.sin(x * f.kx + y * f.ky + f.ph);
+    v /= FRONTS.length;
+    return v < -0.25 ? 0 : v > 0.25 ? 2 : 1;
+}
+
+// The footer readout: the mode, the day and its seed. Hidden with the background off (and without JavaScript).
+const readout = document.querySelector(".foot-seed");
+
+function showSeed() {
+    if (!readout) return;
+    readout.hidden = mode() === "off";
+    readout.textContent = `${mode()} ${DAY} / seed ${SEED.toString(16).toUpperCase().padStart(4, "0")}`;
+}
 
 // |>|>|>|>|>|>-- SETUP --------------------------------------------------------
 
@@ -71,14 +146,16 @@ function resize() {
     canvas.width = Math.round(w * dpr);
     canvas.height = Math.round(h * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    idle.width = canvas.width;
-    idle.height = canvas.height + Math.ceil(2 * CELL * dpr);
     buildLattice();
+    buildStars();
+    idle.width = canvas.width;
+    idle.height = Math.round(rows * CELL * dpr);
 }
 
 function buildLattice() {
     segs = [];
     cols = Math.ceil((w + CELL) / CELL);
+    rows = Math.ceil((h + 2 * CELL) / CELL);
     rowBase = Math.floor(scrollY / CELL);
     for (let y = 0; y < h + 2 * CELL; y += CELL) {
         for (let i = 0; i < cols; i++) {
@@ -93,24 +170,61 @@ function buildLattice() {
     }
 }
 
-// The resting lattice: every arm and node at idle strength, on the offscreen canvas.
-function paintIdle() {
-    ictx.setTransform(1, 0, 0, 1, 0, 0);
-    ictx.clearRect(0, 0, idle.width, idle.height);
+// The resting lattice is a ring of row slots: page row p lives in slot p mod rows and never moves, so a row
+// scrolling in is painted into the slot the row scrolling out just left. Slot s spans s to s + 1 cells, its
+// nodes in the middle; arms reach under half a cell, so a slot repaints without touching its neighbors.
+const slotOf = (r) => (((rowBase + r) % rows) + rows) % rows;
+
+// Viewport rows from to to (exclusive): every arm and node at its weather's strength, in its slot.
+function paintRows(from, to) {
     ictx.strokeStyle = colors.rule;
     ictx.lineWidth = 1.25;
-    ictx.globalAlpha = 0.11;
-    for (const s of segs) arm(ictx, s);
-    ictx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    ictx.globalAlpha = 0.2;
-    ictx.lineWidth = 1;
-    ictx.beginPath();
-    for (let i = 0; i < segs.length; i += 4) {
-        ictx.moveTo(segs[i].x + 1.1, segs[i].y);
-        ictx.arc(segs[i].x, segs[i].y, 1.1, 0, Math.PI * 2);
+    const nodes = [[], [], []];
+    for (let r = from; r < to; r++) {
+        const slot = slotOf(r);
+        const y0 = Math.floor(slot * CELL * dpr);
+        ictx.setTransform(1, 0, 0, 1, 0, 0);
+        ictx.clearRect(0, y0, idle.width, Math.floor((slot + 1) * CELL * dpr) - y0);
+        const oy = (r - slot - 0.5) * CELL;
+        for (let i = 0; i < cols; i++) {
+            const at = (r * cols + i) * 4;
+            const level = weather(segs[at].x, (rowBase + r) * CELL);
+            ictx.globalAlpha = IDLE_ARM[level];
+            for (let k = 0; k < 4; k++) arm(ictx, segs[at + k], oy);
+            nodes[level].push(segs[at].x, segs[at].y - oy);
+        }
     }
-    ictx.stroke();
+    ictx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ictx.lineWidth = 1;
+    nodes.forEach((list, level) => {
+        ictx.globalAlpha = IDLE_NODE[level];
+        ictx.beginPath();
+        for (let n = 0; n < list.length; n += 2) {
+            ictx.moveTo(list[n] + 1.1, list[n + 1]);
+            ictx.arc(list[n], list[n + 1], 1.1, 0, Math.PI * 2);
+        }
+        ictx.stroke();
+    });
     ictx.globalAlpha = 1;
+}
+
+const paintIdle = () => paintRows(0, rows);
+
+// The page scrolled `by` rows (rowBase already moved): paint only the rows that came into view.
+function shiftIdle(by) {
+    if (Math.abs(by) >= rows) paintIdle();
+    else if (by > 0) paintRows(rows - by, rows);
+    else paintRows(0, -by);
+}
+
+// Copy the ring to the viewport in two pieces, from the top row's slot to the end, then the slots before it,
+// whole device pixels each way so nothing resamples.
+function blitIdle(oy) {
+    const src = Math.floor(slotOf(0) * CELL * dpr);
+    const dest = Math.round((-CELL / 2 - oy) * dpr);
+    const tall = idle.height - src;
+    ctx.drawImage(idle, 0, src, idle.width, tall, 0, dest, idle.width, tall);
+    if (src > 0) ctx.drawImage(idle, 0, 0, idle.width, src, 0, dest + tall, idle.width, src);
 }
 
 const mode = () => root.dataset.bg || "lattice";
@@ -256,11 +370,11 @@ function latticeLift(x, y) {
     return cursor >= w.v ? { v: cursor, hot: d < HOT_R, wave: false } : { ...w, wave: true };
 }
 
-// Slow flowing bands from layered sines: cheap, smooth, no noise library.
+// Slow flowing bands from layered sines: cheap, smooth, no noise library. They start at the day's phases.
 function band(x, y, t) {
-    const a = Math.sin(x * 0.0042 + t * 0.32);
-    const b = Math.sin(y * 0.0061 - t * 0.21 + Math.sin(x * 0.0019 + t * 0.11) * 2.2);
-    const c = Math.sin((x + y) * 0.0031 + t * 0.27);
+    const a = Math.sin(x * 0.0042 + t * 0.32 + PHASE[0]);
+    const b = Math.sin(y * 0.0061 - t * 0.21 + PHASE[1] + Math.sin(x * 0.0019 + t * 0.11 + PHASE[2]) * 2.2);
+    const c = Math.sin((x + y) * 0.0031 + t * 0.27 + PHASE[3]);
     return (a + b + c + 3) / 6;
 }
 
@@ -334,11 +448,13 @@ function drawLattice(dt) {
     const oy = view.y % CELL;
     const top = Math.floor(view.y / CELL);
     if (top !== rowBase) {
-        shiftRows(top - rowBase);
+        const by = top - rowBase;
+        shiftRows(by);
         rowBase = top;
+        shiftIdle(by);
     }
     ctx.setTransform(1, 0, 0, 1, 0, 0);
-    ctx.drawImage(idle, 0, -Math.round(oy * dpr));
+    blitIdle(oy);
     ctx.lineWidth = 1.25;
     const waving = pings.length > 0 || performance.now() - edgesAt < 120;
     for (const s of segs) {
@@ -360,6 +476,57 @@ function drawLattice(dt) {
         }
     }
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.globalAlpha = 1;
+}
+
+// |>|>|>|>|>|>-- STARS --------------------------------------------------------
+
+const wrap01 = (n) => n - Math.floor(n);
+
+// A star falls straight down; past the bottom it starts again at the top, somewhere new.
+function moveStar(s, layer, dt) {
+    s.v += (layer.speed * dt) / h;
+    if (s.v >= 1) {
+        s.v -= 1;
+        s.u = Math.random();
+    }
+}
+
+// The front layer is ink, the back ones the line color; a wave's crest lights a star in the signal.
+function starColor(s, front) {
+    if (s.hot && s.e > 0.02) return colors.accent;
+    return front ? colors.ink : colors.rule;
+}
+
+function drawStars(dt) {
+    // Glass draws square LCD cells, paper round dots, like the field.
+    const square = prefs.isDark();
+    const waving = pings.length > 0 || performance.now() - edgesAt < 120;
+    STAR_LAYERS.forEach((layer, i) => {
+        for (const s of stars[i]) {
+            if (!still) moveStar(s, layer, dt);
+            // Each layer is pinned to the page at its own depth, wrapping bottom to top.
+            const x = s.u * w;
+            const y = wrap01(s.v - (view.y * layer.depth) / h) * h;
+            if (waving) {
+                const l = waves(x, y);
+                if (l.v > s.e) { s.e = l.v; s.hot = l.hot; }
+            }
+            s.e = Math.max(0, s.e - dt * FADE_WAVE);
+            ctx.fillStyle = starColor(s, i === STAR_LAYERS.length - 1);
+            ctx.globalAlpha = Math.min(1, layer.alpha + s.e * 0.5);
+            // A lit star grows a step, so a passing wave reads as a band.
+            const size = s.e > 0.3 ? layer.size + 2 : layer.size;
+            const r = size / 2;
+            if (square) {
+                ctx.fillRect(Math.round(x - r), Math.round(y - r), size, size);
+                continue;
+            }
+            ctx.beginPath();
+            ctx.arc(x, y, r, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    });
     ctx.globalAlpha = 1;
 }
 
@@ -386,6 +553,7 @@ function frame(now) {
     ringW = m === "field" ? FIELD_RING_W : RING_W;
     if (m === "field") drawField(t);
     if (m === "lattice") drawLattice(dt);
+    if (m === "stars") drawStars(dt);
 
     if (!still) requestAnimationFrame(frame);
 }
@@ -452,12 +620,14 @@ window.derjynField = {
 function repaint() {
     readColors();
     paintIdle();
+    showSeed();
     if (still) frame(performance.now());
 }
 
 resize();
 readColors();
 paintIdle();
+showSeed();
 addEventListener("resize", () => {
     resize();
     repaint();

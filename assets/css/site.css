@@ -1,26 +1,21 @@
 /* ]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]
    derjyn.github.io: Site CSS
-   Only what Corpus classes and the skin can't say. Each section is marked:
-   PERSONALITY is this site's own look and stays here; GAP is something a
-   small site in general needs, logged as a Corpus gap (Corpus docs/NOTES.md).
+   Only what Corpus classes and the skin can't say, in the site layer, after
+   detox, bones, flesh and skin (link order). Each section is marked:
+   PERSONALITY is this site's own look; RECIPE follows a Bones README recipe;
+   GAP is something any small site needs, logged in Corpus's docs/NOTES.md.
    ]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-] */
 
-/* Derjyn Sigil (Saira, OFL 1.1, fonts/OFL-saira.txt): only the name's letters, drawn as ƊƎƦĴҰŊ. Built by
-   Corpus's tools/derjyn-sigil.py. One static weight, declared for every weight so nothing gets faux bolded. */
+/* Derjyn Sigil (Saira, OFL 1.1, ../fonts/OFL-saira.txt): only the name's letters, drawn as ƊƎƦĴҰŊ. Built by
+   tools/derjyn-sigil.py. One static weight, declared for every weight so nothing gets faux bolded. */
 @font-face {
     font-family: "Derjyn Sigil";
-    src: url("fonts/derjyn-sigil.woff2") format("woff2");
+    src: url("../fonts/derjyn-sigil.woff2") format("woff2");
     font-weight: 100 900;
     font-display: swap;
 }
 
-/* Share Tech Mono (OFL 1.1, fonts/OFL-share-tech-mono.txt; "Share" is a Reserved Font Name, so the file stays unmodified).
-   Basic Latin only: other letters fall through to the next mono font in --label. */
-@font-face {
-    font-family: "Share Tech Mono";
-    src: url("fonts/share-tech-mono.woff2") format("woff2");
-    font-display: swap;
-}
+@layer site {
 
 /* |>|>|>|>|>|>-- THEME SWITCH ---------------------------------------------- */
 
@@ -37,11 +32,12 @@
     --overlay: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     --overlay-opacity: 0.13;
     --overlay-blend: multiply;
-    /* Code speaks in the label voice too: a system mono read heavier than the thin body. Share Tech Mono's
-       x-height already matches Saira's, so it drops the skin's smaller code size. */
-    --flesh-font-mono: "Share Tech Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
-    --flesh-code-size: 1em;
+    /* The label voice: the skin's mono, small caps-tracked type for labels, keys and data. */
     --label: var(--flesh-font-mono);
+    --label-size: 0.75rem;
+    /* Lamps are square indicator lights; keys are the hardware buttons that carry them. */
+    --lamp: 6px;
+    --key-pad: 0.35rem 0.75rem;
     scroll-padding-block-start: 6rem;
 }
 
@@ -108,10 +104,6 @@ body::after {
     box-shadow: -1.25rem 0 var(--flesh-surface), 1.25rem 0 var(--flesh-surface);
 }
 
-/* GAP: Flesh has no token for a font's width, so a variable font's narrower cut needs site CSS.
-   Saira at its condensed width (75%) reads lighter and crisper than at its normal one. */
-body { font-stretch: 75%; }
-
 /* |>|>|>|>|>|>-- THE NAME -------------------------------------------------- */
 
 /* PERSONALITY: the name is the plain word "Derjyn" in the page, for search, copying and screen readers; the
@@ -121,7 +113,7 @@ body { font-stretch: 75%; }
     font-synthesis: none;
 }
 
-/* PERSONALITY: the mark (logo.svg#mark) on a 16-cell grid, sized in multiples of 16px. Its head takes the
+/* PERSONALITY: the mark (assets/img/logo.svg#mark) on a 16-cell grid, sized in multiples of 16px. Its head takes the
    text color; its eye inherits this fill. */
 .logo {
     flex: none;
@@ -138,7 +130,7 @@ body { font-stretch: 75%; }
     text-transform: uppercase;
 }
 
-:is(button, a.nerve, .freckle) { font-size: 0.75rem; }
+:is(button, a.nerve, .freckle) { font-size: var(--label-size); }
 
 /* |>|>|>|>|>|>-- TOP BAR --------------------------------------------------- */
 
@@ -180,7 +172,7 @@ body { font-stretch: 75%; }
 .topbar ul {
     gap: var(--bones-space-2);
     font-family: var(--label), monospace;
-    font-size: 0.75rem;
+    font-size: var(--label-size);
     letter-spacing: 0.1em;
     text-transform: uppercase;
 }
@@ -188,7 +180,7 @@ body { font-stretch: 75%; }
 .topbar :is(ul a, .options-toggle) {
     display: inline-flex;
     align-items: center;
-    padding: 0.35rem 0.75rem;
+    padding: var(--key-pad);
     border: var(--flesh-border-width) solid var(--flesh-line);
     background: none;
     color: var(--flesh-muted);
@@ -200,8 +192,8 @@ body { font-stretch: 75%; }
 .topbar :is(ul a, .options-toggle)::before {
     content: "";
     margin-inline-end: 0.55rem;
-    inline-size: 6px;
-    block-size: 6px;
+    inline-size: var(--lamp);
+    block-size: var(--lamp);
     background-color: var(--flesh-line);
 }
 
@@ -212,7 +204,7 @@ body { font-stretch: 75%; }
 .path {
     white-space: nowrap;
     color: var(--flesh-muted);
-    font-size: 0.75rem;
+    font-size: var(--label-size);
     text-transform: none;
 }
 
@@ -227,6 +219,12 @@ body { font-stretch: 75%; }
 }
 
 .options fieldset { display: flex; flex-wrap: wrap; gap: var(--bones-space-2) var(--bones-space-3); margin: 0; }
+
+/* Four backgrounds need about 445px in a row, which the flyout has down to about 510px of window. Below
+   34rem they stand two by two instead of breaking three and one. */
+@media (width < 34rem) {
+    .options fieldset:has(> label:nth-of-type(4)) { display: grid; grid-template-columns: repeat(2, max-content); }
+}
 
 /* The keys never fold: when the bar runs short it switches layout instead. */
 .topbar ul { flex-wrap: nowrap; }
@@ -284,10 +282,6 @@ body { font-stretch: 75%; }
    the skin draws its corner nodes, which light in the signal color under the cursor. */
 :is(.tissue, dialog) { padding-block-start: 0; }
 
-/* GAP: Flesh sizes flourishes with one value, so an image with no aspect ratio of its own (a gradient)
-   stretches to the box's full height. Both sides given keeps the nodes square. */
-:is(.organ, .tissue, dialog) { background-size: var(--flesh-atlas-cell) var(--flesh-atlas-cell); }
-
 .tissue {
     transition: border-color 0.2s;
 }
@@ -319,8 +313,8 @@ body { font-stretch: 75%; }
 
 .mod-head > :first-child::before {
     content: "";
-    inline-size: 6px;
-    block-size: 6px;
+    inline-size: var(--lamp);
+    block-size: var(--lamp);
     background-color: var(--flesh-line);
 }
 
@@ -334,7 +328,7 @@ body { font-stretch: 75%; }
     max-inline-size: none;
     padding-block: var(--bones-space-2);
     color: var(--flesh-muted);
-    font-size: 0.75rem;
+    font-size: var(--label-size);
     font-weight: normal;
 }
 
@@ -347,9 +341,9 @@ body { font-stretch: 75%; }
         linear-gradient(var(--flesh-line) 0 0) center / 100% 1px no-repeat;
 }
 
-/* GAP: Bones collapses a spine only below 30rem; each row here splits only from a measured width. Log and
-   Operator from 60rem: the reader then gets a 36rem column, and below it Operator's photo column ran about
-   300px short of the bio. Ident's own step is below. */
+/* RECIPE (Bones, "Stack a Spine Earlier"): Bones stacks spines below 48rem; each row here splits only from a
+   measured width. Log and Operator from 60rem: the reader then gets a 36rem column, and below it Operator's
+   photo column ran about 300px short of the bio. Ident's own step is below. */
 @container (inline-size < 60rem) {
     .spine > * { grid-column: 1 / -1; }
 }
@@ -439,7 +433,7 @@ body { font-stretch: 75%; }
     display: grid;
     grid-template-columns: auto 1fr;
     gap: var(--bones-space-2) var(--bones-space-3);
-    font-size: 0.75rem;
+    font-size: var(--label-size);
 }
 
 .now-state dt { color: var(--flesh-muted); font-weight: normal; }
@@ -477,7 +471,7 @@ body { font-stretch: 75%; }
 .title { font-weight: 600; line-height: 1.25; }
 .title small { display: block; margin-block-start: 0.2rem; font-weight: normal; }
 
-.article-list :is(time, .years) { color: var(--flesh-muted); font-size: 0.75rem; }
+.article-list :is(time, .years) { color: var(--flesh-muted); font-size: var(--label-size); }
 
 /* NieR's selection: the row lifts onto the page and gains a pointer; the open one keeps it, lit. */
 .article-list a:is(:hover, :focus-visible, [aria-current]) { background-color: var(--flesh-surface); }
@@ -495,7 +489,7 @@ body { font-stretch: 75%; }
 
 /* |>|>|>|>|>|>-- PROJECTS -------------------------------------------------- */
 
-/* GAP: a strip that scrolls sideways and snaps to each item; galleries need it too. */
+/* RECIPE (Bones, "A Sideways Reel"): a strip that scrolls sideways and snaps to each item. */
 .strip-frame { container-type: inline-size; }
 
 /* A whole number of posters always fits, so every scroll stop, the last one included, lands on edges. */
@@ -542,7 +536,7 @@ body { font-stretch: 75%; }
     display: inline-flex;
     gap: 0.55rem;
     align-items: center;
-    padding: 0.35rem 0.75rem;
+    padding: var(--key-pad);
     border-color: var(--flesh-line);
     background: var(--flesh-surface);
     color: var(--flesh-muted);
@@ -550,8 +544,8 @@ body { font-stretch: 75%; }
 
 .strip-ctl button::before {
     content: "";
-    inline-size: 6px;
-    block-size: 6px;
+    inline-size: var(--lamp);
+    block-size: var(--lamp);
     background-color: var(--flesh-line);
 }
 
@@ -565,7 +559,7 @@ body { font-stretch: 75%; }
 .strip-track i {
     flex: 1;
     max-inline-size: 2.5rem;
-    block-size: 6px;
+    block-size: var(--lamp);
     background-color: var(--flesh-line);
     transition: background-color 0.2s;
 }
@@ -582,7 +576,7 @@ body { font-stretch: 75%; }
     margin-inline-start: auto;
     color: var(--flesh-muted);
     font-family: var(--label), monospace;
-    font-size: 0.75rem;
+    font-size: var(--label-size);
     letter-spacing: 0.1em;
 }
 
@@ -601,7 +595,7 @@ body { font-stretch: 75%; }
     text-decoration: none;
 }
 
-.poster-no { color: var(--flesh-muted); font-size: 0.75rem; }
+.poster-no { color: var(--flesh-muted); font-size: var(--label-size); }
 
 .poster-logo {
     align-self: center;
@@ -649,7 +643,7 @@ body { font-stretch: 75%; }
     justify-self: center;
     color: var(--flesh-muted);
     font-family: var(--label), monospace;
-    font-size: 0.75rem;
+    font-size: var(--label-size);
     letter-spacing: 0.1em;
 }
 
@@ -705,29 +699,40 @@ img.dither {
 .datacard th { color: var(--flesh-muted); font-weight: normal; }
 .datacard td { text-align: end; }
 
+/* Addresses are case-sensitive, so they keep their case, and a long one breaks anywhere rather than overflow. */
+.datacard .verbatim { text-transform: none; overflow-wrap: anywhere; }
+
 /* |>|>|>|>|>|>-- FOOTER ---------------------------------------------------- */
 
 .foot {
     border-block-start: var(--flesh-border-width) solid var(--flesh-line);
     color: var(--flesh-muted);
-    font-size: 0.75rem;
+    font-size: var(--label-size);
 }
 
-/* The home footer's five items need about 650px in one row. Below that they stand in three planned rows:
-   domain and GitHub, the credit alone, Legacy and end of line. */
-@media (width < 48rem) {
+/* The home footer's six items need about 850px in one row. Below that they stand in three planned rows:
+   domain and GitHub, the credit and the weather readout at either end, Legacy and end of line. Below 35rem
+   the readout takes a row of its own. */
+@media (width < 59rem) {
     .foot:has(.foot-credit) {
         display: grid;
         grid-template-columns: 1fr auto;
     }
 
-    .foot-credit { grid-area: 2 / 1 / 3 / -1; }
+    .foot-credit { grid-area: 2 / 1 / 3 / -1; justify-self: start; }
+    .foot-seed { grid-area: 2 / 1 / 3 / -1; justify-self: end; }
+}
+
+@media (width < 35rem) {
+    .foot-seed { grid-area: 3 / 1 / 4 / -1; justify-self: start; }
 }
 
 /* |>|>|>|>|>|>-- MOTION ---------------------------------------------------- */
 
 @media (prefers-reduced-motion: reduce) {
     :is(.tissue, .strip-track i) { transition: none; }
+}
+
 }
 
 /* ]-]-] EOF ]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]- */

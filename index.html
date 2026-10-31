@@ -12,19 +12,20 @@
     <title>Derjyn</title>
     <meta name="description" content="Derjyn's corner of the web: articles, projects and the person behind them.">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="corpus/detox.css">
-    <link rel="stylesheet" href="corpus/bones.css">
-    <link rel="stylesheet" href="corpus/flesh.css">
-    <link rel="stylesheet" href="skin/derjyn.css">
-    <link rel="stylesheet" href="site.css">
-    <link rel="stylesheet" href="projects.css">
-    <script src="prefs.js"></script>
-    <script type="module" src="field.js"></script>
-    <script type="module" src="site.js"></script>
+    <link rel="alternate" type="application/atom+xml" title="Derjyn's Log" href="feed.xml">
+    <link rel="stylesheet" href="assets/corpus/detox.css">
+    <link rel="stylesheet" href="assets/corpus/bones.css">
+    <link rel="stylesheet" href="assets/corpus/flesh.css">
+    <link rel="stylesheet" href="assets/css/skin.css">
+    <link rel="stylesheet" href="assets/css/site.css">
+    <link rel="stylesheet" href="assets/css/projects.css">
+    <script src="assets/js/prefs.js"></script>
+    <script type="module" src="assets/js/field.js"></script>
+    <script type="module" src="assets/js/site.js"></script>
 </head>
 <body class="skeleton">
     <header class="topbar knuckles">
-        <a class="mark sigil" href="./"><svg class="logo" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="logo.svg#mark"/></svg>Derjyn</a>
+        <a class="mark sigil" href="./"><svg class="logo" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="assets/img/logo.svg#mark"/></svg>Derjyn</a>
         <nav aria-label="Main">
             <ul>
                 <li><a href="#loot">Loot</a></li>
@@ -46,6 +47,7 @@
                 <legend>Background</legend>
                 <label><input type="radio" name="bg" value="lattice"> Lattice</label>
                 <label><input type="radio" name="bg" value="field"> Field</label>
+                <label><input type="radio" name="bg" value="stars"> Stars</label>
                 <label><input type="radio" name="bg" value="off"> Off</label>
             </fieldset>
             <fieldset>
@@ -103,7 +105,7 @@
         <div class="spine ident-row">
             <section class="tissue rib-8" aria-labelledby="ident-h">
                 <p class="mod-head lit"><span>Ident</span><span>M/01</span></p>
-                <div class="wordmark"><h1 class="dm sigil" id="ident-h"><svg class="logo" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="logo.svg#mark"/></svg>Derjyn</h1></div>
+                <div class="wordmark"><h1 class="dm sigil" id="ident-h"><svg class="logo" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="assets/img/logo.svg#mark"/></svg>Derjyn</h1></div>
                 <p class="subhead">Quiet code, loud ideas</p>
             </section>
 
@@ -302,12 +304,13 @@
                     <table class="datacard" aria-labelledby="card-h">
                         <tbody>
                             <tr><th scope="row">Handle</th><td><span class="sigil">Derjyn</span></td></tr>
+                            <tr><th scope="row">Say it</th><td>dur-gin, soft g</td></tr>
                             <tr><th scope="row">Class</th><td>Dev wizard</td></tr>
                             <tr><th scope="row">First rig</th><td>IBM 5155</td></tr>
                         </tbody>
                     </table>
                     <p>Some call me a wizard, which is generous: I have an engineering brain and point it at whatever's in front of me. I write the code, I'm decent at design, and where my pixel pushing runs out, I art direct.</p>
-                    <p>It started on an <a href="img/ibm-5155.jpg" data-dialog="fig-ibm-5155">IBM 5155</a>, a thirty-pound "portable" with an amber screen, handed to me with a stack of printed manuals. They taught me BASICA, and I made it draw vector shapes across that amber glass.</p>
+                    <p>It started on an <a href="assets/img/ibm-5155.jpg" data-dialog="fig-ibm-5155">IBM 5155</a>, a thirty-pound "portable" with an amber screen, handed to me with a stack of printed manuals. They taught me BASICA, and I made it draw vector shapes across that amber glass.</p>
                     <p>Since then I've tinkered with hundreds of languages: compiled, scripted and config. I've set up the environments to match, from Visual Studio and GCC to Unreal Engine, Rust and Go, on Windows and Linux alike.</p>
                     <p>Today I keep dozens of projects open and hop between them. VSCode is the one tool I swear by. The rest I swear at. I work on facts, not flattery.</p>
                     <p>Reach out about anything, except the game you think I should make.</p>
@@ -315,7 +318,7 @@
                 <div class="tissue rib-5 operator-fig">
                     <p class="mod-head"><span>Fig. 01</span><span>M/06</span></p>
                     <figure>
-                        <img class="dither" src="img/operator.jpg" width="684" height="684" alt="A close-up selfie of Derjyn, cut off by the frame: one eye on the camera, a short beard, a dark room behind, printed in ordered dither.">
+                        <img class="dither" src="assets/img/operator.jpg" width="684" height="684" alt="A close-up selfie of Derjyn, cut off by the frame: one eye on the camera, a short beard, a dark room behind, printed in ordered dither.">
                         <figcaption>Fig. 01 / the operator / ordered dither, 4&times;4 Bayer</figcaption>
                     </figure>
                     <p><i>Lone wolf by trade. My work is a study in parallel development.</i></p>
@@ -325,7 +328,7 @@
             <dialog id="fig-ibm-5155" aria-labelledby="fig-ibm-5155-h">
                 <p class="mod-head lit"><span>Fig. 02</span><span>M/07</span></p>
                 <figure>
-                    <img src="img/ibm-5155.jpg" width="960" height="576" alt="An IBM 5155 Portable Personal Computer: a beige case with a small built-in screen beside two floppy drives, its keyboard folded down in front.">
+                    <img src="assets/img/ibm-5155.jpg" width="960" height="576" alt="An IBM 5155 Portable Personal Computer: a beige case with a small built-in screen beside two floppy drives, its keyboard folded down in front.">
                     <figcaption id="fig-ibm-5155-h">Fig. 02 / IBM 5155, the first rig. Photo: Fredrik Pihl, <a href="https://digitaltmuseum.org/021026362166/portabel-dator">Tekniska museet</a>, <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>; resized.</figcaption>
                 </figure>
                 <form method="dialog" class="knuckles"><button>Close</button></form>
@@ -335,7 +338,8 @@
 
     <footer class="foot knuckles-split">
         <span>derjyn.github.io</span>
-        <span class="foot-credit">Built on Corpus / static HTML</span>
+        <a class="foot-credit" href="colophon.html">Built on Corpus / static HTML</a>
+        <span class="foot-seed" hidden></span>
         <a href="https://github.com/Derjyn">GitHub</a>
         <a href="legacy/">Legacy</a>
         <span>End of line</span>

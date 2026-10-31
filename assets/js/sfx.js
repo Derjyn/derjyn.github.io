@@ -6,7 +6,8 @@
 //   its own source, so rapid clicks overlap instead of cutting each other off.
 // ]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]
 
-const FILES = { lattice: "sfx/lattice.wav", field: "sfx/field.wav" };
+// Stars borrows the field's sound until it has its own.
+const FILES = { lattice: "../sfx/lattice.wav", field: "../sfx/field.wav", stars: "../sfx/field.wav" };
 const VOLUME = 1; // the files carry their own loudness; this scales them all
 
 let audio = null;

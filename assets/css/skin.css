@@ -4,11 +4,11 @@
    corner nodes. Tokens only and no atlas yet, so Pack has nothing to cut: this file ships as written.
    ]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-] */
 
-/* Saira (OFL 1.1, OFL.txt), variable in weight and width; Google Fonts' latin and latin-ext files, so a page
+/* Saira (OFL 1.1, ../fonts/OFL-saira.txt), variable in weight and width; Google Fonts' latin and latin-ext files, so a page
    fetches the second only when it uses those letters. */
 @font-face {
     font-family: "Saira";
-    src: url("saira-latin.woff2") format("woff2");
+    src: url("../fonts/saira-latin.woff2") format("woff2");
     font-weight: 100 900;
     font-stretch: 50% 125%;
     font-display: swap;
@@ -17,11 +17,19 @@
 
 @font-face {
     font-family: "Saira";
-    src: url("saira-latin-ext.woff2") format("woff2");
+    src: url("../fonts/saira-latin-ext.woff2") format("woff2");
     font-weight: 100 900;
     font-stretch: 50% 125%;
     font-display: swap;
     unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* Share Tech Mono (OFL 1.1, ../fonts/OFL-share-tech-mono.txt; "Share" is a Reserved Font Name, so the file stays
+   unmodified). Basic Latin only: other letters fall through to the next mono font. */
+@font-face {
+    font-family: "Share Tech Mono";
+    src: url("../fonts/share-tech-mono.woff2") format("woff2");
+    font-display: swap;
 }
 
 @layer skin {
@@ -29,10 +37,11 @@
         --bones-page-width: 72rem;
 
         --flesh-font: "Saira", system-ui, sans-serif;
+        /* Saira at its condensed width reads lighter and crisper than at its normal one. */
+        --flesh-font-stretch: 75%;
         --flesh-font-heading: "Saira", system-ui, sans-serif;
-        --flesh-font-mono: ui-monospace, "Cascadia Mono", Consolas, monospace;
-        /* Body text is Saira at 75% width (site.css); mono at full size towers over it. */
-        --flesh-code-size: 0.85em;
+        /* Share Tech Mono's x-height matches Saira's, so code keeps Flesh's full size. */
+        --flesh-font-mono: "Share Tech Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
         --flesh-heading-weight: 600;
         --flesh-heading-tracking: 0.01em;
 

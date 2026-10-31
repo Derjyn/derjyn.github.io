@@ -3,7 +3,7 @@
      The old derjyn.com prototype mark redrawn on a 16x16 cell grid (L/23 in
      lab/derjyn/logo/): three teeth on a stem (a mirrored E, the Ǝ of the name)
      and a flat-backed head with one lit eye. Pages draw it with
-     <use href="logo.svg#mark">: the head takes the text color, the eye the
+     <use href="assets/img/logo.svg#mark">: the head takes the text color, the eye the
      element's fill. Opened on its own it shows the paper colors. Draw it at
      multiples of 16px so every cell lands on whole pixels.
      ]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-] -->

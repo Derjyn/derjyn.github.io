@@ -15,6 +15,7 @@
     --flesh-color-scheme: light dark;
 
     --flesh-font: system-ui, sans-serif;
+    --flesh-font-stretch: normal;
     --flesh-font-mono: Consolas, Menlo, monospace;
     /* Mono beside a narrow body font reads larger than its size; a skin scales it here. */
     --flesh-code-size: 1em;
@@ -68,6 +69,7 @@
 
 :where(body) {
     font-family: var(--flesh-font);
+    font-stretch: var(--flesh-font-stretch);
     font-size: var(--flesh-type-2);
     line-height: var(--flesh-leading);
 }
@@ -128,6 +130,12 @@
     }
 }
 
+/* Media on its own line gets a paragraph's space after it, but never the bigger space before a heading: a card's image
+   sits close to its title. In a figure the caption sets the gap. */
+:where(img, picture, video, canvas, iframe, embed, object):where(:not(:last-child, figure > *, picture > *, .skeleton > *, .spine > *, .spine-auto > *, .knuckles > *, .knuckles-split > *)) {
+    margin-block-end: var(--bones-space-3);
+}
+
 :where(ul, ol) {
     padding-inline-start: var(--bones-space-4);
 }
@@ -146,6 +154,11 @@
 
 :where(dd) {
     padding-inline-start: var(--bones-space-4);
+}
+
+/* An open details' content sits close under its summary, like text under a heading. */
+:where(details[open] > summary:not(:last-child)) {
+    margin-block-end: var(--bones-space-2);
 }
 
 :where(blockquote) {
@@ -262,6 +275,11 @@
     font: inherit;
 }
 
+/* Inside its label a textarea would sit on the text's baseline, dropping the label to its bottom edge. */
+:where(textarea) {
+    vertical-align: top;
+}
+
 :where(input, textarea, select):where(:hover) {
     border-color: var(--flesh-text);
 }
@@ -293,7 +311,10 @@
     margin-block-end: var(--bones-space-3);
 }
 
+/* One unit: a label too long for what's left of the line moves down whole, never leaving its control behind. */
 :where(label):where(:has(> [type="checkbox"], > [type="radio"])) {
+    display: inline-block;
+    max-inline-size: 100%;
     margin-inline-end: var(--bones-space-3);
 }
 
@@ -560,7 +581,8 @@
         var(--flesh-flourish-bl, none), var(--flesh-flourish-br, none);
     background-position: left top, right top, left bottom, right bottom;
     background-repeat: no-repeat;
-    background-size: var(--flesh-atlas-cell);
+    /* Both sides: an image with no shape of its own (a gradient) would take the box's full height. */
+    background-size: var(--flesh-atlas-cell) var(--flesh-atlas-cell);
 }
 
 /* |>-- Sprites: an element one cell big is a window onto the atlas */

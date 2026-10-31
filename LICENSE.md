@@ -6,7 +6,7 @@ Everything in this repository is Derjyn's unless it is listed below: the site's 
 
 Third-party parts keep their own licenses:
 
-- `corpus/`: Detox, Bones and Flesh, MIT (`corpus/LICENSE`).
-- Fonts under the SIL Open Font License 1.1, each with its license file beside it: Saira (`skin/`), Derjyn Sigil, built from Saira, and Share Tech Mono (`fonts/`).
-- `img/ibm-5155.jpg`: photo by Fredrik Pihl, Tekniska museet, CC BY 3.0, credited where it is shown.
+- `assets/corpus/`: Detox, Bones and Flesh, MIT (`assets/corpus/LICENSE`).
+- Fonts under the SIL Open Font License 1.1, each with its license file beside it in `assets/fonts/`: Saira, Derjyn Sigil (built from Saira) and Share Tech Mono.
+- `assets/img/ibm-5155.jpg`: photo by Fredrik Pihl, Tekniska museet, CC BY 3.0, credited where it is shown.
 - Libraries and fonts inside `legacy/` (jQuery and its plugins, TweenMax, Joystix and others): their authors' licenses.

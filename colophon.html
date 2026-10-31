@@ -1,0 +1,119 @@
+<!doctype html>
+<!-- ]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]
+     derjyn.github.io: Colophon
+     The spec plate: what the site is made of and whose work it stands on.
+     Hand-written, like the 404 page; the rights here follow LICENSE.md.
+     ]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-] -->
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Colophon / Derjyn</title>
+    <meta name="description" content="How derjyn.github.io is made: the stack, type, sound, images, tools and rights.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="alternate" type="application/atom+xml" title="Derjyn's Log" href="feed.xml">
+    <link rel="stylesheet" href="assets/corpus/detox.css">
+    <link rel="stylesheet" href="assets/corpus/bones.css">
+    <link rel="stylesheet" href="assets/corpus/flesh.css">
+    <link rel="stylesheet" href="assets/css/skin.css">
+    <link rel="stylesheet" href="assets/css/site.css">
+    <script src="assets/js/prefs.js"></script>
+</head>
+<body class="skeleton article-page">
+    <header class="topbar knuckles">
+        <a class="mark sigil" href="./"><svg class="logo" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="assets/img/logo.svg#mark"/></svg>Derjyn</a>
+        <span class="path">derjyn // colophon</span>
+    </header>
+
+    <main>
+        <header class="article-head">
+            <p class="label">Spec plate</p>
+            <h1>Colophon</h1>
+        </header>
+        <p>What this site is made of, and whose work it stands on.</p>
+
+        <div class="spine">
+            <section class="tissue rib-6" aria-labelledby="c1-h">
+                <h2 class="mod-head" id="c1-h"><span>Stack</span><span>C/01</span></h2>
+                <table class="datacard">
+                    <tbody>
+                        <tr><th scope="row">Markup</th><td>Static HTML</td></tr>
+                        <tr><th scope="row">Style</th><td>Corpus</td></tr>
+                        <tr><th scope="row">Script</th><td>JS modules</td></tr>
+                        <tr><th scope="row">Host</th><td>GitHub Pages</td></tr>
+                    </tbody>
+                </table>
+                <p><a href="https://github.com/Derjyn">Corpus</a> is my own CSS stack, MIT licensed: Detox resets, Bones lays out, Flesh dresses, and my skin gives it this look. Every page reads fine without JavaScript.</p>
+            </section>
+
+            <section class="tissue rib-6" aria-labelledby="c2-h">
+                <h2 class="mod-head" id="c2-h"><span>Type</span><span>C/02</span></h2>
+                <table class="datacard">
+                    <tbody>
+                        <tr><th scope="row">Text</th><td>Saira</td></tr>
+                        <tr><th scope="row">Labels</th><td>Share Tech Mono</td></tr>
+                        <tr><th scope="row">Name</th><td>Derjyn Sigil</td></tr>
+                    </tbody>
+                </table>
+                <p><a href="https://github.com/Omnibus-Type/Saira">Saira</a> is by The Saira Project Authors and Share Tech Mono by Carrois Type Design, both under the SIL Open Font License 1.1 (license files: <a href="assets/fonts/OFL-saira.txt">Saira</a>, <a href="assets/fonts/OFL-share-tech-mono.txt">Share Tech Mono</a>). I cut Derjyn Sigil from Saira, under the same license, to draw my name as <span class="sigil">Derjyn</span>.</p>
+            </section>
+
+            <section class="tissue rib-6" aria-labelledby="c3-h">
+                <h2 class="mod-head" id="c3-h"><span>Sound</span><span>C/03</span></h2>
+                <table class="datacard">
+                    <tbody>
+                        <tr><th scope="row">Clicks</th><td>Two, by Derjyn</td></tr>
+                        <tr><th scope="row">Synth</th><td>ChipTone</td></tr>
+                        <tr><th scope="row">Default</th><td>Off</td></tr>
+                    </tbody>
+                </table>
+                <p>I made the click sounds in <a href="https://sfbgames.itch.io/chiptone">ChipTone</a> by SFB Games. Config turns sound on.</p>
+            </section>
+
+            <section class="tissue rib-6" aria-labelledby="c4-h">
+                <h2 class="mod-head" id="c4-h"><span>Images</span><span>C/04</span></h2>
+                <table class="datacard">
+                    <tbody>
+                        <tr><th scope="row">Mark</th><td>Derjyn</td></tr>
+                        <tr><th scope="row">Dither</th><td>4x4 Bayer</td></tr>
+                        <tr><th scope="row">IBM 5155</th><td>CC BY 3.0</td></tr>
+                    </tbody>
+                </table>
+                <p>The IBM 5155 photo is by Fredrik Pihl, <a href="https://digitaltmuseum.org/021026362166/portabel-dator">Tekniska museet</a>, under <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>, resized. Every other image is mine. An SVG filter dithers them, one per substrate.</p>
+            </section>
+
+            <section class="tissue rib-6" aria-labelledby="c5-h">
+                <h2 class="mod-head" id="c5-h"><span>Tools</span><span>C/05</span></h2>
+                <table class="datacard">
+                    <tbody>
+                        <tr><th scope="row">Build</th><td>Python, uv</td></tr>
+                        <tr><th scope="row">Markdown</th><td>markdown-it-py</td></tr>
+                        <tr><th scope="row">Checks</th><td>W3C Nu, ESLint</td></tr>
+                    </tbody>
+                </table>
+                <p>A small Python build turns Markdown into the articles and the feed; fontTools and Brotli cut the Sigil. Pages are checked with the W3C Nu HTML Checker, scripts and styles with ESLint.</p>
+            </section>
+
+            <section class="tissue rib-6" aria-labelledby="c6-h">
+                <h2 class="mod-head" id="c6-h"><span>Rights</span><span>C/06</span></h2>
+                <table class="datacard">
+                    <tbody>
+                        <tr><th scope="row">Site</th><td>&copy; Derjyn</td></tr>
+                        <tr><th scope="row">Years</th><td>2014-2026</td></tr>
+                        <tr><th scope="row">Reuse</th><td>None granted</td></tr>
+                    </tbody>
+                </table>
+                <p>All rights reserved: the code, design, mark, art, writing, photos and sounds are mine. The parts above keep their own licenses. The full terms are in <a href="https://github.com/Derjyn/derjyn.github.io/blob/master/LICENSE.md">LICENSE.md</a>.</p>
+            </section>
+        </div>
+        <p><a href="./">Back home</a></p>
+    </main>
+
+    <footer class="foot knuckles-split">
+        <span>derjyn.github.io</span>
+        <a href="https://github.com/Derjyn">GitHub</a>
+        <span>End of line</span>
+    </footer>
+</body>
+</html>
+<!-- ]-]-] EOF ]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]-]- -->

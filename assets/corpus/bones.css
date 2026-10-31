@@ -117,8 +117,9 @@
 :where(.rib-10) { grid-column: span 10; }
 :where(.rib-11) { grid-column: span 11; }
 
-/* Measures the spine around the rib; a container never matches its own query. */
-@container (inline-size < 30rem) {
+/* Measures the spine around the rib; a container never matches its own query. At 48rem a rib-3 is about
+   11rem and a rib-4 15rem; any narrower and splits hold only words, not content. */
+@container (inline-size < 48rem) {
     :where(.spine > *) { grid-column: 1 / -1; }
 }
 

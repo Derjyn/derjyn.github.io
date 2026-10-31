@@ -8,7 +8,7 @@
     const KEY = "derjyn-options";
     const ALLOWED = {
         scheme: ["system", "light", "dark"],
-        bg: ["lattice", "field", "off"],
+        bg: ["lattice", "field", "stars", "off"],
         fx: ["on", "off"],
         sound: ["on", "off"],
     };
